@@ -1,0 +1,1183 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%                             settings_common.tex                             %
+%                                                                             %
+%                               Achim Ibenthal                                %
+%                                                                             %
+%                                                                             %
+% CONTENT:             Common Package and command definitions for beamer      %
+%                      slides and scripts.                                    %
+%                                                                             %
+%                       1. Common Packages                                    %
+%                    -> 2. Global Colors & Settings                           %
+%                    -> 3. Author, Date and Title Data                        %
+%                       4. Script/Slide-specific Text and Character Emphasis  %
+%                       5. New Commands                                       %
+%                       6. File Paths                                         %
+%                       7. Language Adaptations                               %
+%                       8. New Block Environments                             %
+%                       9. Uebung - Antwort, Definition, Satz, Theorem,       %
+%                          Korollar, Lemma, Beispiel                          %
+%                      10. Block & Box Shortcuts                              %
+%                      11. Boxes in Itemize Environments                      %
+%                      12. Listings Configuration                             %
+%                      13. Textpos Settings                                   %
+%                                                                             %
+% REVISION HISTORY     01-AUG-06: Original Version                            %
+%                      14-AUG-08: Enhance flexibility, new block environments %
+%                      17-FEB-18: Update signal processing logo, Matlab staff %
+%                                 training 2016 style                         %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+
+%-----------------------------------------------------------------------------%
+%                            1. Common Packages                               %
+%-----------------------------------------------------------------------------%
+
+\usepackage[T1]{fontenc}
+\usepackage[latin2]{inputenc}
+\usepackage{fancyhdr, fancybox, fancyvrb}
+\newcommand\hmmax{0} % default: 3; avoid "Too many math alphabets" error due to bm
+\newcommand\bmmax{0} % default: 4; Avoid "Too many math alphabets" error due to bm
+\usepackage{bm, amsmath, txfonts, pxfonts, textcomp, relsize, eurosym}
+\usepackage[lined]{algorithm2e}
+\usepackage{format/mybeamer}
+\usepackage{graphicx}
+\usepackage{tikz, pgf, calc}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows}
+\usepackage[overlay,absolute]{textpos}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{listings, longtable, colortbl} 
+%\usepackage{nonfloat}
+\usepackage[ngerman]{babel}
+%\usepackage[english]{babel}
+
+
+%-----------------------------------------------------------------------------%
+%                        2. Global Colors & Settings                          %
+%-----------------------------------------------------------------------------%
+
+% Slide Color Theme as per settings_slides.tex
+% 
+% GRAY              RED               GREEN             BLUE/PURPLE
+% --------------    --------------    --------------    --------------    
+% LightSlateGray    Bordeaux          Khaki             Marine
+% DarkIvory         BordeauxGray      LightKhaki        DarkSteelBlue
+% HoneyDew          FireBrick         DarkKhaki         LightSteelBlue
+% Snow              Sienna            OliveGreen        Azure
+% DarkSnow                            OliveGreenGray    MediumPurple
+%                                     OliveDrab         Thistle [n]
+% BROWN             ORANGE/YELLOW     OliveDrabGray     
+% --------------    --------------    CamouflageGreen   
+% NavajoWhite       Orange            SeaGreen          OTHER
+% BurlyWood         Goldenrod         LintGreen         --------------
+% DarkWheat         LightGoldenRod    CornSilk          Ethiopia
+% Wheat                                                 Jamaica
+\def\slidethemecolor{BordeauxGray}
+
+% Slide Text and Box Colors
+\definecolor{NormalColor}  {rgb} {0.00 0.00 0.45}              % normal boxes
+\definecolor{ExampleColor} {rgb} {0.00 0.30 0.00}              % example boxes
+\definecolor{AlertColor}   {rgb} {0.40 0.00 0.00}              % alerted boxes
+\definecolor{TextColor}    {rgb} {0.00 0.00 0.00}              % general text
+
+% Slide Clock (requires \clockinit at beginning of first slide!)
+\def\slideclock{noclock}            % <showclock|noclock>
+
+% Script Box Colors (normal and alerted boxes only)
+\def\scriptboxlayout{boxed}         % <boxed|notboxed>
+\definecolor{ScriptNormalColorFrame}{rgb}  {0.902 0.906 0.969} % normal boxes
+\definecolor{ScriptNormalColorFill} {rgb}  {0.902 0.906 0.969}
+\definecolor{ScriptAlertColorFill}  {rgb}  {0.992 0.902 0.906} % alerted boxes
+\definecolor{ScriptAlertColorFrame} {named}{myred}
+
+% Script and Slide Hyperlink Color
+\definecolor{ColHyper}{named}{myblue}                          % SteelBlue2
+
+
+%-----------------------------------------------------------------------------%
+%                       3. Author, Date and Title Data                        %
+%-----------------------------------------------------------------------------%
+
+\newcommand{\doctitle}          {RECENT TRENDS IN ARTIFICIAL INTELLIGENCE BASED COMPUTER VISION}
+\newcommand{\doclongauthor}     {Prof. Dr.-Ing. Achim Ibenthal}
+\newcommand{\docauthor}         {A. Ibenthal}
+\newcommand{\docshortauthor}    {A. Ibenthal}
+\newcommand{\docphone}          {0551/3705-195}
+\newcommand{\docmail}           {ibenthal@hawk.de}
+\newcommand{\docskype}          {achim.ibenthal}
+\newcommand{\docinstitute}      
+   {Hochschule für angewandte Wissenschaft und Kunst            \\
+    Fakultät für Naturwissenschaften und Technik, Göttingen}
+\newcommand{\docshortinstitute} {HAWK [n]}
+\newcommand{\docdate}           {SoSe 2024}
+\newcommand{\docconsult}
+   {\begin{itemize}
+	    \item nach Vereinbarung
+    \end{itemize}}
+\newcommand{\docnutzung}
+   {Die Inhalte dieser Vorlesung entstammen hauptsï¿½chlich den Quellen 
+    \cite{Bu05}, \cite{We88a}, \cite{We88b}, die als vorlesungsbegleitendes 
+    Material empfohlen werden.
+    Weitere Quellen sind im Text kenntlich gemacht.
+    Darï¿½ber hinaus gehende Inhalte und Bilder sind 
+    \beamercopyright A. Ibenthal.
+    
+    \sldown{1}
+    Die Nutzung dieses Dokumentes dient ausschlieï¿½lich der Lehre und ist 
+    den Studierenden der HAWK, Fachhochschule Hildesheim, Holzminden, Gï¿½ttingen 
+    fï¿½r die Dauer ihrer Immatrikulation gestattet. 
+    \te{Die Weitergabe, Verï¿½ffentlichung oder kommer\-zielle Nutzung 
+    -- auch nur auszugsweise -- ist nicht gestattet.}
+    
+    \sldown{1}
+    Hinweise zu Fehlern, fehlenden oder falschen Referenzen, sowie weitere
+    Kommentare und Anregungen sind stets willkommen und werden zur Verbesserung
+    \switch{des Vorlesungsmaterials}{des Scripts} fortlaufend eingearbeitet. 
+    \slideonly{\vfill}}
+\newcommand{\docpolicy}
+   {A part of this lecture's content is based on original material provided in 
+    \cite{Bu05}, \cite{We88a}, \cite{We88b}, 
+    which are recommended for further reading.
+    Additional references are given throughout the document.
+    All other content and images are \beamercopyright A. Ibenthal.
+    
+    \sldown{1}
+    The usage of this document is strictly limited to teaching purposes.
+    The permission to own an electronic or printed copy of this document is
+    exclusively granted to \te{enrolled} students of the HAWK University of 
+    Applied Sciences and Arts Hildesheim, Holzminden, Gï¿½ttingen.
+    \te{Redistribution, publication or commercial usage of the whole or
+    parts of the course material is prohibited.}
+    
+    \sldown{1}
+    Hints on typographical errors, missing or false references,
+    as well as any further suggestions or comments are appreciated and 
+    will be considered for the continuous improvement of
+    \switch{course material}{this document}. 
+    \slideonly{\vfill}}
+
+
+%-----------------------------------------------------------------------------%
+%            4. Script/Slide-specific Text and Character Emphasis             %
+%-----------------------------------------------------------------------------%
+
+\mode<article>{
+   \newcommand{\ce}[1]{\underline{#1}}             % Character Emphasis
+   \newcommand{\te}[1]{\textit{#1}}                % Text Emphasis
+   \newcommand{\se}[1]{#1}                         % Text Emphasis in slide only
+   \newcommand{\me}[1]{\green{\textsf{#1}}}        % Menu Emphasis
+   \newcommand{\key}[1]{\te{#1}                    % Text Emphasis and Sidenote
+     \marginpar[\raggedleft\scriptsize\blue{\textsf{#1}}]{\raggedright\scriptsize\blue{\textsf{#1}}}}
+   \newcommand{\sidenote}[1]{                      % Sidenote only
+     \marginpar[\raggedleft\scriptsize\blue{\textsf{#1}}]{\raggedright\scriptsize\blue{\textsf{#1}}}}
+}
+\mode<presentation>{
+   \newcommand{\ce}[1]{\red{#1}}                   % Character Emphasis
+   \newcommand{\te}[1]{\red{#1}}                   % Text Emphasis
+   \newcommand{\se}[1]{\red{#1}}                  % Text Emphasis in slide only
+   \newcommand{\me}[1]{\green{\textsf{#1}}}        % Menu Emphasis
+   \newcommand{\key}[1]{\te{#1}}                   % Text Emphasis w/o Sidenote
+   \newcommand{\sidenote}[1]{}                     % No Sidenote
+}
+            
+
+%-----------------------------------------------------------------------------%
+%                              5. New Commands                                %
+%-----------------------------------------------------------------------------%
+
+% Shortcuts
+\newcommand{\Mat}{MATLAB\rights~}
+\newcommand{\Matintitle}{MATLAB{\footnotesize\raisebox{0.3ex}{\rights}}~}
+
+% MATLAB Highlighting
+\newcommand{\f}                [2] {\cblueb{#1}\cblue{(}\cblack{#2}\cblue{)}}
+\newcommand{\mat}              [1] {\cblueb{#1}}            
+\newcommand{\matinline}        [1] {\colorbox{ultralightgray}{\cblack{#1}}} 
+\newcommand{\matcommand}       [1] {\cblack{\symbol{62}\hspace{-0.4ex}\symbol{62}\hspace{0.55ex}#1}}            
+\newcommand{\matcommandinline} [1] {\colorbox{ultralightgray}{\matcommand{#1}}} 
+\newcommand{\matdoc}           [1] {\matcommand{\cgreen{doc #1}}}            
+\newcommand{\mathelp}          [1] {\matcommand{\cgreen{help #1}}}            
+\newcommand{\matcomment}       [1] {\cgreen{\% #1}}            
+\newcommand{\driver}           [1] {\cgreen{#1}}            
+\newcommand{\var}              [1] {\cblack{#1}}
+\newcommand{\fnam}             [1] {\cblackb{#1}}            
+\newcommand{\macrointitle}     [1] {\cblack{\symbol{92}}\cblackb{#1}}            
+\newcommand{\toolbox}          [1] {\credb{#1}}  
+\newcommand{\toolboxintitle}   [1] {\cblackb{#1}} 
+
+% Item Tabulation
+\newcommand{\itab}[4]{\item \parbox[t]{#1\hsize}{#2}\parbox[t]{#3\hsize}{#4}}
+\newcommand{\atab}[3]{\item \parbox[t]{#1\hsize}{#2}\hspace{2ex}\parbox[t]{0.83\hsize-#1\hsize}{#3}}
+\newcommand{\aarr}[3]{\iarr \parbox[t]{#1\hsize}{#2}\hspace{2ex}\parbox[t]{0.83\hsize-#1\hsize}{#3}}  
+
+% Text Tabulation
+\newcommand{\ttab}[4]{\parbox[t]{#1\hsize}{#2}\parbox[t]{#3\hsize}{#4}}
+
+% Auxiliary Lengths
+\newlength{\mytab}
+\newlength{\myitab}
+
+% Table Parbox (#1: Lenth/hsize, #2: Text #3: vstretch/ex 
+\newcommand{\tabbox}[3]{\parbox[t]{#1\hsize}{#2 \hfill \myrule{#3}}}
+
+% Table Row Stretching
+\newcommand{\flexcell}[1]{\parbox[c][\totalheight+4pt][c]{\hsize}{#1}}
+
+% Function Tables
+\newcommand{\lbox}[1]{\parbox[t]{0.2\hsize}{\cblueb{#1}\cblue{()}}}
+\newcommand{\rbox}[2]{\parbox[t]{0.7375\hsize}{#1 \hfill \myrule{#2}}}
+
+% Changing Font
+\newcommand{\changefont}[3]{
+   \fontfamily{#1} 
+   \fontseries{#2} 
+   \fontshape{#3} 
+   \selectfont}
+\newcommand{\bsf}[1]{{\slleft{4}\changefont{cmr}{m}{n} #1}}
+
+% Matrices: [] Brackets
+\renewcommand{\arr}[1]{\left[\begin{matrix}#1\end{matrix}\right]}
+
+% Matrices in Colortable
+\newlength{\mywidth}
+\newcommand{\colarr}[1]
+   {\settowidth{\mywidth}{$\left[\begin{matrix}#1\end{matrix}\right]$}%
+    \addtolength{\mywidth}{1.3pt}%
+    \makebox[\mywidth][c]{$
+    \hspace{5pt}\begin{matrix}#1\end{matrix}\hspace{5pt}%
+    \hspace{-\mywidth}%
+    \left[\phantom{\begin{matrix}#1\end{matrix}}\hspace{1.5pt}\right]$}}
+
+% Complex Matrices: Adjust Right Bracket
+\newcommand{\carr}[1]{\left[\begin{matrix}#1\end{matrix}\hspace{-9pt}\right]}
+\newcommand{\ccolarr}[1]
+   {\settowidth{\mywidth}{$\left[\begin{matrix}#1\end{matrix}\right]$}%
+    \addtolength{\mywidth}{1.3pt}%
+    \makebox[\mywidth][c]{$
+    \hspace{5pt}\begin{matrix}#1\end{matrix}\hspace{5pt}%
+    \hspace{-\mywidth}%
+    \left[\hspace{1pt}\phantom{\begin{matrix}#1\end{matrix}}\hspace{-9pt}\right]$}}
+    
+
+%-----------------------------------------------------------------------------%
+%                               6. File Paths                                 %
+%-----------------------------------------------------------------------------%
+
+\graphicspath{{Pics/}
+              {../Pics/}
+              {../../Pics/}
+              {../../../Pics/}
+              {../../../../Pics/}
+              {../10_Pics/}
+              {../../10_Pics/}
+              {../../../10_Pics/}
+              {../../../../10_Pics/}}
+
+\def\pics{format}   % for /pgfdeclare (logos)
+\def\bib{lecture}   % for Bib files
+
+
+%-----------------------------------------------------------------------------%
+%                          7. Language Adaptations                            %
+%-----------------------------------------------------------------------------%
+
+%\usepackage[hypcap=false]{caption} % caption language addaptation %\captionsetup{figurename=Figure}   % figurename (requires caption package)
+%\captionsetup{tablename=Table}     % tablename (requires caption package) 
+
+% Language Adaptations
+%\def\prefacename{Vorwort}%
+%\def\refname{Literatur}% 
+%\def\bibname{Literaturverzeichnis}% 
+%\def\abstractname{Zusammenfassung}%
+%\def\chaptername{Kapitel}%
+%\def\appendixname{Anhang}%
+%\def\contentsname{Inhaltsverzeichnis}% % oder nur: Inhalt
+%\def\listfigurename{Abbildungsverzeichnis}%
+%\def\listtablename{Tabellenverzeichnis}%
+%\def\indexname{Index}%
+%\def\figurename{Abbildung}%
+%\def\tablename{Tabelle}%  % oder: Tafel
+%\def\partname{Teil}%
+%\def\enclname{Anlage(n)}% % oder: Beilage(n)
+%\def\ccname{Verteiler}%   % oder: Kopien an
+%\def\headtoname{An}%
+%\def\pagename{Seite}%
+%\def\seename{siehe}%
+%\def\alsoname{siehe auch}
+%
+%\def\beamertemplateboldblocks{\setbeamerfont{block title}{size={},series=\bfseries}\setbeamertemplate{blocks}[default]}
+%\def\beamertemplatelargeblocks{\setbeamertemplate{blocks}[default]}
+%\def\beamertemplateshadowblocks{\setbeamertemplate{blocks}[rounded][shadow=true]}
+
+
+%-----------------------------------------------------------------------------%
+%                                                                             % 
+%                          8. New Block Environments                          %
+%                                                                             % 
+% normalblock: color can be defined independent of theme (4th block env.      %
+%              additional to <block|exampleblock|alertblock>                  %
+% normalbox:   normalblock without title (good for continuation of            %
+%              normalblock with same itemize colors on next frame)            %
+% examplebox:  exampleblock without title (good for continuation of           %
+%              exampleblock with same itemize colors on next frame)           %
+% alertbox:    alertblock without title (good for continuation of             %
+%              alertblock with same itemize colors on next frame)             %
+%                                                                             % 
+% Example:     \begin{normalblock}{Title}                                     %
+% --------        \begin{itemize}                                             % 
+%                    \item text                                               % 
+%                 \end{itemize}                                               % 
+%              \end{normalblock}                                              % 
+%                                                                             % 
+%              \framebreak                                                    %
+%                                                                             % 
+%              \begin{normalbox}                                              % 
+%                 \begin{itemize}                                             % 
+%                    \item text ct'd                                          % 
+%                 \end{itemize}                                               % 
+%              \end{normalbox}                                                % 
+%                                                                             % 
+% Note:        Colors are defined in settings_slides.tex                      %
+% -----                                                                       % 
+%                                                                             % 
+%-----------------------------------------------------------------------------%
+
+% normalblock
+\defbeamertemplate*{block normal begin}{default}{
+	\par\vskip\medskipamount%
+	\begin{beamerboxesrounded}[upper=block title normal,lower=block body normal,shadow=true]
+ 		{\raggedright\usebeamerfont*{block title normal}\insertblocktitle}%
+    	\raggedright%
+    	\usebeamerfont{block body normal}}%
+\defbeamertemplate*{block normal end}{default}{
+	\end{beamerboxesrounded}\vskip\smallskipamount}
+\newenvironment<>{normalblock}[1]{%
+    \scriptonly{\textsl{#1}}
+	\begin{actionenv}#2%
+	    \def\insertblocktitle{#1}%
+	    \par%
+	    \mode<presentation>{%\usebeamerfont{block}%
+	        \setbeamercolor{local structure}{parent=normalbullet}}%
+ 	    \usebeamertemplate{block normal begin}}
+	    {\par%
+	    \usebeamertemplate{block normal end}%
+    \end{actionenv}}
+
+
+% normalbox
+\defbeamertemplate*{box normal begin}{default}{
+  	\par\vskip\medskipamount%
+  	\begin{beamerboxesrounded}[upper=block title normal,lower=block body normal,shadow=true]
+    	{\raggedright\usebeamerfont*{block title normal}}%
+    	\raggedright%
+    	\usebeamerfont{block body normal}}%
+\defbeamertemplate*{box normal end}{default}
+	{\end{beamerboxesrounded}\vskip\smallskipamount}
+\newenvironment<>{normalbox}{%
+	\begin{actionenv}#1%
+	    \par%
+	    \mode<presentation>{%\usebeamerfont{block}%
+	        \setbeamercolor{local structure}{parent=normalbullet}}%
+ 	    \usebeamertemplate{box normal begin}}
+	    {\par%
+	    \usebeamertemplate{box normal end}%
+    \end{actionenv}}
+
+
+% examplebox
+\defbeamertemplate*{box example begin}{default}{
+  	\par\vskip\medskipamount%
+  	\begin{beamerboxesrounded}[upper=block title example,lower=block body example,shadow=true]
+    	{\raggedright\usebeamerfont*{block title example}}%
+    	\raggedright%
+    	\usebeamerfont{block body example}}%
+\defbeamertemplate*{box example end}{default}
+	{\end{beamerboxesrounded}\vskip\smallskipamount}
+\newenvironment<>{examplebox}{%
+	\begin{actionenv}#1%
+	    \par%
+	    \mode<presentation>{%\usebeamerfont{block}%
+	        \setbeamercolor{local structure}{parent=example text}}%
+ 	    \usebeamertemplate{box example begin}}
+	    {\par%
+	    \usebeamertemplate{box example end}%
+    \end{actionenv}}
+
+
+% alertbox
+\defbeamertemplate*{box alerted begin}{default}{
+  	\par\vskip\medskipamount%
+  	\begin{beamerboxesrounded}[upper=block title alerted,lower=block body alerted,shadow=true]
+    	{\raggedright\usebeamerfont*{block title alerted}}%
+    	\raggedright%
+    	\usebeamerfont{block body alerted}}%
+\defbeamertemplate*{box alerted end}{default}
+	{\end{beamerboxesrounded}\vskip\smallskipamount}
+\newenvironment<>{alertbox}{%
+	\begin{actionenv}#1%
+	    \par%
+	    \mode<presentation>{%\usebeamerfont{block}%
+	        \setbeamercolor{local structure}{parent=alerted text}}%
+ 	    \usebeamertemplate{box alerted begin}}
+	    {\par%
+	    \usebeamertemplate{box alerted end}%
+    \end{actionenv}}
+
+
+% bodybox
+\defbeamertemplate*{box body begin}{default}{
+  	\par\vskip\medskipamount%
+  	\begin{beamerboxesrounded}[upper=block title,lower=block body,shadow=true]
+    	{\raggedright\usebeamerfont*{block title}}%
+    	\raggedright%
+    	\usebeamerfont{block body}}%
+\defbeamertemplate*{box body end}{default}
+	{\end{beamerboxesrounded}\vskip\smallskipamount}
+\newenvironment<>{bodybox}{%
+	\begin{actionenv}#1%
+	    \par%
+	    \mode<presentation>{%\usebeamerfont{block}%
+	        \setbeamercolor{local structure}{parent=blockbullet}}%
+ 	    \usebeamertemplate{box body begin}}
+	    {\par%
+	    \usebeamertemplate{box body end}%
+    \end{actionenv}}
+
+
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%  9. Uebung - Antwort, Definition, Satz, Theorem, Korollar, Lemma, Beispiel  %
+%                                                                             %
+% Hinweis: Fï¿½r Beispiele sollte das Beamer "Beispiel" Environment genutzt     %
+% -------- werden.                                                            %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+% Provide Replacement for \section* \subsection*
+% (beamer uses internal counter for referencing sections and increases section
+% counter by each \section*) -> other relative counters get puzzled
+\newcounter{nosection}       
+\setcounter{nosection}{-10000}
+\newcounter{nosubsection}    
+\setcounter{nosubsection}{-10000}
+\newcounter{nosubsubsection} 
+\setcounter{nosubsubsection}{-10000}
+\newcounter{tmp} 
+
+\mode<article>{
+\newcommand{\nosection}[1]      {\section*{#1}}
+\newcommand{\nosubsection}[1]   {\subsection*{#1}}
+\newcommand{\nosubsubsection}[1]{\subsubsection*{#1}}
+}
+
+\mode<presentation>{
+\newcommand{\nosection}[1]      {\setcounter{tmp}{\value{section}}%
+                                 \stepcounter{nosection}%
+                                 \setcounter{section}{\value{nosection}}%
+                                 \section*{#1}%
+                                 \setcounter{section}{\value{tmp}}}
+\newcommand{\nosubsection}[1]   {\setcounter{tmp}{\value{subsection}}%
+                                 \stepcounter{nosubsection}%
+                                 \setcounter{subsection}{\value{nosubsection}}%
+                                 \subsection*{#1}%
+                                 \setcounter{subsection}{\value{tmp}}}
+\newcommand{\nosubsubsection}[1]{\setcounter{tmp}{\value{subsubsection}}%
+                                 \stepcounter{nosubsubsection}%
+                                 \setcounter{subsubsection}{\value{nosubsubsection}}%
+                                 \subsubsection*{#1}%
+                                 \setcounter{subsubsection}{\value{tmp}}}
+}
+
+% Uebung - Antwort 
+\newcounter{NUe}[section]                 % Each new section sets NUe to 0
+\def\theNUe{\thesection.\arabic{NUe}}     % Output of number Section.NUe
+
+\mode<article>{                           % Exercise + Answers Script
+\newcommand{\Uebung}[3]                   
+   {\refstepcounter{NUe}\label{#1}        % To avoid warnings use hyperref
+    \hypertarget{#1}{}                    % package option hypertexnames=false
+    \begin{block}                         
+       {\normalsize\bfseries\sffamily ï¿½bung \theNUe: #2}
+       #3
+    \end{block}}
+\newcommand{\Antwort}[2]
+   {\begin{block}{Lï¿½sung zu ï¿½bung \hyperlink{#1}{\ref*{#1}}}
+       #2
+    \end{block}}
+\newcommand{\Exercise}[3]                   
+   {\refstepcounter{NUe}\label{#1}        % To avoid warnings use hyperref
+    \hypertarget{#1}{}                    % package option hypertexnames=false
+    \begin{block}                         
+       {\normalsize\bfseries\sffamily Problem \theNUe: #2}
+       #3
+    \end{block}}
+\newcommand{\Answer}[2]
+   {\begin{block}{Solution to Problem \hyperlink{#1}{\ref*{#1}}}
+       #2
+    \end{block}}
+}
+
+\mode<presentation>{                      % Exercise + Answers Slides
+\newcounter{Uebung}
+\newcommand{\Uebung}[3]
+   {\refstepcounter{NUe}\label{#1}        % To avoid warnings use hyperref
+    \begin{exampleblock}                  % package option hypertexnames=false
+       {ï¿½bung \theNUe: #2}
+       #3
+    \end{exampleblock}}
+\newcommand{\Antwort}[2]
+   {\begin{block}{Lï¿½sung zu ï¿½bung \ref{#1}}
+       #2
+    \end{block}}
+\newcommand{\Exercise}[3]
+   {\refstepcounter{NUe}\label{#1}        % To avoid warnings use hyperref
+    \begin{exampleblock}                  % package option hypertexnames=false
+       {Problem \theNUe: #2}
+       #3
+    \end{exampleblock}}
+\newcommand{\Answer}[2]
+   {\begin{block}{Solution to Problem \ref{#1}}
+       #2
+    \end{block}}
+}
+
+
+% Definition
+\mode<article>{                           % Definiton Script
+\newcounter{NDef}[section]                % Each new section sets NDef to 0
+\def\theNDef{\thesection.\arabic{NDef}}   % Output of number Section.NDef
+
+\newcommand{\ndef}[3]                   
+   {\refstepcounter{NDef}\label{#1}       % To avoid warnings use hyperref
+    \hypertarget{#1}{}                    % package option hypertexnames=false
+    \begin{normalblock}                         
+       {Definition \theNDef: #2.}
+       #3
+    \end{normalblock}}
+}
+
+\mode<presentation>{                      % Definition Slides
+\newcounter{NDef}                         % Normal counter, no reset by section
+\def\theNDef{\arabic{NDef}}               % Output of number NDef
+\newcommand{\ndef}[3]
+   {\only<1>{\refstepcounter{NDef}}\label{#1}  % To avoid warnings use hyperref
+    \begin{normalblock}                   % package option hypertexnames=false
+       {Definition: #2.}                  % \theNDef
+       #3
+    \end{normalblock}}
+}
+%\newcommand{\hidendef}[1]{\uncover<2->{#1}\addtocounter{NDef}{-1}}
+
+
+% Satz; also see settings_script for boxed definitions
+\mode<article>{ 
+\newcounter{NSatz}[section]
+\def\theNSatz{\thesection.\arabic{NSatz}}
+
+\newcommand{\nsatz}[3]                   
+   {\refstepcounter{NSatz}\label{#1}
+    \hypertarget{#1}{}
+    \begin{normalblock}                         
+       {Satz \theNSatz: #2.}
+       #3
+    \end{normalblock}}
+}
+
+\mode<presentation>{    
+\newcounter{NSatz}   
+\def\theNSatz{\arabic{NSatz}}   
+\newcommand{\nsatz}[3]
+   {\only<1>{\refstepcounter{NSatz}}\label{#1} 
+    \begin{normalblock}
+       {Satz: #2.}                        % \theNSatz
+       #3
+    \end{normalblock}}
+}
+
+
+% Theorem; also see settings_script for boxed definitions
+\mode<article>{ 
+\newcounter{NTheo}[section]
+\def\theNTheo{\thesection.\arabic{NTheo}}
+
+\newcommand{\ntheo}[3]                   
+   {\refstepcounter{NTheo}\label{#1}
+    \hypertarget{#1}{}
+    \begin{normalblock}                         
+       {Theorem \theNTheo: #2.}
+       #3
+    \end{normalblock}}
+}
+
+\mode<presentation>{    
+\newcounter{NTheo}   
+\def\theNTheo{\arabic{NTheo}}   
+\newcommand{\ntheo}[3]
+   {\only<1>{\refstepcounter{NTheo}}\label{#1} 
+    \begin{normalblock}
+       {Theorem: #2.}                    % \theNTheo
+       #3
+    \end{normalblock}}
+}
+
+
+% Lemma
+\mode<article>{ 
+\newcounter{NLem}[section]
+\def\theNLem{\thesection.\arabic{NLem}}
+
+\newcommand{\nlem}[3]                   
+   {\refstepcounter{NLem}\label{#1}
+    \hypertarget{#1}{}
+    \begin{normalblock}                         
+       {Lemma \theNLem: #2.}
+       #3
+    \end{normalblock}}
+}
+
+\mode<presentation>{    
+\newcounter{NLem}   
+\def\theNLem{\arabic{NLem}}   
+\newcommand{\nlem}[3]
+   {\only<1>{\refstepcounter{NLem}}\label{#1} 
+    \begin{normalblock}
+       {Lemma: #2.}                       % \theNLem
+       #3
+    \end{normalblock}}
+}
+
+% Korollar // Corollary
+\mode<article>{ 
+\newcounter{NCor}[section]
+\def\theNCor{\thesection.\arabic{NCor}}
+
+\newcommand{\nkor}[3]                   
+   {\refstepcounter{NCor}\label{#1}
+    \hypertarget{#1}{}
+    \begin{normalblock}                         
+       {Korollar \theNCor: #2.}
+       #3
+    \end{normalblock}}
+\newcommand{\ncor}[3]                   
+   {\refstepcounter{NCor}\label{#1}
+    \hypertarget{#1}{}
+    \begin{normalblock}                         
+       {Corollary \theNCor: #2.}
+       #3
+    \end{normalblock}}
+}
+
+\mode<presentation>{    
+\newcounter{NCor}   
+\def\theNCor{\arabic{NCor}}   
+\newcommand{\nkor}[3]
+   {\only<1>{\refstepcounter{NCor}}\label{#1} 
+    \begin{normalblock}
+       {Korollar: #2.}                    % \theNCor
+       #3
+    \end{normalblock}}
+\newcommand{\ncor}[3]
+   {\only<1>{\refstepcounter{NCor}}\label{#1} 
+    \begin{normalblock}
+       {Corollary: #2.}                   % \theNCor
+       #3
+    \end{normalblock}}
+}
+
+
+% Beispiel // Example
+\mode<article>{ 
+\newcounter{NEx}[section]
+\def\theNEx{\thesection.\arabic{NEx}}
+
+\newcommand{\ebsp}[3]                   
+   {\refstepcounter{NEx}\label{#1}
+    \hypertarget{#1}{}
+    \begin{exampleblock}                         
+       {Beispiel \theNEx: #2.}
+       #3
+    \end{exampleblock}}
+\newcommand{\eex}[3]                   
+   {\refstepcounter{NEx}\label{#1}
+    \hypertarget{#1}{}
+    \begin{exampleblock}                         
+       {Example \theNEx: #2.}
+       #3
+    \end{exampleblock}}
+}
+
+\mode<presentation>{    
+\newcounter{NEx}   
+\def\theNEx{\arabic{NEx}}   
+\newcommand{\ebsp}[3]
+   {\only<1>{\refstepcounter{NEx}}\label{#1} 
+    \begin{exampleblock}
+       {Beispiel: #2.}                    % \theNEx
+       #3
+    \end{exampleblock}}
+\newcommand{\eex}[3]
+   {\only<1>{\refstepcounter{NEx}}\label{#1} 
+    \begin{exampleblock}
+       {Example: #2.}                     % \theNEx
+       #3
+    \end{exampleblock}}
+}
+
+
+%-----------------------------------------------------------------------------%
+%                          10. Block & Box Shortcuts                          %
+%-----------------------------------------------------------------------------%
+
+% nblock{Title}{Body}                       BLUE
+\newcommand{\nblock}[2]
+		   {\begin{normalblock}{#1}
+			   #2
+			\end{normalblock}}
+
+% nbox{Body}
+\newcommand{\nbox}[1]
+		   {\begin{normalbox}
+			   #1
+			\end{normalbox}}
+
+% eblock{Title}{Body}                       GREEN
+\newcommand{\eblock}[2]
+		   {\begin{exampleblock}{#1}
+			   #2
+			\end{exampleblock}}
+
+% ebox{Body}
+\newcommand{\ebox}[1]
+		   {\begin{examplebox}
+			   #1
+			\end{examplebox}}
+			
+% ablock{Title}{Body}                       RED
+\newcommand{\ablock}[2]
+		   {\begin{alertblock}{#1}
+			   #2
+			\end{alertblock}}
+
+% abox{Body}                              
+\newcommand{\abox}[1]
+		   {\begin{alertbox}
+			   #1
+			\end{alertbox}}
+
+% tblock{Title}{Body}                       THEME/TEXT
+\newcommand{\tblock}[2]
+		   {\begin{block}{#1}
+			   #2
+			\end{block}}
+
+% tbox{Body}
+\newcommand{\tbox}[1]
+		   {\begin{bodybox}
+			   #1
+			\end{bodybox}}
+	
+		
+%-----------------------------------------------------------------------------%
+%                      11. Boxes in Itemize Environments                      %
+%-----------------------------------------------------------------------------%
+
+% inbox{body}
+\newcommand{\inbox}[1] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.92\columnwidth}
+ 		    	\begin{normalbox}
+			   		#1
+				\end{normalbox}
+     		\end{minipage}}
+     	   {#1}} 
+
+% iebox{body}
+\newcommand{\iebox}[1] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.92\columnwidth}
+ 		    	\begin{examplebox}
+			   		#1
+				\end{examplebox}
+     		\end{minipage}}
+     	   {#1}} 
+     	   
+% ieblock{body}
+\newcommand{\ieblock}[2] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.92\columnwidth}
+ 		    	\begin{exampleblock}{#1}
+			       #2
+      			\end{exampleblock}
+     		\end{minipage}}
+     	   {#1}} 
+     	        
+% iabox{body}
+\newcommand{\iabox}[1] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.92\columnwidth}
+ 		    	\begin{alertbox}
+			   		#1
+				\end{alertbox}
+     		\end{minipage}}
+     	   {#1}} 		   
+     	   
+% itbox{body}
+\newcommand{\itbox}[1] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.92\columnwidth}
+ 		    	\begin{bodybox}
+			   		#1
+				\end{bodybox}
+     		\end{minipage}}
+     	   {#1}} 
+     
+% iinbox{body}
+\newcommand{\iinbox}[1] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.855\columnwidth}
+ 		    	\begin{normalbox}
+			   		#1
+				\end{normalbox}
+     		\end{minipage}}
+     	   {#1}} % iebox{body}
+
+% iiebox{body}
+\newcommand{\iiebox}[1] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.855\columnwidth}
+ 		    	\begin{examplebox}
+			   		#1
+				\end{examplebox}
+     		\end{minipage}}
+     	   {#1}} 
+
+% iiabox{body}
+\newcommand{\iiabox}[1] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.855\columnwidth}
+ 		    	\begin{alertbox}
+			   		#1
+				\end{alertbox}
+     		\end{minipage}}
+     	   {#1}} 
+
+% iitbox{body}
+\newcommand{\iitbox}[1] 
+   {\switch{\begin{minipage}[c]{0.012\columnwidth}
+ 	        	\strut
+     		\end{minipage}%
+	 		\begin{minipage}[c]{0.855\columnwidth}
+ 		    	\begin{bodybox}
+			   		#1
+				\end{bodybox}
+     		\end{minipage}}
+     	   {#1}} 
+
+
+%-----------------------------------------------------------------------------%
+%                         12. Listings Configuration                          %
+%-----------------------------------------------------------------------------%
+
+% The following requires the listings package to be loaded prior to mybeamer!
+
+\newcommand{\setlistingsnormal}
+           {\lstset{language=Matlab,
+	         basicstyle=\normalsize\ttfamily,       % normalsize
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=left, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+            morekeywords={ones,hilbert}}}
+
+\newcommand{\setlistings}
+           {\lstset{language=Matlab,
+	         basicstyle=\footnotesize\ttfamily,     % print whole listing small
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=left, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+            morekeywords={ones,hilbert}}}
+
+\newcommand{\setlistingsscript}
+           {\lstset{language=Matlab,
+	         basicstyle=\footnotesize\ttfamily,     % footnotesize
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=left, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         backgroundcolor=\color{ultralightgray},
+	         morekeywords={ones,hilbert}}}
+
+\newcommand{\setlistingsscriptsize}
+           {\lstset{language=Matlab,
+	         basicstyle=\scriptsize\ttfamily,            % small
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=left, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         morekeywords={ones,hilbert}}}
+
+\newcommand{\setlistingssmall}
+           {\lstset{language=Matlab,
+	         basicstyle=\scriptsize\ttfamily,       % scriptsize
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=left, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+            morekeywords={ones,hilbert}}}
+
+\newcommand{\setlistingstiny}
+           {\lstset{language=Matlab,
+	         basicstyle=\tiny\ttfamily,             % tiny
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=left, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+            morekeywords={ones,hilbert}}}
+
+% Nonumber	         
+\newcommand{\setlistingsnormalnonumber}
+           {\lstset{language=Matlab,
+	         basicstyle=\normalsize\ttfamily,       % normalsize
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=none, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         morekeywords={ones,hilbert}}}
+	         
+\newcommand{\setlistingsnonumber}
+           {\lstset{language=Matlab,
+	         basicstyle=\footnotesize\ttfamily,     % footnotesize
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=none, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         morekeywords={ones,hilbert}}}	         
+
+\newcommand{\setlistingssmallnonumber}
+           {\lstset{language=Matlab,
+	         basicstyle=\small\ttfamily,            % small
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=none, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         morekeywords={ones,hilbert}}}	         
+
+\newcommand{\setlistingstinynonumber}
+           {\lstset{language=Matlab,
+	         basicstyle=\tiny\ttfamily,             % tiny
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=none, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         morekeywords={ones,hilbert}}}	         
+
+% Commandwindow, all B/W
+\newcommand{\setlistingscommandwindow}
+           {\lstset{language=Matlab,
+	         basicstyle=\footnotesize\ttfamily,     % footnotesize
+	         keywordstyle=\color{black},
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{black}, 
+	         stringstyle=\color{black},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=none, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         frame=lines,
+	         morekeywords={ones,hilbert}}}	         
+
+\newcommand{\setlistingscommandwindowsmall}
+           {\lstset{language=Matlab,
+	         basicstyle=\small\ttfamily,            % small
+	         keywordstyle=\color{black},
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{black}, 
+	         stringstyle=\color{black},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=none, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         frame=lines,
+	         morekeywords={ones,hilbert}}}     
+
+% Commandwindow, Color
+\newcommand{\setlistingscommandwindowcolor}
+           {\lstset{language=Matlab,
+	         basicstyle=\footnotesize\ttfamily,     % footnotesize
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=none, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         frame=lines,
+	         morekeywords={ones,hilbert}}}	         
+
+\newcommand{\setlistingscommandwindowcolorsmall}
+           {\lstset{language=Matlab,
+	         basicstyle=\small\ttfamily,            % small
+	         keywordstyle=\color{myblue}\bfseries,
+	         identifierstyle=,                      % nothing happens
+	         commentstyle=\color{mygreen}, 
+	         stringstyle=\color{mymagenta},
+	         showstringspaces=false,                % no special string spaces
+	         numbers=none, 
+	         numberstyle=\tiny, 
+	         stepnumber=1, 
+	         numbersep=8pt,
+	         frame=lines,
+	         morekeywords={ones,hilbert}}}
+
+	         
+%-----------------------------------------------------------------------------%
+%        13. Textpos Settings: Place Text & Boxes by Absolute Position        %
+%                                                                             %
+%   Requires \usepackage[overlay,absolute]{textpos}                           %
+%            \usepackage{rotating}                                            %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+% Usage
+% \sumbox{5}{5}{5}{5}{\bc\huge\redb{IMPORTANT!}\ec}
+% \sumboxframe{c}{\frametitle{Test}xxx}
+% {5}{5}{5}{5}{\bc\huge\redb{IMPORTANT!}\ec}
+
+
+% Set Grid
+\TPGrid{10}{10} % Number of grid units per paper width/height
+
+\setbeamercolor{postit}{fg=black,bg=yellow}
+
+% \sumbox
+% #1: Textwidth
+% #2: Horizontal position (0 ? 10)
+% #3: Vertical position   (0 ? 10)
+% #4: Rotation angle (anti-clockwise)
+% #5: Text
+\newcommand{\sumbox}[5]{
+   \begin{textblock}{#1}[0.5,0.5](#2,#3){ 
+       \begin{turn}{#4}%
+       \begin{beamerboxesrounded}[upper=postit,lower=postit,shadow=true]
+       
+           #5
+       \end{beamerboxesrounded}
+       \end{turn}}
+   \end{textblock}}
+
+% \posbox
+% #1: Textwidth
+% #2: Horizontal position (0 ? 10)
+% #3: Vertical position   (0 ? 10)
+% #4: Rotation angle (anti-clockwise)
+% #5: Text
+\newcommand{\posbox}[5]{
+   \begin{textblock}{#1}[0.5,0.5](#2,#3){ 
+       \begin{turn}{#4}%
+           #5
+       \end{turn}}
+   \end{textblock}}
+      
+% \sumboxframe
+% #1: frame
+% #2: Textwidth
+% #3: Horizontal position (0 ? 10)
+% #4: Vertical position   (0 ? 10)
+% #5: Rotation angle (anti-clockwise)
+% #6: Text
+\newcounter{saveframenumber}
+\newcommand{\sumboxframe}[7]{
+   \begin{frame}[#1] 
+      #2 
+      \setcounter{saveframenumber}{\value{framenumber}}
+   \end{frame}
+   \begin{frame}[#1] 
+      \setcounter{framenumber}{\value{saveframenumber}}
+      #2 
+      \begin{textblock}{#3}[0.5,0.5](#4,#5){ 
+         \begin{turn}{#6}%
+         \begin{beamerboxesrounded}[upper=postit,lower=postit,shadow=true]
+       
+            #7
+         \end{beamerboxesrounded}
+         \end{turn}}
+       \end{textblock}
+   \end{frame}}
+
+	                 
+%------------------------------------EOF--------------------------------------%

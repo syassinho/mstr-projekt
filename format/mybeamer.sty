@@ -1,0 +1,1753 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+% File:     mybeamer.sty                                                      %
+%                                                                             %
+% Content:  Adaptation of mymath.sty to Beamer class                          %
+%                                                                             % 
+% Date:     17-JAN-16                                                         %
+% Author:   Achim Ibenthal                                                    %
+%                                                                             % 
+% Notes:    - In case of minibox usage to arrange textboxes and figures on    %
+%             the slide, don't insert empty lines between the begin- and      %
+%             end-minipage commands!                                          %
+%                                                                             % 
+%-----------------------------------------------------------------------------%
+
+
+%-----------------------------------------------------------------------------%
+%                              Special Characters                             %
+%-----------------------------------------------------------------------------%
+
+%   \   \symbol{92}              math: \backslash
+%   #   \#
+%   %   \%
+%   &   \symbol{38}
+%   ,   \symbol{44}
+%   .   \symbol{46}
+%   '   \symbol{39}
+%   @   \symbol{64}
+%   +   \symbol{43}
+%   -   \symbol{45}
+%   <   \symbol{60}
+%   >   \symbol{62}
+%   ^   \symbol{94}
+%   [   \symbol{91}
+%   ]   \symbol{93}
+%   _   \symbol{95}
+%   {   \symbol{123}
+%   }   \symbol{125}
+%   |   \symbol{124}
+%   ~   \symbol{126}
+%   à   \symbol{224}
+%   è   \symbol{232}
+%   é   \symbol{233}
+%   ê   \symbol{234}
+%   ä   \symbol{228}    
+%   ö   \symbol{246}
+%   ü   \symbol{252}
+
+%   \LaTeX~
+%   \LaTeXe~
+%   \TeX~
+%   \rights~
+
+
+%-----------------------------------------------------------------------------%
+%                                 Colored Text                                %
+%-----------------------------------------------------------------------------%
+
+% Color Definitions
+\definecolor{myred}{rgb}           {0.933 0.110 0.137}
+\definecolor{mygreen}{rgb}         {0.000 0.647 0.310}
+\definecolor{myblue}{rgb}          {0.180 0.188 0.573}
+\definecolor{mywhite}{rgb}         {1.0   1.0   1.0}
+\definecolor{ultralightgray}{rgb}  {0.92  0.92  0.92}
+\definecolor{mygray}{rgb}          {0.6   0.6   0.6}
+\definecolor{myblack}{rgb}         {0.0   0.0   0.0} 
+\definecolor{mymagenta}{rgb}       {0.8   0.0   0.8} 
+\definecolor{hawkmagenta}{rgb}     {0.627 0.431 0.502} 
+\definecolor{hawkmagentadark}{rgb} {0.564 0.388 0.452} 
+\definecolor{RoyalBlue}{rgb}       {0.255 0.412 0.882} 
+\definecolor{Bordeaux}{rgb}        {0.400 0.000 0.000}
+\definecolor{SteelBlue}{rgb}       {0.275 0.510 0.706}
+\definecolor{SteelBlue2}{rgb}      {0.100 0.335 0.531}
+
+% Coloring of text w/o changing other text attributes
+% Synopsis: \<color|b|i|bi>{<text>}
+\newcommand{\black}[1]      {\textcolor[rgb]{0,0,0}{#1}}
+\newcommand{\blackb}[1]     {\textcolor[rgb]{0,0,0}{\textbf{#1}}}
+\newcommand{\blacki}[1]     {\textcolor[rgb]{0,0,0}{\textit{#1}}}
+\newcommand{\blackbi}[1]    {\textcolor[rgb]{0,0,0}{\textbf{\textit{#1}}}}
+\newcommand{\gray}[1]       {\textcolor{mygray}{#1}}
+\newcommand{\grayb}[1]      {\textcolor{mygray}{\textbf{#1}}}
+\newcommand{\grayi}[1]      {\textcolor{mygray}{\textit{#1}}}
+\newcommand{\graybi}[1]     {\textcolor{mygray}{\textbf{\textit{#1}}}}
+\newcommand{\white}[1]      {\textcolor{mywhite}{#1}}
+\newcommand{\whiteb}[1]     {\textcolor{mywhite}{\textbf{#1}}}
+\newcommand{\whitei}[1]     {\textcolor{mywhite}{\textit{#1}}}
+\newcommand{\whitebi}[1]    {\textcolor{mywhite}{\textbf{\textit{#1}}}}
+\newcommand{\red}[1]        {\textcolor{myred}{#1}}
+\newcommand{\redb}[1]       {\textcolor{myred}{\textbf{#1}}}
+\newcommand{\redi}[1]       {\textcolor{myred}{\textit{#1}}}
+\newcommand{\redbi}[1]      {\textcolor{myred}{\textbf{\textit{#1}}}}
+\newcommand{\green}[1]      {\textcolor{mygreen}{#1}}
+\newcommand{\greenb}[1]     {\textcolor{mygreen}{\textbf{#1}}}
+\newcommand{\greeni}[1]     {\textcolor{mygreen}{\textit{#1}}}
+\newcommand{\greenbi}[1]    {\textcolor{mygreen}{\textbf{\textit{#1}}}}
+\newcommand{\blue}[1]       {\textcolor{myblue}{#1}}
+\newcommand{\blueb}[1]      {\textcolor{myblue}{\textbf{#1}}}
+\newcommand{\bluei}[1]      {\textcolor{myblue}{\textit{#1}}}
+\newcommand{\bluebi}[1]     {\textcolor{myblue}{\textbf{\textit{#1}}}}
+\newcommand{\pink}[1]       {\textcolor[rgb]{1,0.5,0.5}{#1}}
+\newcommand{\pinkb}[1]      {\textcolor[rgb]{1,0.5,0.5}{\textbf{#1}}}
+
+% Truetype Emphasis
+\newcommand{\cblack}   [1]  {\texttt{#1}}                    % black
+\newcommand{\cblackb}  [1]  {\textbf{\texttt{#1}}}           % black bold
+\newcommand{\cblacki}  [1]  {\textit{\texttt{#1}}}           % black italics
+\newcommand{\cblackbi} [1]  {\textbf{\textit{\texttt{#1}}}}  % black boldit
+\newcommand{\cwhite}   [1]  {\white{\texttt{#1}}}            % white
+\newcommand{\cwhiteb}  [1]  {\whiteb{\texttt{#1}}}           % white bold
+\newcommand{\cwhitei}  [1]  {\whitei{\texttt{#1}}}           % white italics
+\newcommand{\cwhitebi} [1]  {\whitebi{\textit{\texttt{#1}}}} % white boldit
+\newcommand{\cgray}    [1]  {\gray{\texttt{#1}}}    % blue
+\newcommand{\cgrayb}   [1]  {\grayb{\texttt{#1}}}   % blueb
+\newcommand{\cgrayi}   [1]  {\grayi{\texttt{#1}}}   % blueb
+\newcommand{\cgraybi}  [1]  {\graybi{\texttt{#1}}}  % blueb
+\newcommand{\cred}     [1]  {\red{\texttt{#1}}}     % red
+\newcommand{\credb}    [1]  {\redb{\texttt{#1}}}    % redb
+\newcommand{\credi}    [1]  {\redi{\texttt{#1}}}    % redi
+\newcommand{\credbi}   [1]  {\redbi{\texttt{#1}}}   % redbi
+\newcommand{\cgreen}   [1]  {\green{\texttt{#1}}}   % green
+\newcommand{\cgreenb}  [1]  {\greenb{\texttt{#1}}}  % greenb
+\newcommand{\cgreeni}  [1]  {\greeni{\texttt{#1}}}  % greeni
+\newcommand{\cgreenbi} [1]  {\greenbi{\texttt{#1}}} % greenbi
+\newcommand{\cblue}    [1]  {\blue{\texttt{#1}}}    % blue
+\newcommand{\cblueb}   [1]  {\blueb{\texttt{#1}}}   % blueb
+\newcommand{\cbluei}   [1]  {\bluei{\texttt{#1}}}   % blueb
+\newcommand{\cbluebi}  [1]  {\bluebi{\texttt{#1}}}  % blueb
+\newcommand{\matcmd}   [1]  {\hspace{3ex}\cblack{\symbol{62}\symbol{62} #1}} 
+
+%tikz Colours
+\definecolor{graphblue}{rgb}{0.180,0.188,0.573}
+
+
+%-----------------------------------------------------------------------------%
+%                         Arrows, Emphasis, Sidenotes                         %
+%-----------------------------------------------------------------------------%
+
+\newcommand{\sarr}[1]       {\begin{itemize} \normalsize
+                                \item[$\Rightarrow$]#1
+                             \end{itemize}}
+\newcommand{\srarr}[1]      {\begin{itemize} \normalsize
+                                \item[\redb{$\Rightarrow$}]#1
+                             \end{itemize}}
+\newcommand{\sgarr}[1]      {\begin{itemize} \normalsize
+                                \item[\greenb{$\Rightarrow$}]#1
+                             \end{itemize}}
+\newcommand{\sbarr}[1]      {\begin{itemize} \normalsize
+                                \item[\blueb{$\Rightarrow$}]#1
+                             \end{itemize}}
+\newcommand{\sitm}[1]       {\begin{itemize} \normalsize
+                                \item #1
+                             \end{itemize}}
+\newcommand{\iten}          {\switch{\item \normalsize}{\item } }
+\newcommand{\iarr}          {\item[$\Rightarrow$]}
+\newcommand{\rarr}          {\item[\redb{$\Rightarrow$}]}
+
+
+%-----------------------------------------------------------------------------%
+%                       Slide/Script Specific Commands                        %
+%-----------------------------------------------------------------------------%
+
+% Mode Selection commands w/o linefeed generation
+\mode<presentation>{
+   \newcommand{\slideonly}[1]{#1}         % replaces HAWK def
+   \newcommand{\scriptonly}[1]{}          % replaces HAWK def
+}
+\mode<article>{
+   \newcommand{\slideonly}[1]{}           % replaces HAWK def
+   \newcommand{\scriptonly}[1]{#1}        % replaces HAWK def
+}
+   % note that a \mode<option>{...} command automatically produces a linefeed,
+   % by the above definition, \slideonly and \scriptonly do not and can
+   % be applied within lines.
+\newcommand{\switch}[2]{\slideonly{#1}\scriptonly{#2}}
+
+
+% Proper Math Emphasis 
+\newcommand{\mathe}[1]   {\switch{\te{#1}}{\mathbf{#1}}} % Slide and Script mode         
+\newcommand{\slmathe}[1] {\switch{\te{#1}}{#1}}         % Slide mode only  
+
+% Beamer Small Caps
+%\newcommand{\bsc}[1]{\switch{{\fontfamily{ppl}\fontseries{m}\fontshape{sc}\selectfont #1}}{\textsc{#1}}}
+\newcommand{\bsc}[1]{\switch{{\fontfamily{ptm}\fontseries{m}\fontshape{sc}\selectfont #1}}{\textsc{#1}}}
+
+% Theorem End
+\newcommand{\checkbox}{\setlength{\unitlength}{1.8ex}
+                       \begin{picture}(1,1) 
+                          \put(0,0){\line(0,1){1}}
+                          \put(0,0){\line(1,0){1}}
+                          \put(0,1){\line(1,0){1}}
+                          \put(1,0){\line(0,1){1}}
+                       \end{picture}}
+\newcommand{\filledend}{\scriptonly{\hfill \rule{1.8ex}{1.8ex}}}
+\newcommand{\openend}{\scriptonly{\hfill\checkbox}}
+
+% Reference to \Uebung Label
+\newcommand{\ueref}[1]{\switch{\ref{#1}}{\hyperlink{#1}{\ref*{#1}}}}
+
+% Run Matlab M-File
+\newcommand{\matcall}[1]{\switch{\href{run:pass2mat.ahk\# #1}{\textsl{#1.m}}}
+                                {\textsl{#1.m}}}
+% Copyright and Trademark
+\newcommand{\beamercopyright}
+           {\switch{{\fontfamily{pcr}\selectfont \copyright}}{\copyright}\phantom{i}}
+\newcommand{\beamerrights}
+           {\switch{\raisebox{0.7ex}{\footnotesize\fontfamily{pcr}\selectfont \textregistered}}{\raisebox{0.7ex}{\footnotesize\textregistered}}}
+
+% \frametitle Treated as Subsection in Article Mode
+\newcommand{\framesection}[1]{\switch{\frametitle{#1}}{\subsection{#1}}}
+
+
+%-----------------------------------------------------------------------------%
+%                                   Spaces                                    %
+%-----------------------------------------------------------------------------%
+
+% Slide only spaces w/ empty line before
+\newcommand{\slup}[1]       {\slideonly{\vspace{-#1ex}}}
+\newcommand{\sldown}[1]     {\slideonly{\vspace{#1ex}}}
+\newcommand{\slleft}[1]     {\slideonly{\hspace{-#1ex}}}
+\newcommand{\slright}[1]    {\slideonly{\hspace{#1ex}}}
+
+% Slide only spaces w/o empty line before - script paragraph remains connected
+\newcommand{\slspace}[1]    {\slideonly{                    
+
+                             \vspace{#1ex}}}
+							 
+% Move up slide content in any case
+\newcommand{\sltop}[1]      {\slideonly{\phantom{x} \slspace{-#1}}}
+
+% Script only spaces w/ empty line before
+\newcommand{\scrup}[1]      {\scriptonly{\vspace{-#1ex}}}
+\newcommand{\scrdown}[1]    {\scriptonly{\vspace{#1ex}}}
+\newcommand{\scrleft}[1]    {\scriptonly{\hspace{-#1ex}}}
+\newcommand{\scrright}[1]   {\scriptonly{\hspace{#1ex}}}
+
+% Vertical Spaces Forced by a Ruler (safe method to avoid soft spacing,
+% e.g. in script mode below figure titles)
+\newcommand{\mybar}[1]      {\begin{minipage}[t]{\paperwidth}
+                                \rule[0ex]{0ex}{#1ex}
+                             \end{minipage}}
+\newcommand{\slidebar}[1]   {\slideonly{\mybar{#1}}}
+\newcommand{\scriptbar}[1]  {\scriptonly{\mybar{#1}}}
+
+% Vertical Spaces Forced by Rulers (sometimes useful e.g. in tabbing 
+% environment)
+\newcommand{\myrule}[1]     {\rule[0ex]{0ex}{0ex}
+                             \linebreak
+                             \vspace{-2\baselineskip}     
+                             \vspace{#1ex}
+                             \linebreak}
+\newcommand{\sliderule}[1]  {\slideonly{\myrule{#1}}}
+\newcommand{\scriptrule}[1] {\scriptonly{\myrule{#1}}}
+
+
+%-----------------------------------------------------------------------------%
+%                   Line Breaks, Page Breaks and Hyphenate                    %
+%-----------------------------------------------------------------------------%
+
+% Slide Linefeed
+\newcommand{\slf}           {\slideonly{\\}}
+\newcommand{\slff}          {\slideonly{ \hfill\\}}           % use for item bullets
+\newcommand{\sllb}          {\slideonly{\linebreak}}
+
+% Script Linefeed
+\newcommand{\scrlf}         {\scriptonly{\linebreak}}         % right aligned
+\newcommand{\scrlb}         {\scriptonly{ \hfill \hfill \linebreak}}   % right ragged
+\newcommand{\scrnp}         {\scriptonly{\newpage}}           % script newpage
+
+% Code linefeed - ragged right
+\newcommand{\codelf}        {\switch{\\}{\hfill \hfill \linebreak}}
+
+% Slide only hyphenate and linebreak (useful for long words in slide mode)
+% Apply using waved brackets {\slh}
+\newcommand{\slh}           {\slideonly{-\\}}
+\newcommand{\scrh}          {\scriptonly{-\\}}
+
+
+%-----------------------------------------------------------------------------%
+%                                   Quotes                                    %
+%-----------------------------------------------------------------------------%
+
+\newcommand{\onequote}[1]  {{\quotedblbase}#1\textquotedblright}
+\newcommand{\citequote}[2] {\begin{quote} \itshape
+                                {\guillemotleft}#2\guillemotright 
+                                \hfill \hfill \textsc{#1}
+                            \end{quote}}
+
+%-----------------------------------------------------------------------------%
+%                    Beamer Shortcuts for Frame Generation                    %
+%-----------------------------------------------------------------------------%
+
+% Single slide
+% #1: title                  #2: text    
+\newcommand{\slide}[2]   
+           {\begin{frame}
+            \frametitle{#1}
+            #2
+            \end{frame}}
+
+% Single slide without header in article mode 
+% #1: title                  #2: text   
+\newcommand{\pslide}[2]
+           {\begin{frame}
+            \slideonly{\frametitle{#1}}
+            #2
+            \end{frame}}
+
+% Multiple slides
+% #1: title                  #2: text   
+\newcommand{\multislide}[2]        
+           {\begin{frame}[allowframebreaks]
+            \frametitle{#1}
+            #2
+            \end{frame}}
+
+% Multiple slides without header in article mode 
+% #1: title                  #2: text   
+\newcommand{\pmultislide}[2]        
+           {\begin{frame}[allowframebreaks]
+            \slideonly{\frametitle{#1}}
+            #2
+            \end{frame}}
+
+% Plain slide (no title- and sidebars)
+% #1: title                  #2: text   
+\newcommand{\plainslide}[2]
+           {\begin{frame}[plain]
+            \frametitle{#1}
+            #2
+            \end{frame}}
+
+% Plain slide (no title- and sidebars) without header in article mode 
+% #1: title                  #2: text   
+\newcommand{\pplainslide}[2]
+           {\begin{frame}[plain]
+            \slideonly{\frametitle{#1}}
+            #2
+            \end{frame}}
+
+% Slide w/ two columns
+% #1: title,                 #2: vertical col alignment <t|c|b> 
+% #3:left col widthl         #4: right col width,
+% #5: left col text          #6: right col text
+\newcommand{\twocolslide}[6]        
+           {\begin{frame}
+            \frametitle{#1}
+            \begin{columns}[#2]
+               \begin{column}{#3\textwidth}
+                  #5
+               \end{column}
+               \begin{column}{#4\textwidth}
+                  #6
+               \end{column}
+            \end{columns}    
+            \end{frame}}
+
+% Slide w/ two columns without header in article mode
+% #1: title,                 #2: vertical col alignment <t|c|b> 
+% #3:left col widthl         #4: right col width,
+% #5: left col text          #6: right col text
+\newcommand{\ptwocolslide}[6]        
+           {\begin{frame}
+            \slideonly{\frametitle{#1}}
+            \begin{columns}[#2]
+               \begin{column}{#3\textwidth}
+                  #5
+               \end{column}
+               \begin{column}{#4\textwidth}
+                  #6
+               \end{column}
+            \end{columns}    
+            \end{frame}}
+
+\newcommand{\newslide}
+           {\framebreak}
+
+% Note: The fragile option for e.g. verbatim text or tabbing can not be part
+%       of an abbreviated new command since this leads to compilation errors.
+%       Directly use:
+%
+%       \begin{frame}[fragile]
+%       \frametitle{...}
+%          ...
+%       \end{frame}
+
+
+%-----------------------------------------------------------------------------%
+%                              Figures & Tables                               %
+%-----------------------------------------------------------------------------%
+
+% Substitute the nonfloat caption commands
+\newcommand{\figcaption}{\def\@captype{figure}\caption}
+\newcommand{\tabcaption}{\def\@captype{table}\caption}
+
+% Tabbed Tables: Add Line and leading letter
+\newcommand{\firstletter}[1]{\redb{#1\vphantom{$\Big($}}\cr}
+\newcommand{\newletter}[1]{\noalign{\hrule}\cr\redb{#1\vphantom{$\Big($}}\cr}
+\newcommand{\newletterfb}[1]
+           {\switch{\sliderule{99} & \sliderule{99} \cr
+                    \redb{#1\vphantom{$\Big($}}\cr}
+                   {\noalign{\hrule}\cr\redb{#1\vphantom{$\Big($}}\cr}}
+
+% Tabbed tables: Force Linebreak by tall entry
+\newcommand{\tabbedframebreak}
+           {\slideonly{\noalign{\framebreak}}} %
+\newcommand{\tabbedpagebreak}[1]
+           {\scriptonly{\noalign{\pagebreak\hrule} \cr}}
+
+% Figure insertion with specified width relative to current paper or box width
+% #1: Title          #2: Label       #3: width 0 ... 1       #4: figname 
+\newcommand{\fig}[4]
+           {\switch{\begin{minipage}[c]{\columnwidth}
+                       \begin{minipage}[c]{0.99\columnwidth}
+                         \begin{center}
+                           \hypertarget{#2}{\includegraphics[width=#3\hsize]{#4}}
+                         \end{center}
+                       \end{minipage}
+                       \scriptonly{\label{#2}}
+                       \scriptonly{\figcaption{#1}}%
+                    \end{minipage}} 
+                   {\begin{minipage}[c]{\columnwidth}
+                       \begin{minipage}[c]{0.99\columnwidth}
+                         \begin{center}
+                            \includegraphics[width=#3\hsize]{#4}
+                         \end{center}
+                       \end{minipage}                                        
+                    \figcaption{\label{#2} #1}%
+                    \end{minipage}}}
+
+% Same but w/o label in presentation mode to avoid hyperref warnings
+\newcommand{\figoverlay}[4]
+           {\switch{\begin{minipage}[c]{\columnwidth}
+                       \begin{minipage}[c]{0.99\columnwidth}
+                         \begin{center}
+                           {\includegraphics[width=#3\hsize]{#4}}
+                         \end{center}
+                       \end{minipage}
+                    \end{minipage}} 
+                   {\begin{minipage}[c]{\columnwidth}
+                       \begin{minipage}[c]{0.99\columnwidth}
+                         \begin{center}
+                            \includegraphics[width=#3\hsize]{#4}
+                         \end{center}
+                       \end{minipage}                                        
+                    \figcaption{\label{#2} #1}%
+                    \end{minipage}}}
+
+% 2 Subfigures (requires subfloat)
+% #1: Title  #2: Label  #3: width subfig a  #4: subfigname a
+%                       #5: width subfig b  #6: subfigname b
+\newcommand{\figtwo}[6]
+           {\switch{\begin{minipage}[c]{\columnwidth}
+                       \begin{minipage}[c]{0.99\columnwidth}
+                         \begin{center}
+						    \hypertarget{#2}{
+							\includegraphics[width=#3\hsize]{#4}%
+							\hfill
+							\includegraphics[width=#5\hsize]{#6}}%
+                         \end{center}
+                       \end{minipage}
+                       \scriptonly{\label{#2}}
+                       \scriptonly{\figcaption{#1}}%
+                    \end{minipage}} 
+                   {\begin{minipage}[c]{\columnwidth}
+                       \begin{minipage}[c]{0.99\columnwidth}
+                         \begin{center}
+							\includegraphics[width=#3\hsize]{#4}%
+							\hfill
+							\includegraphics[width=#5\hsize]{#6}%
+                         \end{center}
+                       \end{minipage}                                        
+                    \figcaption{\label{#2} #1}%
+                    \end{minipage}}}
+					
+% 2 Subfigures (requires subfloat)
+% Alternative version of \figtwo i case of problems with vertical alignment
+% #1: Title  #2: Label  #3: width subfig a  #4: subfigname a
+%                       #5: width subfig b  #6: subfigname b
+\newcommand{\twofig}[6]
+           {\switch{\begin{minipage}[c]{\columnwidth}
+                       \begin{minipage}[c]{#3\columnwidth}
+                          \begin{center}
+						                 \hypertarget{#2}{
+							               \includegraphics[width=\hsize]{#4}%
+                          \end{center}
+                       \end{minipage}
+			                 \hfill
+                       \begin{minipage}[c]{#5\columnwidth}
+                          \begin{center}
+							               \includegraphics[width=\hsize]{#6}}%
+                          \end{center}
+                       \end{minipage}
+                    \end{minipage}} 
+                   {\begin{minipage}[c]{\columnwidth}
+                       \begin{minipage}[c]{#3\columnwidth}
+                          \begin{center}
+                             \includegraphics[width=\hsize]{#4}%
+                          \end{center}
+                       \end{minipage}
+			                 \hfill
+                       \begin{minipage}[c]{#5\columnwidth}
+                          \begin{center}
+                             \includegraphics[width=\hsize]{#6}%
+                          \end{center}
+                       \end{minipage}                                        
+                       \figcaption{\label{#2} #1}%
+                    \end{minipage}}} 
+
+
+% Reference to Figure Label(Slides: (Bild), Script: (Bild n)
+\newcommand{\fref}[1]    {\switch{\hyperlink{#1}{(Bild)}}{Bild \ref{#1}}}
+\newcommand{\figref}[1]  {\switch{\hyperlink{#1}{(Figure)}}{Figure \ref{#1}}}
+
+% Figure w/o caption and label
+% #1: width 0 ... 1       #2: figname 
+\newcommand{\fignotext}[2]
+           {\begin{minipage}[c]{\columnwidth}
+               \begin{center}
+                   {\includegraphics[width=#1\hsize]{#2}}
+               \end{center}
+            \end{minipage}\\}
+
+% Figure w/o caption and label rotated by 90 degrees
+% #1: width 0 ... 1       #2: figname 
+\newcommand{\fignotextrotate}[2]
+           {\begin{minipage}[c]{\columnwidth}
+               \begin{center}
+                   {\includegraphics[width=#1\hsize, angle=90]{#2}}
+               \end{center}
+            \end{minipage}\\}
+
+% Figure insertion nonfloating
+% #1: Title          #2: Label       #3: width 0 ... 1       #4: figname 
+\newcommand{\fignf}[4]
+           {\switch{\\[\intextsep]  % package nonfloat required!
+              \begin{minipage}[c]{\columnwidth}
+                 \begin{minipage}[c]{0.99\columnwidth}
+                   \begin{center}
+                     \hypertarget{#2}{\includegraphics[width=#3\hsize]{#4}}
+                   \end{center}
+                 \end{minipage}
+                 \scriptonly{\figcaption{#1}%
+                 \label{#2}}
+              \end{minipage}
+              \\[\intextsep]
+           }{\\[\intextsep]         % package nonfloat required!
+             \begin{figure}
+             \begin{minipage}[c]{\columnwidth}
+                \begin{minipage}[c]{0.99\columnwidth}
+                  \begin{center}
+                    \includegraphics[width=#3\hsize]{#4}
+                  \end{center}
+                \end{minipage}
+                \caption{\label{#2} #1}%
+             \end{minipage}
+             \end{figure} 
+           \\[\intextsep]}}
+
+% Table insertion nonfloating
+% #1: label for referencing
+% #2: tabular caption
+% #3: column format
+% #4: table content
+\newcommand {\tabnf}[4]{\\[\intextsep]  
+                        \begin{minipage}{\linewidth}
+                            \tabcaption{#2}%
+                            \centering%
+                            \label{#1}%
+                            \begin{tabular}{#3}
+                               #4
+                            \end{tabular}
+                        \end{minipage}
+                        \\[\intextsep]}
+
+% List of Equation Definitions
+%\newcommand {\eqdeflist}[4] {\begin{minipage}[c]{#1\columnwidth}
+%                                #2
+%                             \end{minipage}
+%                             \begin{minipage}[c]{0.7\columnwidth}
+%                                \addtocounter{equation}{1}
+%                                \label{#3}
+%                                $#4$ \hfill (\theequation) % 
+%                             \end{minipage}}
+
+\newcommand {\eqnumber}       {\addtocounter{equation}{1}(\theequation)}
+\newcommand {\slnonumber}     {\slideonly{\nonumber \addtocounter{equation}{1}}}
+
+
+%-----------------------------------------------------------------------------%
+%                              Blocks & Boxes                                 %
+%-----------------------------------------------------------------------------%
+
+% Color Boxes w/o text (for color references)
+% e.g. \cbox{0 1 0} for green
+\newcommand{\cboxlong}[1]   {\fcolorbox[rgb]{0 0 0}{#1}{\color[rgb]{#1}+++++++}}
+\newcommand{\cbox}[1]       {\fcolorbox[rgb]{0 0 0}{#1}{\color[rgb]{#1}++++}}
+\newcommand{\cboxshort}[1]  {\fcolorbox[rgb]{0 0 0}{#1}{\color[rgb]{#1}++}}
+
+
+%-----------------------------------------------------------------------------%
+%                                Verbatim Macros                              %
+%-----------------------------------------------------------------------------%
+
+% The following requires fancyvrb package to be loaded prior to mybeamer!
+% Possibility to run Matlab script from title:
+% \begin{codeframel}[label=\href{run:pass2mat.ahk\#file}{file.m}]
+
+% Special Symbols (when using texttt{...} i.s.o. verbatim)
+\def\bslash{\symbol{92}}    % leave [space] to nect char
+
+\slideonly{
+% Framed Verbatim, normal Size
+\DefineVerbatimEnvironment%
+{codeframe}{Verbatim}
+{commandchars=°\²\³,
+ frame=lines, framesep=1.5ex, 
+ framerule=0.1ex, %rulecolor=\color{mygray},
+ numbers=left, numbersep=1.5ex}
+
+% Framed Verbatim, Scriptize (l = long lines)
+\DefineVerbatimEnvironment%
+{codeframel}{Verbatim}
+{commandchars=°\²\³,
+ fontsize=\small, frame=lines, framesep=1.5ex, 
+ framerule=0.1ex, %rulecolor=\color{mygray},
+ numbers=left, numbersep=1.5ex}
+
+% Framed Verbatim, Scriptize (ll = very long lines)
+\DefineVerbatimEnvironment%
+{codeframell}{Verbatim}
+{commandchars=°\²\³,
+ fontsize=\scriptsize, frame=lines, framesep=1.5ex, 
+ framerule=0.1ex, %rulecolor=\color{mygray},
+ numbers=left, numbersep=1.5ex}
+
+% Verbatim, normal Size
+\DefineVerbatimEnvironment%
+{codesnippet}{Verbatim}
+{commandchars=°\²\³, framesep=1.5ex}
+
+% Verbatim, Scriptsize (l = long lines)
+\DefineVerbatimEnvironment%
+{codesnippetl}{Verbatim}
+{commandchars=°\²\³, fontsize=\small, framesep=1.5ex}
+
+% Verbatim, Scriptsize (ll = very long lines)
+\DefineVerbatimEnvironment%
+{codesnippetll}{Verbatim}
+{commandchars=°\²\³, fontsize=\scriptsize, framesep=1.5ex}
+}
+
+\scriptonly{
+% Framed Verbatim, normal Size
+\DefineVerbatimEnvironment%
+{codeframe}{Verbatim}
+{commandchars=°\²\³,
+ fontsize=\small, frame=lines, framesep=1.5ex, 
+ framerule=0.1ex, %rulecolor=\color{mygray},
+ numbers=left, numbersep=1.5ex}
+
+% Framed Verbatim, Scriptize (l = long lines)
+\DefineVerbatimEnvironment%
+{codeframel}{Verbatim}
+{commandchars=°\²\³,
+ fontsize=\small, frame=lines, framesep=1.5ex, 
+ framerule=0.1ex, %rulecolor=\color{mygray},
+ numbers=left, numbersep=1.5ex}
+
+% Framed Verbatim, Scriptize (ll = very long lines)
+\DefineVerbatimEnvironment%
+{codeframell}{Verbatim}
+{commandchars=°\²\³,
+ fontsize=\small, frame=lines, framesep=1.5ex, 
+ framerule=0.1ex, %rulecolor=\color{mygray},
+ numbers=left, numbersep=1.5ex}
+
+% Verbatim, normal Size
+\DefineVerbatimEnvironment%
+{codesnippet}{Verbatim}
+{commandchars=°\²\³, framesep=1.5ex}
+
+% Verbatim, Scriptsize (l = long lines)
+\DefineVerbatimEnvironment%
+{codesnippetl}{Verbatim}
+{commandchars=°\²\³, framesep=1.5ex}
+
+% Verbatim, Scriptsize (ll = very long lines)
+\DefineVerbatimEnvironment%
+{codesnippetll}{Verbatim}
+{commandchars=°\²\³, framesep=1.5ex}
+}
+
+%-----------------------------------------------------------------------------%
+%                           Text and Math Mode Macros                         %
+%-----------------------------------------------------------------------------%
+
+% Enumerations
+\def\enumst{\ifmmode
+               ^{\mbox{\scriptsize{st}}}
+            \else
+               $^{\mbox{\scriptsize{st}}}$%
+            \fi}
+\def\enumnd{\ifmmode
+               ^{\mbox{\scriptsize{nd}}}
+            \else
+               $^{\mbox{\scriptsize{nd}}}$%
+            \fi}
+\def\enumrd{\ifmmode
+               ^{\mbox{\scriptsize{rd}}}
+            \else
+               $^{\mbox{\scriptsize{rd}}}$%
+            \fi}
+\def\enumth{\ifmmode
+               ^{\mbox{\scriptsize{th}}}
+            \else
+               $^{\mbox{\scriptsize{th}}}$%
+            \fi}
+
+            
+%-----------------------------------------------------------------------------%
+%                               Text Mode Macros                              %
+%-----------------------------------------------------------------------------%
+
+% Text Formatting
+\newcommand {\ul} {\underbar}
+\newcommand {\superscript}[1]{\raisebox{0.8ex}{\footnotesize{#1}}}
+\newcommand {\subscript}[1]{\raisebox{-0.3ex}{\footnotesize{#1}}}
+\newcommand {\cpp}{C\raisebox{0.9ex}{++}\hspace{0.5ex}}
+\newcommand {\rights}{\raisebox{0.7ex}{\scriptsize\textregistered}}
+\newcommand {\matlab}{MATLAB\rights\rule{0ex}{1ex}}
+\newcommand {\mysc}[2]{\MakeUppercase{#1}{\scriptsize\MakeUppercase{#2}}}
+
+
+% Paragraph Formatting
+\newcommand {\bc} {\begin{center}}
+\newcommand {\ec} {\end{center}}
+\newcommand {\bfl}{\begin{flushleft}}
+\newcommand {\efl}{\end{flushleft}}
+
+% Lists
+\newcommand {\bi}{\begin{itemize}}
+\newcommand {\ei}{\end{itemize}}
+\newcommand {\ben}{\begin{enumerate}}
+\newcommand {\een}{\end{enumerate}}
+
+% Tables
+\newcommand {\lf} {\cr \smallskip}
+\newcommand {\mf} {\cr \medskip}
+\newcommand {\bt} {\begin{table} \begin{center}}
+\newcommand {\et} {\end{center} \end{table}}
+\newcommand {\btu} {\begin{tabular}}
+\newcommand {\etu} {\end{tabular}}
+
+
+%-----------------------------------------------------------------------------%
+%                              Math Mode Macros                               %
+%-----------------------------------------------------------------------------%
+
+% Equations
+\newcommand {\ba} {\begin{array}}
+\newcommand {\ea} {\end{array}}
+\newcommand {\beq} {\begin{equation}}
+\newcommand {\eeq} {\end{equation}}
+\newcommand {\be}{\begin{eqnarray}}
+\newcommand {\ee}{\end{eqnarray}}
+\newcommand {\eeo}{\end{eqnarray*}}
+\newcommand {\beo}{\begin{eqnarray*}}
+
+% Matrices
+\newcommand{\arr}[1]{\left(\begin{matrix} #1 \end{matrix} \right)}
+\newcommand{\arrdet}[1]{\left| \, \begin{matrix} #1 \end{matrix} \, \right|}
+\newcommand{\textvec}[1]{(\begin{matrix} #1 \end{matrix})^T}
+
+% Math Mode Units
+\newcommand{\unit}[1]{\, \mbox{#1}}
+\newcommand{\ibox}[1]{\mbox{\scriptsize #1}}
+\newcommand{\db}{\, \mbox{dB}}
+\newcommand{\mv}{\, \mbox{mV}}
+\newcommand{\mw}{\, \mbox{mW}}
+\newcommand{\muw}{\, \mu\mbox{W}}
+\newcommand{\hz}{\, \mbox{Hz}}
+\newcommand{\khz}{\, \mbox{kHz}}
+\newcommand{\mhz}{\, \mbox{MHz}}
+\newcommand{\ghz}{\, \mbox{GHz}}
+\newcommand{\thz}{\, \mbox{THz}}
+\newcommand{\mus}{\, \mu\mbox{s}}
+\newcommand{\ms}{\, \mbox{ms}}
+\newcommand{\ns}{\, \mbox{ns}}
+\newcommand{\ohm}{\, \Omega}
+\newcommand{\kohm}{\, \mbox{k}\Omega}
+
+% Math Formatting
+\newcommand {\noit}[1] {\switch{\mathsf{#1}}{\mathrm{#1}}} % Theorem environment
+\newcommand {\m} {\mathbf}
+\newcommand {\Div}{\;\mbox{div}\;}
+\newcommand {\D}{\displaystyle} 
+\newcommand {\T}{\textstyle}
+\newfont{\bcom}{cmssbx10 scaled 1200}    % Comment font (use \bcom
+\newcommand {\ecom} {\rm \normalsize}    % <your_comment> \ecom)
+\newcommand {\mathfootnotesize}[1]{\mbox{\footnotesize$#1$}}
+
+% Math Functions
+\newcommand {\entspr}{\;\widehat{=}\;}
+\newcommand {\ld}{\,\mbox{ld}\,}
+\newcommand {\ggT}{\mathop{\rm ggT}}
+\newcommand {\RE}{\mathop{\rm Re}}
+\newcommand {\IM}{\mathop{\rm Im}}
+\newcommand {\re}[1]{\mathop{\rm Re}\left\{ #1 \right\}}
+\newcommand {\im}[1]{\mathop{\rm Im}\left\{ #1 \right\}}
+\newcommand {\tchenu}{\glqq}
+\newcommand {\tcheno}{\grqq \hspace{0.8ex}}
+
+% Sets % requires amssymb and pxfonts
+\newcommand {\Nset} {\mathbb{N}}
+\newcommand {\Zset} {\mathbb{Z}}
+\newcommand {\Cset} {\mathbb{C}}
+\newcommand {\Rset} {\mathbb{R}}
+\newcommand {\Qset} {\mathbb{Q}}
+
+% Fourier Transform Symbols (require package txfonts/pxfonts)
+\newcommand {\fft}   {\multimapdotbothA}     % FFT horizontal symbol
+\newcommand {\ifft}  {\multimapdotbothB}     % IFFT horizontal symbol
+\newcommand {\fftv}  {\multimapdotbothAvert} % FFT vertical symbol
+\newcommand {\ifftv} {\multimapdotbothBvert} % IFFT vertical symbol
+
+% Other Symbols and Relations
+\newcommand {\dgr} {^\circ}
+\newcommand {\conj} {^{\D *}}
+\newcommand {\windows} {\mbox{$\sqcap$}}
+\newcommand {\window} {\hspace{-0.6ex}\mbox{\setlength{\unitlength}{1ex}
+                             \begin{picture}(2.8,1.6) 
+                                \put(0,0){\line(0,1){1.6}}
+                                \put(0,1.6){\line(1,0){2.8}}
+                                \put(2.8,0){\line(0,1){1.6}}
+                             \end{picture}}\hspace{0.2ex}}
+\newcommand {\step}   {\hspace{-0.6ex}\mbox{\setlength{\unitlength}{1ex}
+                             \begin{picture}(3.2,1.6) 
+                                \put(0,0){\line(1,0){1.6}}
+                                \put(1.6,0){\line(0,1){1.6}}
+                                \put(1.6,1.6){\line(1,0){1.6}}
+                             \end{picture}}}
+\newcommand {\stepdot}{\hspace{-0.6ex}\mbox{\setlength{\unitlength}{1ex}
+                             \begin{picture}(3.2,2.2) 
+                                \put(0,0){\line(1,0){1.6}}
+                                \put(1.6,0){\line(0,1){1.6}}
+                                \put(1.6,1.6){\line(1,0){1.6}}
+                                \put(1.6,0.6){$\dot{}$}
+                             \end{picture}}}
+\newcommand {\cossquare}{\hspace{-0.6ex}\mbox{\setlength{\unitlength}{1ex}
+                             \begin{picture}(3.2,1.6) 
+                                \qbezier(0.0,0.0)(0.5,0.0)(0.8,0.8)
+                                \qbezier(0.8,0.8)(1.1,1.6)(1.6,1.6)
+                                \qbezier(1.6,1.6)(2.1,1.6)(2.4,0.8)
+                                \qbezier(2.4,0.8)(2.7,0.0)(3.2,0.0)
+                             \end{picture}}}
+\newcommand {\tri}    {\hspace{-0.6ex}\mbox{\setlength{\unitlength}{1ex}
+                             \begin{picture}(2,1.6) 
+                                \qbezier(0.0,0.0)(0.5,0.8)(1,1.6)
+                                \qbezier(1,1.6)(1.5,0.8)(2,0)
+                             \end{picture}}\hspace{0.2ex}}
+\newcommand {\comb}   {\hspace{-0.6ex}\mbox{\setlength{\unitlength}{1ex}
+                             \begin{picture}(3.8,1.6) 
+                                \put(0,0){\line(1,0){3.6}}
+                                \put(0.8,0){\line(0,1){1.6}}
+                                \put(1.8,0){\line(0,1){1.6}}
+                                \put(2.8,0){\line(0,1){1.6}}
+                             \end{picture}}}
+\newcommand{\letter}{\setlength{\unitlength}{1ex}
+                       \begin{picture}(1,1) 
+                          \put(0  ,  0){\line(1,0){1.5}}
+                          \put(0  ,  1){\line(1,0){1.5}}
+                          \put(0  ,  0){\line(0,1){1}}
+                          \put(1.5,  0){\line(0,1){1}}
+                          \qbezier(0,  1)(0.375,0.7)(0.75,0.4)
+                          \qbezier(1.5,1)(1.125,0.7)(0.75,0.4)
+                          \qbezier(0,  0)(0.3105,0.2484)(0.6225,0.4980)
+                          \qbezier(1.5,0)(1.1895,0.2484)(0.8775,0.4980)
+                       \end{picture}}
+\newcommand {\half} {\frac{1}{2}}
+\newcommand {\shalf} {\T \frac{1}{2}}
+\newcommand {\quarter} {\frac{1}{4}}
+\newcommand {\spc} {\mbox{\hspace{0.6em}}}
+\newcommand {\onto} {\longmapsto}
+\newcommand {\dx} {\Delta x}
+\newcommand {\dy} {\Delta y}
+\newcommand {\conv}[1]{\buildrel #1\over\ast}
+\newcommand {\cb} {\,\ast\,}
+\newcommand {\cxy} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$x$} \hspace{-0.35em} \: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$y$} \:\: }
+\newcommand {\cx} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$x$} \:\:}
+\newcommand {\cy} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$y$} \:\:}
+\newcommand {\cu} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$u$} \:\:}
+\newcommand {\cv} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$v$} \:\:}
+\newcommand {\cc} {\,\ast\hspace{-0.2em}\ast\,}
+\newcommand {\cmn} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$m$} \hspace{-0.35em} \: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$n$} \:\: }
+\newcommand {\cm} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$m$} \:\:}
+\newcommand {\cn} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$n$} \:\:}
+\newcommand {\ctxty} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$\theta_x$} \hspace{-0.35em} \: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$\theta_y$} \:\: }
+\newcommand {\ctx} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$\theta_x$} \:\:}
+\newcommand {\cty} {\: \ast \hspace{-0.75em}\raisebox{1.6ex}[-1.6ex]{$\theta_y$} \:\:}
+\newcommand {\fe} {\: = \hspace{-0.8em}\raisebox{1.6ex}[-1.6ex]{$!$} \:\:}
+\newcommand {\si}  {\mbox{si}}
+\newcommand {\siuh}  {si \left( \T \frac{u}{2} \right)}
+\newcommand {\siuq}  {si \left( \T \frac{u}{4} \right)}
+\newcommand {\sisuh} {si^2 \T \left(\frac{u}{2} \right)}
+\newcommand {\sisuq} {si^2 \T \left(\frac{u}{4} \right)}
+\newcommand {\sivh}  {si \left( \T \frac{v}{2} \right)}
+\newcommand {\sivq}  {si \left( \T \frac{v}{4} \right)}
+\newcommand {\sisvh} {si^2 \T \left(\frac{v}{2} \right)}
+\newcommand {\sisvq} {si^2 \T \left(\frac{v}{4} \right)}
+\newcommand {\siuhl}  {si \left( \D \frac{u}{2} \right)}
+\newcommand {\siuql}  {si \left( \D \frac{u}{4} \right)}
+\newcommand {\sisuhl} {si^2 \D \left(\frac{u}{2} \right)}
+\newcommand {\sisuql} {si^2 \D \left(\frac{u}{4} \right)}
+\newcommand {\sivhl}  {si \left( \D \frac{v}{2} \right)}
+\newcommand {\sivql}  {si \left( \D \frac{v}{4} \right)}
+\newcommand {\sisvhl} {si^2 \D \left(\frac{v}{2} \right)}
+\newcommand {\sisvql} {si^2 \D \left(\frac{v}{4} \right)}
+\newcommand {\wx} {\omega_x}
+\newcommand {\wy} {\omega_y}
+\newcommand {\wt} {\omega_t}
+\newcommand {\wxy} {\omega_x,\omega_y}
+\newcommand {\wxyt} {\omega_x,\omega_y, \omega_t}
+\newcommand {\tx} {\theta_x}
+\newcommand {\ty} {\theta_y}
+\newcommand {\txy} {\theta_x,\theta_y}
+\newcommand {\px} {\psi_x}
+\newcommand {\py} {\psi_y}
+\newcommand {\pxy} {\psi_x,\psi_y}
+\newcommand {\partx} {\frac{\partial}{\partial x}}
+\newcommand {\party} {\frac{\partial}{\partial y}}
+\newcommand {\partt} {\frac{\partial}{\partial t}}
+\newcommand {\isequiv} {\stackrel{\text{\symbol{94}}}{=}}
+
+
+%#############################################################################%
+%#############################################################################%
+
+%-----------------------------------------------------------------------------%
+%         Old Slide Generation (for compatibility with previous versions)     %
+%-----------------------------------------------------------------------------%
+
+\newcommand{\subtitlebeamer}[1]{\slideonly{{\color{ColHyper}\textsf{\textbf{#1}}}}}
+\renewcommand{\subtitle}[1] {\frametitle{#1}}
+\renewcommand{\maketitle}{\frame{\titlepage}}
+
+\newcommand{\hitm}       {\item}
+\newcommand{\ditm}       {\item}
+\newcommand{\hditm}      {\item}
+\newcommand{\harr}       {\item[$\Rightarrow$]}
+\newcommand{\darr}       {\item[$\Rightarrow$]}
+\newcommand{\hdarr}      {\item[$\Rightarrow$]}
+
+\newcommand{\scrvspace}[1]  {\scriptonly{\rule[0mm]{0mm}{#1}}}
+\newcommand{\slidevspace}[1]{\slideonly{\rule[0mm]{0mm}{#1}}}
+
+
+% Predefined Boxes
+\newcommand*{\TitleTextBoxbeamer[2]}
+            {\renewcommand\optionalpagematter{\vfill
+                \begin{center}
+                   \fcolorbox{ColExtraTitleBoxFrame}{ColExtraTitleBoxBg}{
+                   \begin{minipage}{.75\linewidth}
+                      \small
+                      \noindent{\color{ColExtraTitleBoxText1} \underline{#1}} 
+                                \color{ColExtraTitleBoxText2} #2
+                   \end{minipage}}
+                \end{center}}}
+
+
+% In case the nonfloat package is not included files written for HAWK based
+% styles require the \figcaption and \tabcaption commands -> include the next
+% two lines locally in the preamble of your document at the place where you 
+% would have included the nonfloat package
+%\newcommand{\figcaption}{\def\@captype{figure}\caption}
+%\newcommand{\tabcaption}{\def\@captype{table}\caption}
+
+% Figure with header in presentation mode. In article mode the title
+% will appear as paragraph title and figure caption. So all hfig...
+% commands should be changed to the non-h version, where the figure title
+% will automatically appear as a frametitle.
+\newcommand{\hfig}[4]      {\subtitle{#1} 
+                            \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \begin{center}
+                                  \hypertarget{#2}{\includegraphics[width=#3\hsize]{#4}}
+                                \end{center}
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage}}
+
+% \hfigbox{1}...{5}
+% #1: figbox caption
+% #2: figbox label
+% #3: figure column width
+% #4: figure 1 name
+% #5: figure 1 undertitle
+% h: header in screen version
+\newcommand{\hfigbox}[5]    {\subtitle{#1}  
+                             \begin{minipage}[c]{\columnwidth}
+                               \begin{minipage}[c]{0.99\columnwidth}
+                                 \begin{center}
+                                   \hypertarget{#2}{\includegraphics[width=#3\hsize]{#4}}
+                                 \end{center}
+                               \end{minipage}\\
+                               \begin{minipage}[c]{0.99\columnwidth}
+                                 \vspace{1ex}{\bc\footnotesize #5\ec}
+                               \end{minipage}
+                               \scriptonly{\figcaption{#1.}%
+                                  \label{#2}}
+                             \end{minipage} \\ }
+
+% \figbox{1}...{5}
+\newcommand{\figbox}[5]     {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \begin{center}
+                                  \hypertarget{#2}{\includegraphics[width=#3\hsize]{#4}}
+                                \end{center}
+                              \end{minipage}\\
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \vspace{1ex}{\bc\footnotesize #5\ec}
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \htfbox{1}...{7}          Textbox   |  Figure
+% #1: tf/ftbox caption 
+% #2: tf/ftbox label
+% #3: text column width
+% #4: figure column width
+% #5: textbox text
+% #6: figure name
+% #7: figure undertitle
+% h: header in screen version
+\newcommand{\htfbox}[7]    {\subtitle{#1} 
+                            \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 #5
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#6}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #7\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \tfbox{1}...{7}          Texbox   |   Figure 
+\newcommand{\tfbox}[7]     {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 #5
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#6}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #7\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \hftbox{1}...{7}         Figure   |   Textbox 
+% #1: tf/ftbox caption 
+% #2: tf/ftbox label
+% #3: text column width
+% #4: figure column width
+% #5: textbox text
+% #6: figure name
+% #7: figure undertitle
+% h: header in screen version
+\newcommand{\hftbox}[7]    {\subtitle{#1} 
+                            \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#6}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #7\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 #5
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \ftbox{1}...{7}          Figure   |   Textbox 
+\newcommand{\ftbox}[7]     {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#6}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #7\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 #5
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \httbox{1}...{6}         Textbox 1 | Textbox 2
+% #1: ttbox caption
+% #2: ttbox label
+% #3: text 1 column width
+% #4: text 2 column width
+% #5: textbox 1 text
+% #6: textbox 2 text
+% #7: figure undertitle
+% h: header in screen version
+\newcommand{\httbox}[6]    {\subtitle{#1} 
+                            \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[t]{#3\columnwidth}
+                                 \hypertarget{#2}{#5}
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[t]{#4\columnwidth}
+                                 #6
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \ttbox{1}...{6}          Textbox 1 | Textbox 2
+\newcommand{\ttbox}[6]     {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[t]{#3\columnwidth}
+                                 \hypertarget{#2}{#5}
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[t]{#4\columnwidth}
+                                 #6
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \hffbox                  Figure 1  |  Figure 2 
+% #1: ffbox caption                     % 
+% #2: ffbox label                       % 
+% #3: figure 1 column width             % 
+% #4: figure 2 column width             % 
+% #5: figure 1 name                     % 
+% #6: figure 1 undertitle               % 
+% #7: figure 2 name                     % 
+% #8: figure 2 undertitle               %
+% h: header in screen version          %
+\newcommand{\hffbox}[8]    {\subtitle{#1}  
+                            \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#5}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #6\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \includegraphics[width=0.95\hsize]{#7}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #8\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \ffbox                   Figure 1  |  Figure 2
+\newcommand{\ffbox}[8]     {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#5}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #6\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \includegraphics[width=0.95\hsize]{#7}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #8\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \htffbox{1}...{9}             Text-   |  Figure 1    
+% 1: tffbox caption              Box    |  Figure 2
+% 2: tffox label
+% 3: text column width
+% 4: figure column width
+% 5: textbox text
+% 6: figure 1 name
+% 7: figure 1 undertitle
+% 8: figure 2 name
+% 9: figure 2 undertitle
+% h: header in screen version
+\newcommand{\htffbox}[9]   {\subtitle{#1}  
+                            \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 #5
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#6}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #7\ec}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}\includegraphics[width=0.95\hsize]{#8}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #9\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \tffbox{1}...{9}              Text-   |  Figure 1    
+%                                Box    |  Figure 2
+\newcommand{\tffbox}[9]    {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 #5
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#6}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #7\ec}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}\includegraphics[width=0.95\hsize]{#8}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #9\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \hfftbox{1}...{9}          Figure 1  |   Text-  
+% 1: fftbox caption          Figure 2  |    Box
+% 2: fftbox label
+% 3: text column width
+% 4: figure column width
+% 5: textbox text
+% 6: figure 1 name
+% 7: figure 1 undertitle
+% 8: figure 2 name
+% 9: figure 2 undertitle
+% h: header in screen version
+\newcommand{\hfftbox}[9]   {\subtitle{#1}   
+                            \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#6}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #7\ec}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}\includegraphics[width=0.95\hsize]{#8}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #9\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 #5
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+% \fftbox{1}...{9}           Figure 1  |   Text-  
+%                            Figure 2  |    Box
+\newcommand{\fftbox}[9]    {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{#4\columnwidth}
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#6}}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #7\ec}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}\includegraphics[width=0.95\hsize]{#8}
+                                 \end{minipage}\\
+                                 \begin{minipage}[c]{\columnwidth}
+                                   \vspace{1ex}{\bc\footnotesize #9\ec}
+                                 \end{minipage}
+                              \end{minipage}
+                              \hfill
+                              \begin{minipage}[c]{#3\columnwidth}
+                                 #5
+                              \end{minipage}
+                              \scriptonly{\figcaption{#1.}%
+                              \label{#2}}
+                            \end{minipage} \\ }
+
+
+% \hftftbox{1}...{8}         Figure 1 |  Figure 2 
+% #1: tftbox caption        Textbox 1 | Textbox 2 
+% #2: ftftbox label 
+% #3: left column width
+% #4: right column width 
+% #5: textbox 1 text
+% #6: textbox 1 text
+% #7: figure 1 name
+% #8: figure 2 name
+% h: header in screen version
+\newcommand{\hftftbox}[8]   {\subtitle{#1}  
+                             \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \begin{minipage}[c]{#3\columnwidth}
+                                  \begin{center}
+                                    \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#7}}
+                                  \end{center}
+                                \end{minipage}
+                                \hfill
+                                \begin{minipage}[c]{#4\columnwidth}
+                                  \begin{center}
+                                    \includegraphics[width=0.95\hsize]{#8}
+                                  \end{center}
+                                \end{minipage}
+                              \end{minipage} \\
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \begin{minipage}[t]{#3\columnwidth}
+                                   \vspace{1ex}#5
+                                \end{minipage}
+                                \hfill
+                                \begin{minipage}[t]{#4\columnwidth}
+                                   \vspace{1ex}#6
+                                \end{minipage}
+                              \end{minipage}
+                            \scriptonly{\figcaption{#1.}%
+                            \label{#2}}
+                            \end{minipage}}
+
+% \ftftbox{1}...{8}          Figure 1 |  Figure 2 
+%                           Textbox 1 | Textbox 2 
+\newcommand{\ftftbox}[8]    {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \begin{minipage}[c]{#3\columnwidth}
+                                  \begin{center}
+                                    \hypertarget{#2}{\includegraphics[width=0.95\hsize]{#7}}
+                                  \end{center}
+                                \end{minipage}
+                                \hfill
+                                \begin{minipage}[c]{#4\columnwidth}
+                                  \begin{center}
+                                    \includegraphics[width=0.95\hsize]{#8}
+                                  \end{center}
+                                \end{minipage}
+                              \end{minipage} \\
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \begin{minipage}[t]{#3\columnwidth}
+                                   \vspace{1ex}#5
+                                \end{minipage}
+                                \hfill
+                                \begin{minipage}[t]{#4\columnwidth}
+                                   \vspace{1ex}#6
+                                \end{minipage}
+                              \end{minipage}
+                            \scriptonly{\figcaption{#1.}%
+                            \label{#2}}
+                            \end{minipage}}
+
+
+% \htftfbox{1}...{8}         Textbox 1 | Textbox 2 
+% #1: tftfbox caption         Figure 1 |  Figure 2 
+% #2: tftfbox label 
+% #3: left column width
+% #4: right column width 
+% #5: textbox 1 text
+% #6: textbox 1 text
+% #7: figure 1 name
+% #8: figure 2 name
+% h: header in screen version
+\newcommand{\htftfbox}[8]   {\subtitle{#1}   
+                             \begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \begin{minipage}[t]{#3\columnwidth}
+                                   #5
+                                \end{minipage}
+                                \hfill
+                                \begin{minipage}[t]{#4\columnwidth}
+                                   #6
+                                \end{minipage}
+                              \end{minipage} \\
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                 \begin{minipage}[c]{#3\columnwidth}
+                                  \begin{center}
+                                    \hypertarget{#2}{\vspace{1ex}\includegraphics[width=0.95\hsize]{#7}}
+                                  \end{center}
+                                \end{minipage}
+                                \hfill
+                                \begin{minipage}[c]{#4\columnwidth}
+                                  \begin{center}
+                                    \vspace{1ex}\includegraphics[width=0.95\hsize]{#8}
+                                  \end{center}
+                                \end{minipage}
+                             \end{minipage}
+                             \scriptonly{\figcaption{#1.}%
+                             \label{#2}}
+                             \end{minipage}}
+
+% \tftfbox{1}...{8}         Textbox 1 | Textbox 2 
+%                            Figure 1 |  Figure 2
+\newcommand{\tftfbox}[8]    {\begin{minipage}[c]{\columnwidth}
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                \begin{minipage}[t]{#3\columnwidth}
+                                   #5
+                                \end{minipage}
+                                \hfill
+                                \begin{minipage}[t]{#4\columnwidth}
+                                   #6
+                                \end{minipage}
+                              \end{minipage} \\
+                              \begin{minipage}[c]{0.99\columnwidth}
+                                 \begin{minipage}[c]{#3\columnwidth}
+                                  \begin{center}
+                                    \hypertarget{#2}{\vspace{1ex}\includegraphics[width=0.95\hsize]{#7}}
+                                  \end{center}
+                                \end{minipage}
+                                \hfill
+                                \begin{minipage}[c]{#4\columnwidth}
+                                  \begin{center}
+                                    \vspace{1ex}\includegraphics[width=0.95\hsize]{#8}
+                                  \end{center}
+                                \end{minipage}
+                             \end{minipage}
+                            \scriptonly{\figcaption{#1.}%
+                            \label{#2}}
+                            \end{minipage}}
+
+% \exercise{<title>}{<text>} - Boxed German exercise entitled "Übung:"
+% For new beamer presentations apply own theorem with numbering facility
+\newcommand{\exercise}[2]   {\slideonly{\begin{center}
+                            \fcolorbox[rgb]{0.85,0.85,0.85}{0.85,0.85,0.85}{
+                                      \parbox{0.95\columnwidth}{
+                                         \color{Green4}
+                                         \textbf{Übung: #1} \\
+                     
+                                         \vspace{-1ex} #2}}
+                            \end{center}}
+                            \scriptonly{\begin{center}
+                            \fcolorbox[rgb]{0.85,0.85,0.85}{0.85,0.85,0.85}{
+                                      \parbox{0.95\columnwidth}{
+                                         \textbf{\"Ubung: #1} \\ 
+
+                                         #2}}
+                            \end{center}}}
+
+% \examplebeamer{<title>}{<text>} - Boxed German example entitled "Beispiel:"
+% For new beamer presentations use the Beispiel environment
+\newcommand{\examplebeamer}[2]  
+           {\slideonly{\begin{center}
+            \fcolorbox[rgb]{0.85,0.85,0.85}{0.85,0.85,0.85}{
+                      \parbox{0.95\columnwidth}{
+                         \color{RoyalBlue4}
+                         \textbf{Beispiel: #1} \\
+     
+                         \vspace{-1ex} #2}}
+            \end{center}}
+            \scriptonly{\begin{center}
+            \fcolorbox[rgb]{0.85,0.85,0.85}{0.85,0.85,0.85}{
+                      \parbox{0.95\columnwidth}{
+                         \textbf{Beispiel: #1} \\ 
+
+                         #2}}
+            \end{center}}}
+ 
+
+
+%-----------------------------------------------------------------------------%
+%       Old Blocks and Boxes (for compatibility with previous versions)       %
+%-----------------------------------------------------------------------------%
+
+% Blue Beamer Box in Normal Text
+\newcommand{\textbox}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \begin{beamercolorbox}[rounded=true, shadow=true, sep={0.5ex}]
+                   {block body}\slup{#1}
+ 
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{1ex}
+           }
+           {#3}}
+
+% Red Beamer Box in Normal Text
+\newcommand{\textboxalerted}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \begin{beamercolorbox}[rounded=true, shadow=true, sep={0.5ex}]
+                   {block body alerted}\slup{#1}
+ 
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{1ex}
+           }
+           {#3}}
+
+% Green Beamer Box in Normal Text
+\newcommand{\textboxexample}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \hfill 
+            \begin{beamercolorbox}[rounded=true, shadow=true, sep={0.5ex}]
+                   {block body example}\slup{#1}
+
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{1ex}
+           }
+           {#3}}
+
+% Blue Beamer Box in Items
+\newcommand{\itembox}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \hfill 
+            \begin{beamercolorbox}[wd=0.92\textwidth, rounded=true, 
+                                   shadow=true, sep={0.5ex}]
+                   {block body}\slup{#1}
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{0.75ex}
+           }
+           {#3}}
+
+% Red Beamer Box in Items
+\newcommand{\itemboxalerted}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \hfill 
+            \begin{beamercolorbox}[wd=0.92\textwidth, rounded=true, 
+                                   shadow=true, sep={0.5ex}]
+                   {block body alerted}\slup{#1}
+
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{0.75ex}
+           }
+           {#3}}
+
+% Green Beamer Box in Items
+\newcommand{\itemboxexample}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \hfill 
+            \begin{beamercolorbox}[wd=0.92\textwidth, rounded=true, 
+                                   shadow=true, sep={0.5ex}]
+                   {block body example}\slup{#1}
+
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{0.75ex}
+           }
+           {#3}}
+
+% Blue Beamer Box in Double Items
+\newcommand{\itemitembox}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \hfill 
+            \begin{beamercolorbox}[wd=0.85\textwidth, rounded=true, 
+                                   shadow=true, sep={0.5ex}]
+                   {block body}\slup{#1}
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{0.75ex}
+           }
+           {#3}}
+
+% Red Beamer Box in Double Items
+\newcommand{\itemitemboxalerted}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \hfill 
+            \begin{beamercolorbox}[wd=0.92\textwidth, rounded=true, 
+                                   shadow=true, sep={0.5ex}]
+                   {block body alerted}\slup{#1}
+
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{0.75ex}
+           }
+           {#3}}
+
+% Green Beamer Box in Double Items
+\newcommand{\itemitemboxexample}[3] 
+   {\switch{\mybar{0.0}\vspace{-1.3ex}
+            \hfill 
+            \begin{beamercolorbox}[wd=0.92\textwidth, rounded=true, 
+                                   shadow=true, sep={0.5ex}]
+                   {block body example}\slup{#1}
+
+                   #3
+ 
+                   \slup{#2}
+             \end{beamercolorbox}
+             \\
+
+             \vspace{0.75ex}
+           }
+           {#3}}
+
+% Text Boxes of Size \textwidth - left aligned
+% (needed for beamer environments in article mode)
+% \textwidthbox{<text>}
+\newcommand{\textwidthbox}[1] 
+           {\begin{center}
+               \begin{minipage}[c]{\textwidth}
+                  #1
+               \end{minipage}
+            \end{center}}
+
+% Text Boxes of Size \textwidth - center aligned
+% (needed for beamer environments in article mode)
+% \textwidthboxc{<text>}
+\newcommand{\textwidthboxc}[1] 
+           {\begin{center}
+               \begin{minipage}[c]{\textwidth}
+                  \begin{center}
+                     #1
+                  \end{center}
+               \end{minipage}
+            \end{center}}
+
+% \graybox{<width>}{<text>} - Gray box, left alignment        
+\newcommand{\graybox}[2]    {\slideonly{
+                            \setlength{\fboxrule}{0.4mm}
+                              \fcolorbox[rgb]{0.5,0.5,0.5}{0.85,0.85,0.85}
+                                {\parbox{#1\columnwidth}{#2}}
+                            }
+                            \scriptonly{
+                            \setlength{\fboxrule}{0.2mm}
+                              \fcolorbox[rgb]{0.5,0.5,0.5}{1.0,1.0,1.0}
+                                {\parbox{#1\columnwidth}{#2}}
+                            }
+                           }
+
+% \grayboxc{<width>}{<text>} - Gray box, center alignment        
+\newcommand{\grayboxc}[2]   {\slideonly{
+                            \setlength{\fboxrule}{0.4mm}
+                            \begin{center}
+                               \fcolorbox[rgb]{0.5,0.5,0.5}{0.85,0.85,0.85}
+                                  {\parbox{#1\columnwidth}{#2}}
+                            \end{center}
+                            }
+                            \scriptonly{
+                            \begin{center}
+                            \setlength{\fboxrule}{0.2mm}
+                              \fcolorbox[rgb]{0.5,0.5,0.5}{1.0,1.0,1.0}
+                                {\parbox{#1\columnwidth}{#2}}
+                            \end{center}
+                            }
+                           }
+
+% \lightbox{<width>}{<text>} - light yellow box, left alignment        
+\newcommand{\lightbox[2]}  {\colorbox[rgb]{1.0,1.0,0.6}{\parbox{#1}{#2}}}
+
+% \lightboxc{<width>}{<text>} - light yellow box, center alignment        
+\newcommand{\lightboxc[2]} {\begin{center}
+                               \colorbox[rgb]{1.0,1.0,0.6}{\parbox{#1}{#2}}
+                            \end{center}}
+
+% \lightbox{<width>}{<text>} - light yellow box w/ red frame, left alignment        
+\newcommand{\resbox}[2]    {\slideonly{
+                            \setlength{\fboxrule}{0.4mm}
+                              \fcolorbox[rgb]{0.8,0.3,0.3}{1.0,1.0,0.6}
+                                {\parbox{#1\columnwidth}{#2}}
+                            }
+                            \scriptonly{
+                            \setlength{\fboxrule}{0.2mm}
+                              \fcolorbox[rgb]{0.0,0.0,0.0}{1.0,1.0,1.0}
+                                {\parbox{#1\columnwidth}{#2}}
+                            }
+                           }
+% \lightboxc{<width>}{<text>} - light yellow box w/ red frame, center alignment        
+\newcommand{\resboxc}[2]   {\slideonly{
+                            \setlength{\fboxrule}{0.4mm}
+                            \begin{center}
+                               \fcolorbox[rgb]{0.8,0.3,0.3}{1.0,1.0,0.6}
+                                  {\parbox{#1\columnwidth}{#2}}
+                            \end{center}
+                            }
+                            \scriptonly{
+                            \begin{center}
+                            \setlength{\fboxrule}{0.2mm}
+                              \fcolorbox[rgb]{0.0,0.0,0.0}{1.0,1.0,1.0}
+                                {\parbox{#1\columnwidth}{#2}}
+                            \end{center}
+                            }
+                           }
+
+
+%------------------------------------EOF--------------------------------------%

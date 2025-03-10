@@ -1,0 +1,105 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%                               prel_script.tex                               %
+%                                                                             %
+%                               Achim Ibenthal                                %
+%                                                                             %
+%                                                                             %
+% CONTENT:             Script Title, ToC & Preface to Vorlesung Part 1        %
+%                                                                             %
+% REVISION HISTORY     04-AUG-06: Initial Version                             %
+%                      11-MAY-07: Update doc variables                        %
+%                      26-AUG-06: Update new Beamer layout + MiKTeX 2.7       %
+%                      22-FEB-18: Update signal processing logo               %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+%                                  Titlepage                                  %
+%-----------------------------------------------------------------------------%
+
+\begin{titlepage}
+\thispagestyle{empty}
+
+   \begin{center}
+      \vspace*{0.4cm}
+      {\Huge\bfseries\sffamily \doctitle                             \\[50mm]}
+      \Large
+      \includegraphics[width=25mm]{format/HAWK_Magenta}              \\[3mm]
+      \docinstitute                                                  \\[0mm]
+      \doclongauthor                                                 \\[4mm]
+      \includegraphics[width=70mm]{format/SP_Magenta}                \\[3mm]
+      \href{mailto:\docmail}{\texttt{\docmail}}                      \\[30mm]
+      \docdate
+   \end{center}
+
+\end{titlepage}
+
+
+%-----------------------------------------------------------------------------%
+%                              Table of Contents                              %
+%-----------------------------------------------------------------------------%
+
+\newpage
+\tableofcontents
+
+
+%-----------------------------------------------------------------------------%
+%                             Nutzungsrichtlinie                              %
+%-----------------------------------------------------------------------------%
+
+\newpage
+\markboth{Nutzungsrichtlinie}{Nutzungsrichtlinie}
+
+\section*{Nutzungsrichtlinie}
+\addcontentsline{toc}{section}{Nutzungsrichtlinie}
+
+\docnutzung
+
+
+%-----------------------------------------------------------------------------%
+%                                   Symbols                                   %
+%-----------------------------------------------------------------------------%
+
+%\markboth{Symbolverzeichnis}{Symbolverzeichnis}
+%\renewcommand{\chaptermark}[1]{%
+%\markboth{#1}{}}
+
+%\chapter{Symbolverzeichnis}
+
+%\begin{tabular}{p{3cm}p{12cm}}
+%$\ast$                             & convolution symbol if used as a binary operand,
+%                                     conjugate complex operand under unary usage
+%                                     as superscript \\
+%$\star$                            & auto-/crosscorrelation symbol \\
+%$\circ$                            & concatenation symbol: $f \circ g \equiv f(g(x))$ \\
+%$\m{0}_{j,k}$                      & $j \times k$ null matrix \\
+%$\m{0}_{k}$                        & $k$-dimensional null vector, 
+%\end{tabular}
+
+
+%-----------------------------------------------------------------------------%
+%                                    Glossar                                  %
+%-----------------------------------------------------------------------------%
+
+\newpage
+\markboth{Glossar}{Glossar}
+
+\input{lectures/glossar.tex}
+
+
+
+%-----------------------------------------------------------------------------%
+%                                 Konventionen                                %
+%-----------------------------------------------------------------------------%
+
+\newpage
+\markboth{Konventionen}{Konventionen}
+
+\input{lectures/konventionen.tex}
+
+\newpage
+
+
+%---------------------------------------EOF-----------------------------------%
+

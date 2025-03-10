@@ -1,0 +1,339 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%                             settings_script.tex                             %
+%                                                                             %
+%                               Achim Ibenthal                                %
+%                                                                             %
+%                                                                             %
+% CONTENT:             Script layout definition under beamerarticle.          %
+%                                                                             %
+%                      1. Document Class                                      %
+%                      2. Beamerarticle Specific Packages                     %
+%                      3. Common Packages and Definitions                     %
+%                      4. Script Layout                                       %
+%                                                                             %
+% REVISION HISTORY     01-AUG-06: Original Version                            %
+%                      10-MAR-07: Removal of "destination with the same       %
+%                                 identifier" Warnings by hyperref option     %
+%                                 hypertexnames=false                         %
+%                      11-APR-07: removal of old screen compatibility         %
+%                      04-SEP-08: Update WS0809                               %
+%                      15-AUG-08: Update WS0910, MiKTeX 2.7                   %
+%                      17-FEB-18: Update signal processing logo               %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+
+%-----------------------------------------------------------------------------%
+%                           1. Document Class                                 %
+%-----------------------------------------------------------------------------%
+
+\documentclass[11pt,twoside,a4paper]{article}
+ 
+%-----------------------------------------------------------------------------%
+%                    2. Beamerarticle Specific Packages                       %
+%-----------------------------------------------------------------------------%
+
+\usepackage[table]{xcolor}
+%\definecolor{ColHyper}{rgb}{SteelBlue2}             % Adopted from SteelBlue2
+%\definecolor{ColHyper}{rgb}{0.180 0.188 0.573}      % adopted from myblue
+\usepackage[bookmarks,                               % prior to beamerarticle!
+            urlcolor=ColHyper,
+            filecolor=ColHyper,
+            citecolor=ColHyper,
+            linkcolor=ColHyper,%
+            colorlinks,
+            pdfstartview=Fit,
+            pdffitwindow=true,
+            pdfpagelayout=SinglePage,
+            hyperfigures,
+            hypertexnames=false,
+            hyperfootnotes=false
+           ]{hyperref}  
+\usepackage[envcountsect,noxcolor]{beamerarticle}    % no reload of xcolor!
+\usepackage[hypcap=false]{caption}
+\setjobnamebeamerversion{slides}                     % reference to slides    
+
+
+%-----------------------------------------------------------------------------%
+%                    3. Common Packages and Definitions                       %
+%-----------------------------------------------------------------------------%
+
+\input{format/settings_common}                     % common settigs & defs
+
+
+%-----------------------------------------------------------------------------%
+%                              4. Script Layout                               %
+%-----------------------------------------------------------------------------%
+
+  % Script Specific Packages; FONT PACKAGE TO BE LOADED AFTER BEAMERARTICLE
+  \usepackage{a4}
+  \usepackage{lmodern} 
+	\DeclareFontFamily{T1}{lmss}{}
+	\DeclareFontShape{T1}{lmss}{m}{n}
+	     {<-8.5> ec-lmss8
+	      <8.5-9.5> ec-lmss9      <9.5-11>  ec-lmss10
+	      <11-15.5> ec-lmss12     <15.5-> ec-lmss17
+	      }{}
+	\DeclareFontShape{T1}{lmss}{bx}{n}
+	{<-> ec-lmssbx10}{}
+	\DeclareFontShape{T1}{lmss}{bx}{sc}  % Avoid font warning for sc in lmodern
+	{<-> ec-lmssbx10}{}
+
+  %\usepackage[math]{iwona}
+  %\usepackage{newcent}
+  %\usepackage{bookman}
+  %\usepackage{luximono}
+  %\usepackage{mathptmx}             % Times mit Matheschriften
+  %\usepackage{mathpazo}             % Palantino
+  %\usepackage{charter}   
+  %\usepackage{bera}
+  %\usepackage[scaled=.90]{helvet}   % Helvetica (Arial)
+  %\usepackage{cmbright}             % CM-Bright (eigntlich eine Familie)
+  %\usepackage{tpslifonts}           % (Font for Slides)
+  %\usepackage{avant}      	      % Avantgard
+
+
+
+  \usepackage{pgf}
+  \usepackage{setspace}
+
+
+  % Headings Layout: titlesec package does not work with beamer;
+  %                  headings leayouts must be set in plain TeX
+  \makeatletter
+  \renewcommand\section{\@startsection {section}{1}{\z@}%
+                       {-3.5ex \@plus -1ex \@minus -.2ex}%
+                       {2.3ex \@plus.2ex}%
+                       {\Large\bfseries\sffamily}}
+  \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                       {-3.25ex\@plus -1ex \@minus -.2ex}%
+                       {1.5ex \@plus .2ex}%
+                       {\large\bfseries\sffamily}}
+  \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                       {-3.25ex\@plus -1ex \@minus -.2ex}%
+                       {1.5ex \@plus .2ex}%
+                       {\normalsize\bfseries\sffamily}}
+  \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                       {3.25ex \@plus1ex \@minus.2ex}%
+                       {-1em}%
+                       {\normalsize\bfseries\sffamily}}
+  \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                       {3.25ex \@plus1ex \@minus .2ex}%
+                       {-1em}%
+                       {\normalsize\sffamily}}
+  \makeatother
+  % \useframetitletemplate{\subsubsection{\insertframetitle}}
+  % \useframetitletemplate{\paragraph{\insertframetitle}}
+  %  \setbeamertemplate{frametitle}
+  %  {
+  %  {\normalsize\bfseries\sffamily\insertframetitle}
+  %  \par
+  %  }
+  %  \setbeamertemplate{frame end}{\smallskip}
+
+
+  % Script Headers and Footers
+  \setlength{\evensidemargin}{4.6mm}   % note that printer driver adds
+  \setlength{\oddsidemargin}{4.6mm}    % ~1 inch automatically !
+  \setlength{\textwidth}{150mm}
+  \renewcommand{\sectionmark}[1]{\markboth{\thesection.\ #1}{}}
+  \renewcommand{\subsectionmark}[1]{\markright{\thesubsection.\ #1}}
+  \setlength{\headheight}{13.6pt}
+  \renewcommand\headrulewidth{.1pt}
+  \renewcommand\footrulewidth{.1pt}
+
+  \pagestyle{fancy}{%
+    \fancyhead[LO]{\footnotesize\sffamily\rightmark}
+    \fancyhead[RE]{\footnotesize\sffamily\leftmark}
+    \fancyhead[LE,RO]
+       {\setlength{\fboxsep}{2pt}\ovalbox{\footnotesize\sffamily\thepage}}
+    \fancyfoot[C]{}
+    \fancyfoot[LE]{\parbox[b][5mm][c]{50mm}
+                   {\includegraphics[height=4mm]{format/HAWK_Magenta}}}
+    \fancyfoot[RO]{\parbox[b][5mm][c]{50mm}
+                   {\raggedleft\includegraphics[height=5mm]{format/SP_Magenta}}}
+    \fancyfoot[LO,RE]{\raisebox{1.25mm}{\footnotesize\sffamily\docshortauthor}}
+  }
+  \fancypagestyle{plain}{%
+    \fancyhead[LO]{}
+    \fancyhead[RE]{}
+    \fancyhead[LE,RO]
+              {\setlength{\fboxsep}{2pt}\ovalbox{\footnotesize\sffamily\thepage}}
+    \fancyfoot[C]{}
+    \fancyfoot[LE]{\parbox[b][5mm][c]{50mm}
+                   {\includegraphics[height=4mm]{format/HAWK_Magenta}}}
+    \fancyfoot[RO]{\parbox[b][5mm][c]{50mm}
+                   {\raggedleft\includegraphics[height=5mm]{format/SP_Magenta}}}
+    \fancyfoot[LO,RE]{\raisebox{1.25mm}{\footnotesize\sffamily\docshortauthor}}
+  }
+   
+  % Relative Numbering of Eqs./Figs./Tables
+  \numberwithin{equation}{section} 
+  \numberwithin{figure}{section} 
+  \numberwithin{table}{section} 
+
+  % Script Paragraph Layout
+  \parindent 0pt
+  \setlength{\parskip}{1ex plus0.5ex minus0.2ex}
+  %\renewcommand{\baselinestretch}{1.2}
+  % \fboxsep 2ex
+  \frenchspacing                        % no extra space after points
+
+  % Inhibit right margin crossing
+  % \emergencystretch=10pt
+
+  
+%-----------------------------------------------------------------------------%
+%                                 5. Boxes                                    %
+%-----------------------------------------------------------------------------%
+
+% Definitions
+\def\isboxed{boxed}
+\newcommand{\neaparboxwidthscript}{0.969\textwidth}
+
+% Renew Script Normal amd Alerted Box Commands if \scriptboxlayout == boxed
+\ifx\scriptboxlayout\isboxed
+
+	% nblock{title}{body}                       BLUE
+	\renewcommand{\nblock}[2]{
+		\setlength{\fboxrule}{0.5mm}
+		\begin{center}
+		\fcolorbox{ScriptNormalColorFrame}{ScriptNormalColorFill}{
+			\parbox{\neaparboxwidthscript}{
+				\begin{tabular}{l}
+	  			    \parbox{0.96\hsize}{\textit{#1}}\\ \hline 
+	     			\parbox{0.96\hsize}{\vspace{1ex}#2}
+	            \end{tabular}}}
+	    \end{center}}
+	
+	
+	% nbox{body}
+	\renewcommand{\nbox}[1]{
+		\setlength{\fboxrule}{0.5mm}
+		\begin{center}
+		\fcolorbox{ScriptNormalColorFrame}{ScriptNormalColorFill}{
+			\parbox{\neaparboxwidthscript}{
+	  			\begin{tabular}{l}
+	     			\parbox{0.96\hsize}{#1}
+	            \end{tabular}}}
+	    \end{center}}
+	
+			
+	% ablock{title}{body}                       RED
+	\renewcommand{\ablock}[2]{
+		\setlength{\fboxrule}{0.5mm}
+		\begin{center}
+		\fcolorbox{ScriptAlertColorFrame}{ScriptAlertColorFill}{
+			\parbox{\neaparboxwidthscript}{
+	  			\begin{tabular}{l}
+	  			    \parbox{0.96\hsize}{\textbf{#1}}\\ \hline
+	     			\parbox{0.96\hsize}{\vspace{1ex}#2}
+	            \end{tabular}}}
+	    \end{center}}
+	
+	
+	% abox{body}
+	\renewcommand{\abox}[1]{
+		\setlength{\fboxrule}{0.5mm}
+		\begin{center}
+		\fcolorbox{ScriptAlertColorFrame}{ScriptAlertColorFill}{
+			\parbox{\neaparboxwidthscript}{
+	  			\begin{tabular}{l}
+	     			\parbox{0.96\hsize}{#1}
+	            \end{tabular}}}
+	    \end{center}}
+
+	% inbox{body}
+	\renewcommand{\inbox}[1]{ 
+		\hfill \hfill \linebreak
+	   	\begin{minipage}[c]{0.001\columnwidth}
+	 		\strut
+	    \end{minipage}%
+		\begin{minipage}[c]{0.935\columnwidth}
+			\setlength{\fboxrule}{0.5mm}
+			\begin{center}
+			\fcolorbox{ScriptNormalColorFrame}{ScriptNormalColorFill}{
+				\parbox{\neaparboxwidthscript}{
+				    \vspace{-0.5ex}
+	  				\begin{tabular}{l}
+						\parbox{0.96\hsize}{#1}%
+	            	\end{tabular}}}
+	    \end{center}
+	    \end{minipage}}
+	     	   
+	% iabox{body}
+	\renewcommand{\iabox}[1]{ 
+		\hfill \hfill \linebreak
+	   	\begin{minipage}[c]{0.001\columnwidth}
+	 		\strut
+	    \end{minipage}%
+		\begin{minipage}[c]{0.935\columnwidth}
+			\setlength{\fboxrule}{0.5mm}
+			\begin{center}
+			\fcolorbox{ScriptAlertColorFrame}{ScriptAlertColorFill}{
+				\parbox{\neaparboxwidthscript}{
+				    \vspace{-0.5ex}
+	  				\begin{tabular}{l}
+	     				\parbox{0.96\hsize}{#1}%
+	            	\end{tabular}}}
+	    \end{center}
+	    \end{minipage}}
+	     	   
+	% iinbox{body}
+	\renewcommand{\iinbox}[1]{ 
+		\hfill \hfill \linebreak
+	   	\begin{minipage}[c]{0.001\columnwidth}
+	 		\strut
+	    \end{minipage}%
+		\begin{minipage}[c]{0.877\columnwidth}
+			\setlength{\fboxrule}{0.5mm}
+			\begin{center}
+			\fcolorbox{ScriptNormalColorFrame}{ScriptNormalColorFill}{
+				\parbox{\neaparboxwidthscript}{
+				    \vspace{-0.5ex}
+	  				\begin{tabular}{l}
+	     				\parbox{0.96\hsize}{#1}%
+	            	\end{tabular}}}
+	    \end{center}
+	    \end{minipage}}
+	     	   
+	% iiabox{body}
+	\renewcommand{\iiabox}[1]{ 
+		\hfill \hfill \linebreak
+	   	\begin{minipage}[c]{0.001\columnwidth}
+	 		\strut
+	    \end{minipage}%
+		\begin{minipage}[c]{0.877\columnwidth}
+			\setlength{\fboxrule}{0.5mm}
+			\begin{center}
+			\fcolorbox{ScriptAlertColorFrame}{ScriptAlertColorFill}{
+				\parbox{\neaparboxwidthscript}{
+				    \vspace{-0.5ex}
+	  				\begin{tabular}{l}
+	     				\parbox{0.96\hsize}{#1}%
+	            	\end{tabular}}}
+	    \end{center}
+	    \end{minipage}}
+
+    % nsatz{label}{title}{body} 
+	\renewcommand{\nsatz}[3]                   
+        {\refstepcounter{NSatz}\label{#1}
+         \hypertarget{#1}{}
+		 \nblock{Satz \theNSatz: #2.}{#3}}
+
+    % ntheo{label}{title}{body} 
+	\renewcommand{\ntheo}[3]                   
+        {\refstepcounter{NTheo}\label{#1}
+         \hypertarget{#1}{}
+		 \nblock{Theorem \theNTheo: #2.}{#3}}
+
+    % ntheo{label}{title}{body} 
+	\renewcommand{\ndef}[3]                   
+        {\refstepcounter{NDef}\label{#1}
+         \hypertarget{#1}{}
+		 \nblock{Definition \theNDef: #2.}{#3}}
+	
+\fi
+
+%------------------------------------EOF--------------------------------------%

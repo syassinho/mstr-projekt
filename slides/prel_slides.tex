@@ -1,0 +1,59 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%                               prel_slides.tex                               %
+%                                                                             %
+%                               Achim Ibenthal                                %
+%                                                                             %
+%                                                                             %
+% CONTENT:             Slides Title, ToC & Preface to Vorlesung Part 1        %
+%                                                                             %
+% REVISION HISTORY     04-AUG-06: Initial Version                             %
+%                      26-AUG-06: Update new Beamer layout + MiKTeX 2.7       %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+%                             Lesson Title + ToC                              %
+%-----------------------------------------------------------------------------%
+	
+\mode<presentation>{
+
+   % Change Title Page Content HERE
+   \title{\doctitle}
+   \TitleTextBox[Ziel:]{Understanding and applying AI models.}
+
+   % Insert a title slide
+   \frame{\titlepage}
+
+   % Insert the table of contents if you compile all lectures in one file
+   \frame{
+      \frametitle{Inhaltsverzeichnis}
+      \tableofcontents[hidesubsections]
+   }
+}
+
+
+%-----------------------------------------------------------------------------%
+%                                   Inhalte                                   %
+%-----------------------------------------------------------------------------%
+
+\nosection{Inhalte}
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[c,allowframebreaks]
+\frametitle{Contents of the presentation}
+
+\begin{enumerate}
+   \item Zero-shot learning.
+   \sldown{0.7}
+   \item One-shot learning.
+   \sldown{0.7}
+   \item Few-shot learning.
+\end{enumerate}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+

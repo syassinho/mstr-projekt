@@ -1,0 +1,9 @@
+attached findest Du die Vorlesungs-/Präsentationsvorlage. In dem PDF sind Hinweise zur Nutzung eingearbeitet. Spezielle Hinweise:
+
+    @Script.txss und @Slides.txss sind die Tex Studio Projektdateien.
+    vorlesung_script.tex und vorlesung_slides.tex sind die Hauptdateien, die die Kapitel einbinden
+    in format/settings_common.tex können Titel, Autor, Datum etc. angepasst werden, sowie das Folientheme.
+    in format/settings_slides.tex Zeile 692 - 701 können Logos angepasst werden
+    in prel_script.tex können Titelseite und Preface Inhalte für das Script angepasst werden
+    mybeamer.sty enthält viele selbst geschriebene Macros, auch für das elegante Einbinden von Bildern.Die zusätzlich attachte Datei @macros.txt enthält viele Codebeispiele, die sich in Zusammenhang mit mybeamer.sty benutzen lassen.
+    Die Referenzierung läuft über /lectures/bibliography.bib.

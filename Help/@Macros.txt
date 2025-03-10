@@ -1,0 +1,1456 @@
+%#############################################################################%
+%                                                                             %
+%                               HÄUFIG BENÖTIGT                               %
+%                                                                             %
+%#############################################################################%
+
+
+%############################ Special Characters #############################%
+
+%   \   \symbol{92}              math: \backslash
+%   #   \#
+%   %   \%
+%   `   \symbol{0}
+%   ´   \symbol{1}
+%   &   \symbol{38}
+%   ,   \symbol{44}
+%   .   \symbol{46}
+%   '   \symbol{39}
+%   @   \symbol{64}
+%   +   \symbol{43}
+%   -   \symbol{45}
+%   <   \symbol{60}
+%   >   \symbol{62}
+%   ^   \symbol{94}
+%   [   \symbol{91}
+%   ]   \symbol{93}
+%   _   \symbol{95}
+%   {   \symbol{123}
+%   }   \symbol{125}
+%   |   \symbol{124}
+%   ~   \symbol{126}
+%   à   \symbol{224}
+%   è   \symbol{232}
+%   é   \symbol{233}
+%   ê   \symbol{234}
+%   ä   \symbol{228}    
+%   ö   \symbol{246}
+%   ü   \symbol{252}
+
+%   \LaTeX~
+%   \LaTeXe~
+%   \TeX~
+%   \AmS-\LaTeX
+%   \rights~
+
+
+%############################ Boxen neues Layout #############################%
+
+R 238, 28, 35
+G 0, 165, 79
+B 46, 48, 146
+
+\ndef{def:xxx}{
+
+\eex{ex:xxx}{
+
+\nsatz{satz:}{
+
+\nbox{\slup{2.5}\be    
+\ee\slup{3}}
+
+\abox{\slup{2.5}\be
+\ee\slup{3}}
+
+          \inbox{\slup{2}\be
+          \ee\slup{2}} 
+		  
+\scriptonly{\newpage}
+
+- Probleme mit Überstehen von Bildunterschriften in Boxen: $\quad \quad ...$
+  einfügen
+
+
+%########################## Fourier-Transformation ############################%
+
+\bsc{Fourier} trans\-form
+discrete \textsc{Fourier} trans\-form
+\bsc{Fourier} series
+
+\bsc{Laplace} trans\-form
+z-transform
+
+\textsc{Dirac}-pulse
+
+
+\textsc{Fourier}-Trans\-for\-ma\-tion      \textsc{Fourier}-Trans\-form
+\textsc{Fourier}-Trans\-for\-mier\-te
+\textsc{Laplace}-Trans\-for\-ma\-tion
+\textsc{Laplace}-Trans\-for\-mier\-te
+diskrete \textsc{Fourier}-Transformation
+\textsc{Dirac}-Impuls
+
+
+
+%############################################################################%
+%                                                                            %
+%                               LATEX MACROS                                 %
+%                                                                            %
+%############################################################################%
+
+
+%########################### Beamer: switch{#}{} #############################%
+
+%#### Vor Markierung:
+
+\switch{                   
+
+
+%#### Nach Markierung:
+					 
+}{0.70}
+
+
+
+					 
+%############################## Beamer: Section ##############################%
+
+%-----------------------------------------------------------------------------%
+%                                   <title>                                   %
+%-----------------------------------------------------------------------------%
+
+\section{<title>}
+\label{sec:...}
+
+
+%-----------------------------------------------------------------------------%
+%                             Übungen zu <title>                              %
+%-----------------------------------------------------------------------------%
+
+\subsection[Übungen]{Übungen \scriptonly{zu Lektion \ref{sec:<label>}}}
+\label{ssec:...}
+
+\begin{frame}[c,allowframebreaks=0.95]
+\slideonly{\frametitle{Übungen}}
+
+\Uebung{ue:<uelabel1>}{...}{
+   \slideonly{\small}
+   ...
+   \begin{itemize}
+       \sldown{1}
+       \item[a)] ...
+       \sldown{1}
+       \item[b)] ...
+       \sldown{1}
+       \item[c)] ...
+   \end{itemize}
+   \slideonly{\normalsize}
+}
+
+\framebreak %-----------------------------------------------------------------%
+
+
+\Uebung{ue:<uelabel1>}{...}{
+   \slideonly{\small}
+   ...
+   \begin{itemize}
+       \sldown{1}
+       \item[a)] ...
+       \sldown{1}
+       \item[b)] ...
+       \sldown{1}
+       \item[c)] ...
+   \end{itemize}
+   \slideonly{\normalsize}
+}
+
+\framebreak %-----------------------------------------------------------------%
+
+\begin{beamercolorbox}[rounded=true,shadow=true,sep={0.5ex}]
+      {block body example}\slup{1}
+
+   \slideonly{\small}
+   ...
+   \slideonly{\normalsize}
+
+\end{beamercolorbox}
+
+\end{frame}
+
+
+
+%############################ Beamer: Subsection #############################%
+
+%-----------------------------------------------------------------------------%
+%                                 SUBSECTION                                  %
+%-----------------------------------------------------------------------------%
+
+\subsection{}
+\label{ssec:}
+
+
+
+%############################ Beamer: Frame 1 Col ############################%
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}%[allowframebreaks=0.95,fragile]
+\frametitle{...}
+
+\begin{itemize}
+\slideonly{\setlength{\parskip}{1ex}}
+   \item 
+   \item 
+   \item 
+   \item 
+   \item 
+   \item 
+\end{itemize}
+
+\end{frame}
+
+         \slup{1}
+         \begin{itemize}
+         \normalsize\slideonly{\setlength{\parskip}{0.5ex}}
+            \item 
+            \item 
+            \item 
+            \item 
+            \item 
+            \item 
+         \end{itemize}
+
+                  \begin{itemize}
+                     \small\slideonly{\setlength{\parskip}{0.0ex}}
+                     \item 
+                     \item 
+                     \item 
+                     \item 
+                     \item 
+                     \item 
+                  \end{itemize}
+
+\framebreak %-----------------------------------------------------------------%
+
+
+%############################ Item: Tabbed Enum ##############################%
+
+\newcommand{\itab}[4]{\item \parbox[t]{#1\hsize}{#2}\parbox[t]{#3\hsize}{#4}}
+
+%-----------------------------------------------------------------------------%
+
+\def\lwidth{0.2}
+\def\rwidth{0.7}
+\begin{itemize}
+\slideonly{\setlength{\parskip}{1ex}}
+   \itab{\lwidth}{...:}
+        {\rwidth}{...}
+   \itab{\lwidth}{...:}
+        {\rwidth}{...}
+   \itab{\lwidth}{...:}
+        {\rwidth}{...}
+   \itab{\lwidth}{...:}
+        {\rwidth}{...}
+\end{itemize}
+
+         \def\lwidthi{0.2}
+         \def\rwidthi{0.5}
+         \begin{itemize}
+         \slup{0}\normalsize\slideonly{\setlength{\parskip}{0.5ex}}
+            \itab{\lwidthi}{...:}
+                 {\rwidthi}{...}
+            \itab{\lwidthi}{...:}
+                 {\rwidthi}{...}
+            \itab{\lwidthi}{...:}
+                 {\rwidthi}{...}
+            \itab{\lwidthi}{...:}
+                 {\rwidthi}{...}
+         \end{itemize}
+
+
+
+%############################ Beamer: Frame 2 Col ############################%
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}%[allowframebreaks=0.95,fragile]
+\frametitle{...}
+
+\begin{columns}[c] %[T,t,b totalwidth=<width>]
+\begin{column}{0.50\textwidth} %----------- COL 1 -----------%
+\fig{Title}
+    {fig:lbl}
+    {\switch{1.0}{0.5}}
+    {fignam}
+    \scriptbar{2}
+\end{column}                   %-----------------------------%
+\begin{column}{0.50\textwidth} %----------- COL 2 -----------%
+\begin{itemize}
+    \item 
+    \item 
+    \item 
+\end{itemize}
+\end{column}                   %-----------------------------%
+\end{columns}  
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile] %allowframebreaks=0.95
+\frametitle{...}
+
+% \normalsize \footnotesize \small \scriptsize 
+\sldown{2}\setlistingstex{\switch{\footnotesize}{\footnotesize}} 
+\begin{lstlisting}[firstnumber=1,
+                   escapechar=°, % escaping to LaTeX
+                   backgroundcolor=\color{ultralightgray}]
+...
+\end{lstlisting}
+
+\sldown{3}\codepreview{\switch{0.978\linewidth}{0.983\linewidth}}{
+...
+}
+
+\framebreak %-----------------------------------------------------------------%
+
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile] %allowframebreaks=0.95
+\frametitle{...}
+
+\sldown{2}\setlistingstex{\footnotesize} % \normalsize \scriptsize
+\begin{columns}[c] %[T,t,b totalwidth=<width>]
+\begin{column}{0.50\textwidth}  %----------- COL 1 -----------%
+\slup{0.8}\begin{lstlisting}[firstnumber=1,
+                             escapechar=°, % escaping to LaTeX
+                             backgroundcolor=\color{ultralightgray}]
+...
+\end{lstlisting}
+
+\end{column}                    %-----------------------------%
+\begin{column}{0.5\textwidth}   %----------- COL 2 -----------%
+\codepreview{0.956\linewidth}{
+...
+}
+\end{column}                    %-----------------------------%
+\end{columns}  
+
+\framebreak %-----------------------------------------------------------------%
+
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[allowframebreaks=0.95,fragile] %
+\frametitle{...}
+
+\begin{itemize}
+\slideonly{\setlength{\parskip}{1ex}}
+   \item 
+   \item 
+   \item 
+   \item 
+   \item 
+   \item 
+\end{itemize}
+
+
+\framebreak %-----------------------------------------------------------------%
+
+\bc\slideonly{\mat{....m}}\ec
+\switch{\setlistingssmall}{\setlistings}
+\slup{3}
+\begin{lstlisting}[title=\cblueb{....m},
+                   label=list:...,
+                   firstnumber=1,
+                   backgroundcolor=\color{ultralightgray}]
+...
+\end{lstlisting} 
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame} %[allowframebreaks=0.95,fragile]
+\frametitle{...}
+
+\slleft{5.5}
+\fig{...}
+    {fig:...}
+    {\switch{1.15}{1}}
+    {...}
+    \scriptbar{2}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[plain]
+
+\slleft{5.5}
+\fig{...}
+    {fig:...}
+    {\switch{1.15}{1}}
+    {...}
+    \scriptbar{2}
+
+\end{frame}
+
+
+%############################### Symbol Tables ###############################%
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]%[allowframebreaks=0.95]
+\frametitle{Greek Symbols}
+
+% Symbol Table
+\def\cola{2.5ex}
+\def\colb{0.22\hsize}
+\newcommand{\mysymbol}[2]{\flexcell{\centering$\D #1$} & \macro{#2}}
+\newcommand{\mysymbolnomacro}[2]{\flexcell{\centering$\D #1$} & #2}
+{\renewcommand{\arraystretch}{1.3}\rowcolors[]{1}{RoyalBlue!20}{RoyalBlue!5}
+\begin{tabular}{|p{\cola}|p{\colb}||p{\cola}|p{\colb}||p{\cola}|p{\colb}|}
+     \arrayrulecolor{myblue}\hline
+     %\rowcolor{myblue}\centering\white{Symb.} & \white{Code} &
+     %                 \centering\white{Symb.} & \white{Code} &
+     %                 \centering\white{Symb.} & \white{Code} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \mysymbol{}{} 
+     & \mysymbol{}{} 
+     & \mysymbol{}{} \\
+     \arrayrulecolor{myblue}\hline
+\end{tabular}
+}
+
+\end{frame}
+
+
+%############################## Function Tables ##############################%
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{...}
+
+\def\tabpar{0.8}
+\newlength{\tabrowa} 
+\setlength\tabrowa{\hsize} 
+\addtolength\tabrowa{-\tabpar\hsize}
+\addtolength\tabrowa{-12pt}
+\newlength{\tabrowb} 
+\setlength\tabrowb{\tabpar\hsize}
+\addtolength\tabrowb{-12pt}
+{\renewcommand{\arraystretch}{1.3}\rowcolors[]{1}{RoyalBlue!20}{RoyalBlue!5}
+\begin{tabular}{!{\color{myblue}\vrule}p{\tabrowa}
+                !{\color{myblue}\vrule}p{\tabrowb}
+                !{\color{myblue}\vrule}}
+     \arrayrulecolor{myblue}\hline
+     \rowcolor{myblue} \white{...} & \white{...} \\ % \flexcell{...}
+     \f{}{} &  ... \\ 
+     \f{}{} &  ... \\ 
+     \f{}{} &  ... \\ 
+     \var{} &  ... \\ 
+     \var{} &  ... \\ 
+     \var{} &  ... \\ 
+     \arrayrulecolor{myblue}\hline
+\end{tabular}
+}
+
+\end{frame}
+
+
+%############################## Example Tables ###############################%
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{...}
+
+\def\cola{\switch{0.25\hsize}{0.25\hsize}}
+\def\colb{\switch{0.25\hsize}{0.25\hsize}}
+\def\colc{\switch{0.4\hsize}{0.4\hsize}}
+\newcommand{\aux}[1]{\flexcell{\centering$#1$}}
+{\renewcommand{\arraystretch}{1.3}%\rowcolors[]{1}{RoyalBlue!20}{RoyalBlue!5}
+\begin{tabular}{!{\color{myblue}\vrule}p{\cola}
+                !{\color{myblue}\vrule}p{\colb}
+                !{\color{myblue}\vrule}p{\colc}
+                !{\color{myblue}\vrule}}
+   \arrayrulecolor{myblue}\hline
+   \rowcolor{myblue} 
+      \white{Operation} & 
+      \white{Examples}   & 
+      \flexcell{\centering\white{Results}}    \\ 
+   \rowcolor{RoyalBlue!5}
+      ... & 
+      \cblack{...} & 
+      \aux{...}                               \\  
+   \rowcolor{RoyalBlue!20}
+      ... & 
+      \cblack{...} & 
+      \aux{...}                               \\  
+   \rowcolor{RoyalBlue!5}
+      ... & 
+      \flexcell{\cblack{...} \slf\scrlf 
+                \cblack{...}} & 
+      \aux{...}                               \\  
+   \rowcolor{RoyalBlue!20}
+      ... & 
+      \flexcell{\cblack{...} \slf\scrlf 
+                \cblack{...}} & 
+      \aux{...}                               \\  
+   \arrayrulecolor{myblue}\hline
+\end{tabular}
+}
+
+\end{frame}
+
+
+%############################# Frames w. Tables ##############################%
+
+% Table Parbox (#1: Lenth/hsize, #2: Text #3: vstretch/ex 
+\newcommand{\tabbox}[3]{\parbox[t]{#1\hsize}{#2 \hfill \myrule{#3}}}
+
+% Table Row Stretching
+\newcommand{\flexcell}[1]{\parbox[c][\totalheight+4pt][c]{\hsize}{#1}}
+
+%-----------------------------------------------------------------------------%
+
+% Definitions for Semiautomatic Tables
+\def\tabpar{0.7}
+\newlength{\tabrowa} \setlength\tabrowa{\hsize} 
+                     \addtolength\tabrowa{-\tabpar\hsize}
+                     \addtolength\tabrowa{-12pt}
+\newlength{\tabrowb} \setlength\tabrowb{\tabpar\hsize}
+                     \addtolength\tabrowb{-12pt}
+
+% 2-Column Table /w. Header and Blue Lines and Semiautomatic Spacing             
+{\renewcommand{\arraystretch}{1.3}\rowcolors[]{1}{RoyalBlue!20}{RoyalBlue!5}
+\begin{tabular}{|p{\tabrowa}|p{\tabrowb}|}
+     \arrayrulecolor{myblue}\hline
+     \rowcolor{myblue} \white{...} & \white{...} \\
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     \arrayrulecolor{myblue}\hline
+\end{tabular}
+}
+
+% 2-Column Table /w. Header and Blue Lines and Semiautomatic Spacing             
+{\renewcommand{\arraystretch}{1.3}\rowcolors[]{1}{RoyalBlue!20}{RoyalBlue!5}
+\begin{tabular}{!{\color{myblue}\vrule}p{\tabrowa}
+                !{\color{myblue}\vrule}p{\tabrowb}
+                !{\color{myblue}\vrule}}
+     \arrayrulecolor{myblue}\hline
+     \rowcolor{myblue} \white{...} & \white{...} \\
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     \arrayrulecolor{myblue}\hline
+\end{tabular}
+}
+
+% 2Column Simple Color Table
+\bc\rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
+\begin{tabular}{|l|c|}\hline
+  ...     & ...     \\
+  ...     & ...     \\
+  ...     & ...     \\
+  ...     & ...     \\
+\hline
+\end{tabular}\ec
+
+% 2-Column Simple Color Table /w Headline
+\bc\rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
+\begin{tabular}{|l|c|}\hline
+\rowcolor{myblue} \whiteb{...} & \whiteb{...} \\
+  ...     & ...     \\
+  ...     & ...     \\
+  ...     & ...     \\
+  ...     & ...     \\
+\hline
+\end{tabular}\ec
+
+
+% 2-Column Color Table w. Parbox for Long Explanations
+\def\tmp{0.5875}
+{\renewcommand{\arraystretch}{1.3}\rowcolors[]{1}{RoyalBlue!20}{RoyalBlue!5}
+\bc\begin{tabular}{|l|l|}
+\hline
+...      & \tabbox{\tmp}{...}{0.8}  \\
+...      & \tabbox{\tmp}{...}{0.8}  \\
+...      & \tabbox{\tmp}{...}{0.8}  \\
+...      & \tabbox{\tmp}{...}{0.8}  \\
+\hline
+\end{tabular}\ec}
+
+
+% 3-Column Color Table w. Parbox 3 Col + Headline
+\begin{center}
+  \rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
+  \begin{tabular}{|l|l|l|}\hline
+  \textbf{Alignment} & \textbf{Environment} & Command                 \\\hline
+  ...                & \texarg{...}         & \macro{...}                   \\
+  ...                & \texarg{...}         & \macro{...}                   \\
+  ...                & \texarg{...}         & \macro{...}                   \\
+  ...                & \texarg{...}         & \macro{...}                   \\
+  \hline
+  \end{tabular}
+\end{center}
+
+
+
+%###################### Semiautomated Paragraph Tables #######################%
+
+% Table Parbox (#1: Lenth/hsize, #2: Text #3: vstretch/ex 
+\newcommand{\tabbox}[3]{\parbox[t]{#1\hsize}{#2 \hfill \myrule{#3}}}
+
+% Table Row Stretching
+\newcommand{\flexcell}[1]{\parbox[c][\totalheight+4pt][c]{\hsize}{#1}}
+
+
+%-----------------------------------------------------------------------------%
+
+% Figure insertion with specified width relative to current paper or box width
+% #1: Label     #2: Title   #3: space title-table  
+% #4: odd line color        #5: even line color
+% #6: vertical cell stretch #7: content
+\newcommand{\tab}[7]
+           {\begin{minipage}[c]{\hsize}
+               \captionsetup{type=table}
+               \rowcolors[]{1}{#4}{#5}
+               \renewcommand{\arraystretch}{#6}
+               \captionsetup{type=table}
+               \label{#1}
+               \captionof{table}{#2}
+               \vspace{#3ex}\begin{center}
+                 #7
+               \end{center}
+            \end{minipage}}
+            
+% Figure insertion with specified width relative to current paper or box width
+% #1: Label                 #2: space title-table  
+% #3: odd line color        #4: even line color
+% #5: vertical cell stretch #6: content
+\newcommand{\tabnotitle}[6]
+           {\begin{minipage}[c]{\hsize}
+               \captionsetup{type=table}
+               \rowcolors[]{1}{#3}{#4}
+               \renewcommand{\arraystretch}{#5}
+               \captionsetup{type=table}
+               \label{#1}
+               \vspace{#2ex}\begin{center}
+                 #6
+               \end{center}
+            \end{minipage}}
+
+% Like \fig but spanning 2 columns in a multicol environment 
+% Figure insertion with specified width relative to current paper or box width
+% #1: Label     #2: Title   #3: space title-table  
+% #4: odd line color        #5: even line color
+% #6: vertical cell stretch #7: content
+\newcommand{\tabtxtcol}[7]
+           {\begin{table*}[!t]%
+               \tab{#1}{#2}{#3}{#4}{#5}{#6}{#7}
+            \end{table*}}
+
+
+%-----------------------------------------------------------------------------%
+
+% Semiautomatc Spaced Tabulars + Header + Automatic Vertical Spacing by \flexcell
+\def\tabpar{0.7}
+\newlength{\tabrowa} \setlength\tabrowa{\hsize} 
+                     \addtolength\tabrowa{-\tabpar\hsize}
+                     \addtolength\tabrowa{-12pt}
+\newlength{\tabrowb} \setlength\tabrowb{\tabpar\hsize}
+                     \addtolength\tabrowb{-12pt}
+                     
+\tabnotitle{tab:.....}
+    {-2.5}{RoyalBlue!20}{RoyalBlue!10}{1.3}
+    {\begin{longtable}{!{\color{myblue}\vrule}p{\tabrowa}
+                       !{\color{myblue}\vrule}p{\tabrowb}
+                       !{\color{myblue}\vrule}}
+     \rowcolor{myblue} \whiteb{...} & \whiteb{...} \\
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     \arrayrulecolor{myblue}\hline
+     \end{longtable}}
+
+\tab{tab:...}
+    {...}
+    {-4.75}{RoyalBlue!20}{RoyalBlue!10}{1.3}
+    {\begin{longtable}{!{\color{myblue}\vrule}p{\tabrowa}
+                       !{\color{myblue}\vrule}p{\tabrowb}
+                       !{\color{myblue}\vrule}}
+     \rowcolor{myblue} \whiteb{...} & \whiteb{...} \\
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     ... &  ... \\ % \flexcell{...}
+     \arrayrulecolor{myblue}\hline
+     \end{longtable}}
+
+
+%####################### Beamer: Framebreak %-------% ########################%
+
+\framebreak %-----------------------------------------------------------------%
+
+
+
+%############################## Beamer: Figure ###############################%
+
+\fig{Title}
+    {fig:lbl}
+    {\switch{0.9}{0.7}}
+    {fignam}
+    \scriptbar{2}
+
+
+	
+%############################### Beamer: Übung ################################%
+
+\Uebung{ue:<uelabel1>}{...}{
+   \slideonly{\small}
+   ...
+   \begin{itemize}
+       \item[a)] ...
+       \sldown{1}
+       \item[b)] ...
+       \sldown{1}
+       \item[c)] ...
+   \end{itemize}
+   \slideonly{\normalsize}
+}
+
+
+
+%############################# Beamer: Exercise ###############################%
+
+\Exercise{ex:<exlabel>}{...}{
+   \slideonly{\normalsize}
+   ...
+   \begin{itemize}
+       \item[a)] ...
+       \sldown{1}
+       \item[b)] ...
+       \sldown{1}
+       \item[c)] ...
+   \end{itemize}
+   \slideonly{\normalsize}
+}
+
+
+
+%############################# Block w/o Heading ##############################%
+
+\abox{}
+\nbox{}
+\ebox{}
+
+
+
+%############################# Block w/ Heading ###############################%
+
+\ablock{}{}
+\nblock{}{}
+\eblock{}{}
+
+
+
+%########################### Block Environments ###############################%
+
+\ndef{def:}{}{}
+\nsatz{satz:}{}{}
+\ntheo{th:}{}{}
+\nlem{th:}{}{}
+\nkor{kor:}{}{}
+\ncor{cor:}{}{}
+\eex{ex:}{}{}
+
+
+
+
+%################################# Eq: 1x #####################################%
+
+\be
+   \label{eq:}
+   ... & = & ...
+\ee
+
+         \be
+            \label{eq:}
+            ... & = & ...
+         \ee
+
+
+%################################# Eq: 2x #####################################%
+
+\be
+    \label{eq:...} 
+    ... & = & ... \, , \\
+    \label{eq:...} 
+    ... & = & ... \, .
+\ee
+
+
+
+%################################### 	 ####################################%
+
+\be
+    \label{...}
+    ... & = & \left\{ \ba{rl@{\quad}cc}
+       ... , & ... \vspace{0.4ex} \\
+       ... , & ... \vspace{0.4ex} 
+    \ea \right. \\ 
+    \label{...}
+    ... & = & \left\{ \ba{rl@{\quad}cc}
+       ... , & ... \vspace{0.4ex} \\
+       ... , & ... \vspace{0.4ex} 
+    \ea \right. 
+\ee
+
+
+%############################## Fourier: Small Caps ###########################%
+
+\textsc{Fourier}-Trans\-for\-ma\-tion
+\textsc{Fourier}-Trans\-for\-mier\-te
+\textsc{Laplace}-Trans\-for\-ma\-tion
+\textsc{Laplace}-Trans\-for\-mier\-te
+diskrete \textsc{Fourier}-Transformation
+\textsc{Dirac}-Impuls
+
+
+
+%################################## Eq: -->| ##################################%
+
+          \be
+             \label{eq:...}
+             ... & = & ...
+          \ee
+		  
+
+		  
+%############################### Eq: Boxed -->| ###############################%
+
+          \inbox{\slup{2}\be
+             \label{eq:...}
+             ... & = & ...
+          \ee\slup{2}} 
+
+
+		  
+%################################# Eq: Boxed ##################################%
+
+\nbox{\slup{2}\be    
+\ee\slup{2.0}}
+
+		 
+
+%################################### Eq: Table ################################%
+
+{\renewcommand{\arraystretch}{1.3}%\rowcolors[]{1}{blue!20}{blue!10}
+\bc\begin{tabular}{|l|c|}
+  \hline
+  Text: 
+  & $ xxx $
+  \\ \hline
+  Text: 
+  & \rule[-2.8ex]{0ex}{7.2ex}\makebox[\width][c]{
+       $ xxx $}
+  \\ \hline
+  Text: 
+  & \rule[-3.5ex]{0ex}{7.2ex}\makebox[\width][c]{
+      $ xxx $}
+  \\ \hline
+  Text:
+  &  \rule[-3.8ex]{0ex}{8.4ex}\makebox[\width][c]{
+     $ xxx $}
+  \\ \hline
+  Text:
+  &  \rule[-4.5ex]{0ex}{10.5ex}\makebox[\width][c]{
+     $ xxx $}
+  \\ \hline
+  Text: 
+  & \rule[-5.5ex]{0ex}{12ex}\makebox[\width][c]{
+       $ xxx = \left\{ \ba{rl@{\quad}cc}
+          yyy,                     & zzz           \vspace{0.4ex} \\
+          yyy,                     & zzz           \vspace{0.4ex}    
+       \ea \right.$}
+  \\ \hline
+  Text:
+  & \rule[-7ex]{0ex}{15ex}\makebox[\width][c]{
+       $ xxx = \left\{ \ba{rl@{\quad}cc}
+          yyy,                     & zzz           \vspace{0.4ex} \\
+          yyy,                     & zzz           \vspace{0.4ex} \\
+          yyy,                     & zzz           \vspace{0.4ex}    
+       \ea \right.$}
+  \\ \hline
+\end{tabular}\ec}
+
+
+		  
+%############################ Eq: Tabbed w/ Numbers ###########################%
+
+\slspace{2}\scriptbar{1}
+\tabskip=\switch{0ex}{0.15ex} plus 99ex\halign to \hsize
+{\parbox[t]{\switch{0.3}{0.4}\hsize}{#} &
+ \parbox[t]{\switch{0.69}{0.59}\hsize}{# \hfill \eqnumber} \medskip \cr
+  \te{...}: &
+     $...$  \cr 
+  \te{...}: &
+     $...$ \cr 
+  \te{...}: &
+     $...$  \cr 
+  \te{...}: &
+     $...$ \cr 
+}
+
+
+%############################ Table: Alphabet ################################%
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[allowframebreaks=0.95,fragile]
+\frametitle{<Title>}
+
+{\switch{\footnotesize}{\footnotesize}
+\tabskip=1ex plus 99ex\halign to \hsize
+{ \parbox[t]{0.475\hsize}{#} & 
+  \parbox[t]{0.475\hsize}{#}  \medskip \cr\cr
+\noalign{\vspace{0ex}\rule{\hsize}{0.2mm}} %===================================
+  \textbf{Befehl} & \textbf{Erläuterung} \bigskip\cr  
+\noalign{\slup{3.5}\scrup{4.5}\rule{\hsize}{0.2mm}} %==========================
+\firstletter{...}
+
+  \cblack{...}
+  & ... \cr
+
+  \cblack{...}
+  & ... \cr
+%------------------------------------------------------------------------------
+\newletter{...}
+
+  \cblack{...}
+  & ... \cr
+
+  \cblack{...}
+  & ... \cr
+%------------------------------------------------------------------------------
+\newletterfb{...}
+  \cblack{...}
+  & ... \cr
+\noalign{\slup{1.5}\scrup{3}\rule{\hsize}{0.2mm}} %===========================
+}}
+\end{frame}
+
+
+
+%############################## Table: Complex ###############################%
+
+\tabcaption{...}%
+\slup{1}
+\label{tab:someotherlabelthatdoesntmatter}%
+{\footnotesize
+\tabskip=1ex plus 99ex\halign to \hsize
+{ \parbox[t]{0.24\hsize}{#} &
+\parbox[t]{0.34\hsize}{\centering #} &
+\parbox[t]{0.34\hsize}{\centering #} \medskip \cr
+\noalign{\vspace{-1ex}\rule{\hsize}{0.2mm}} %=================================
+\textbf{Head...} & \textbf{Head...} & \textbf{Head...} \cr
+\noalign{\slup{2.5}\scrup{3.5}\rule{\hsize}{0.2mm}} %=========================
+... & ... & ... \cr
+\noalign{\hrule} \cr %--------------------------------------------------------
+...
+& \multispan 2 \parbox[t]{0.72\hsize}{\centering
+...
+}\medskip \cr
+\noalign{\hrule} \cr %--------------------------------------------------------
+...
+& \multispan 2 \hspace{-0.5ex}\parbox[t]{0.68\hsize}{\centering
+\halign
+{\hfill # \hfill & \hfill # \hfill \cr
+... & ... \cr
+... & ... \cr
+}
+} \medskip \cr % NOTE: Space in front of \medskip centers subtable!
+\noalign{\hrule} \cr %--------------------------------------------------------
+...
+& \parbox[t]{0.34\hsize}{\centering
+\halign
+{\hfill # \hfill & \hfill # \hfill \cr
+... & ... \cr
+... & ... \cr
+}
+}
+\hfill
+& \parbox[t]{0.34\hsize}{\centering
+\halign
+{\hfill # \hfill & \hfill # \hfill \cr
+... & ... \cr
+... & ... \cr
+}
+} \cr
+\noalign{\slup{0}\scrup{1}\rule{\hsize}{0.2mm}} %==============================
+}}
+
+
+%########################### Table: 2 Rows parboxed ##########################%
+
+\tabcaption{...}%
+\slup{1}
+\label{tab:...}%
+{\normalsize
+\tabskip=1ex plus 99ex\halign to \hsize
+{ \parbox[t]{0.1\hsize}{\centering #} &
+  \parbox[t]{0.82\hsize}{#} \medskip \cr
+\noalign{\vspace{-1ex}\rule{\hsize}{0.2mm}} %---------------------------------%
+\textbf{Op.} & \textbf{Function} \cr
+\noalign{\slup{2.5}\scrup{3.5}\rule{\hsize}{0.2mm}} %-------------------------%
+\cblack{...} & ... \cr
+\cblack{...} & ... \cr
+\cblack{...} & ... \cr
+\cblack{...} & ... \cr
+\cblack{...} & ... \cr
+\noalign{\slup{2}\scrup{3}\rule{\hsize}{0.2mm}} %-----------------------------%
+}}
+
+
+%############################### Table: Matrix ##############################%
+
+\[ 
+   w =
+   \left(\raisebox{0.3ex}{
+     ${\D\vphantom{j}1 \atop {\D\vphantom{j}0 \atop \D\vphantom{j}-1}}$
+     ${\D\vphantom{j}1 \atop {\D\vphantom{j}0 \atop \D\vphantom{j}-1}}$
+     ${\D\vphantom{j}1 \atop {\D\vphantom{j}0 \atop \D\vphantom{j}-1}}$
+     }\right)\,.
+\]
+
+
+%############################## Table: Simple ################################%
+
+\halign to \hsize
+{ # \hfill & # \hfill \medskip \cr
+  \textbf{Trägerphase:}  & $\omega_C t$ \cr
+  \textbf{Phasenhub:}    & $\Delta\Phi$ \cr
+} 
+
+
+
+%############################## Table w/ Lines ###############################%
+
+\tabcaption{....}%
+\label{tab:...}%
+\tabskip=2ex plus 99ex\halign to \hsize
+{ \hfill # \hfill & \hfill # \hfill \medskip \cr
+  \noalign{\slup{0.5}\scrdown{1.0}\hrule} \cr % Korrektur Abstand Titel/Tabelle
+  \textbf{...} & \textbf{...} \cr 
+  \noalign{\hrule} \cr
+
+  ... & ... \cr
+  ... & ... \cr
+  ... & ... \cr
+  \noalign{\hrule} \cr
+}
+
+
+%############################# MATLAB Listing  ###############################%
+
+\begin{lstlisting}[title={...},
+                   label={list:...},
+                   firstnumber=1,
+                   backgroundcolor=\color{ultralightgray}]
+...
+\end{lstlisting}
+
+
+
+%########################### MATLAB Definition  ##############################%
+
+\begin{Definition}[\texttt{...}]\hfill
+
+\slup{1}
+\cblack{...}
+
+\vspace{\switch{1ex}{1ex}}
+...
+
+\vspace{\switch{1ex}{1ex}}
+\halign to \hsize
+{\parbox[t]{0.20\hsize}{#} & \parbox[t]{0.75\hsize}{#} \medskip \cr
+ \cbluei{...}   
+ & ... \cr
+ \cbluei{...}   
+ & ... \cr
+}
+\slup{0.5}
+\filledend
+\end{Definition}
+
+
+
+%############################# MATLAB Beispiel ################################%
+
+\begin{Beispiel}[...]
+
+...
+
+\openend
+\end{Beispiel}
+
+
+
+%############################# Underbar _________ ##############################%
+
+\underbar{}
+
+
+%#############################################################################%
+%                                                                             %
+%               SONSTIGES (NICHT TEIl DES TEXNICCENTER MENÜS)                 %
+%                                                                             %
+%#############################################################################%
+
+{\renewcommand{\arraystretch}{1.3}\rowcolors[]{1}{blue!20}{blue!10}
+\bc\begin{tabular}{p{0.19\textwidth}!{\vrule}p{0.75\textwidth}} % Sum: 0.94
+\textbf{Befehl} & \textbf{Erläuterung} \\\hline
+...
+\end{tabular}\ec}
+
+
+{\renewcommand{\arraystretch}{1.3}\sffamily\upshape\color{black}
+\bc\begin{tabular}{|p{0.96\textwidth}|} % Sum: 0.94
+\hline
+\textbf{Antwort} \\ \hline
+Warum: \\ \\ \hline
+\end{tabular}\ec}
+
+
+{\renewcommand{\arraystretch}{1.3}\sffamily\upshape\color{black}
+\bc\begin{tabular}{|p{0.96\textwidth}|} % Sum: 0.94
+\hline
+\textbf{Antwort} \\ \hline
+Titel: 
+\bc\includegraphics[width=0.65\hsize]{xxx.png}\ec  \\ \hline
+\end{tabular}\ec}
+
+
+\hint{\sarr{\ce{Wichtiger Hinweis:} }}
+
+
+\ihint{\sarr{\ul{Hinweis:} }}
+
+				\ihint{\vspace{-1.5ex}\strut \\
+               \vspace{-1.0ex}\ul{Hinweise:}
+          
+               \begin{itemize}
+                 \iarr 
+                 \iarr    
+               \end{itemize}\vspace{-0.5ex}}
+
+			   
+\setlistingsc
+\begin{lstlisting}[caption={\texttt{}},
+                   label={list:},
+                   firstnumber=1,
+                   backgroundcolor=\color{ultralightgray}]
+...
+\end{lstlisting}
+
+\error{Fehlermeldung ''\cred{}''}{
+\bc \includegraphics[width=0.7\hsize]{} \ec
+\sarr{\ce{Lösung:} }
+}
+
+%#############################################################################%
+%                                                                             %
+%                           TEXNICCENTER COMMANDS                             %
+%                                                                             %
+% -> Extras -> Anpassen -> Extras                                             %
+% -> Extras -> Anpassen -> Tastatur                                           %
+%                                                                             %
+%#############################################################################%
+
+Menüinhalt: mybeamer.sty
+Befehle:    C:\Programme\Notepad++\notepad++
+Argumente:  "C:\Programme\localtexmf\tex\mybeamer\mybeamer.sty" -ltex
+
+Menüinhalt: macros.tex
+Befehle:    C:\Programme\Notepad++\notepad++
+Argumente:  "D:\Achim\Tex\HELP\Latex Manuals\macros.tex"
+
+Menüinhalt: BibTeX Template
+Befehle:    C:\Programme\Notepad++\notepad++
+Argumente:  "D:\Achim\Tex\HELP\Latex Manuals\template.bib" -ltex
+
+Menüinhalt: PDFLaTeXPreview
+Befehle:    C:\Programme\AutoHotkey\AutoHotKey.exe
+Argumente:  "D:\Achim\Bat\LaTeXPreview\PDFLaTeXPreview.ahk" "%dm" "%bm"
+Shortcut:   ALT-A 
+
+Menüinhalt: DVIPDFPreview
+Befehle:    C:\Programme\AutoHotkey\AutoHotKey.exe
+Argumente:  "D:\Achim\Bat\LaTeXPreview\DVIPDFPreview.ahk" "%dm" "%bm"
+Shortcut:   ALT-D
+
+Menüinhalt: Beamer Script
+Befehle:    C:\Programme\AutoHotkey\AutoHotKey.exe
+Argumente:  "D:\Achim\Bat\LaTeXPreview\BeamerScript.ahk" "%dm" "%bm"
+Shortcut:   ALT-Y
+
+Menüinhalt: Beamer Slides
+Befehle:    C:\Programme\AutoHotkey\AutoHotKey.exe
+Argumente:  "D:\Achim\Bat\LaTeXPreview\BeamerSlides.ahk" "%dm" "%bm"
+Shortcut:   ALT-X
+
+Menüinhalt: Beamer Slides w/o Frame
+Befehle:    C:\Programme\AutoHotkey\AutoHotKey.exe
+Argumente:  "D:\Achim\Bat\LaTeXPreview\BeamerSlidesNoFrame.ahk" "%dm" "%bm"
+Shortcut:   ALT-S
+
+
+OPTIONAL:
+
+Menüinhalt: settings_common.tex
+Befehle:    C:\Programme\Notepad++\notepad++
+Argumente:  "%dm\format\settings_common.tex"
+
+Menüinhalt: settings_slides.tex
+Befehle:    C:\Programme\Notepad++\notepad++
+Argumente:  "%dm\format\settings_slides.tex"
+
+Menüinhalt: settings_script.tex
+Befehle:    C:\Programme\Notepad++\notepad++
+Argumente:  "%dm\format\settings_script.tex"
+
+Menüinhalt: glossar.tex
+Befehle:    C:\Programme\Notepad++\notepad++
+Argumente:  "%dm\lectures\glossar.tex"
+
+Menüinhalt: bibliography.bib
+Befehle:    C:\Programme\Notepad++\notepad++
+Argumente:  "%dm\lectures\bibliography.bib" -ltex
+
+
+
+%################################# Shortcuts ################################%
+
+F1     - Compile Project            (vorher: Hilfe, Kontexthilfe)
+CTR-F1 - BibTex
+ALT-F1 - Compile File
+F2     - Compile Project + View PDF (vorher: Suchen/gehe zu Nächstem)
+F3     - Suchen: nächster Eintrag
+CTR-F3 - Suchen: letzter Eintrag
+F4     - View PDF
+F5     - Navigatorleiste
+CTR-F5 - Log (Ausführen)
+
+ALT-B  - Suchen/Lesezeichen setzen/entfernen
+CTR-B  - Suchen/Lesezeichen setzen/entfernen (vorher: Suchen/gehe z. letzten Änderg.)
+
+ALT-A - LaTeXPreview
+ALT-D - DVI Preview
+ALT-Y - Beamer Script Preview
+ALT-X - Beamer Slide Preview
+ALT-S - Beamer Slide Preview NoFrame
+
+
+
+%#############################################################################%
+%                                                                             %
+%                      SCRIPTEN AN NEUES LAYOUT ANPASSEN                      %
+%                                                                             %
+%#############################################################################%
+
+
+%#################################### Copy ###################################%
+
+%################## Kopieren in \format:
+
+settings_common.tex <- \doctitle, \docnutzung <- format_layout.tex
+settings_slides.tex
+settings_script.tex
+*.png
+
+
+
+%################## Kopieren in \lectures (optional):
+
+konventionen.tex
+
+
+%################################### Script ##################################%
+
+%################## lecture_script.tex
+
+\include{format/settings_script}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{document}
+\setlistings
+
+
+
+%################## prel_script.tex
+
+\pgfdeclareimage[mask=hawkmask,height=14mm]{hawkintitle}{\pics/HAWK_Blue}
+\pgfdeclareimage[mask=mtmask,width=70mm]{mtintitle}{\pics/MT_Blue}
+
+\begin{titlepage}
+\begin{center}
+
+\vspace*{0.4cm}
+{\Huge\bfseries\sffamily \doctitle                                \\[20mm]}
+\Large
+\doclongauthor                                                    \\[40mm]
+\pgfuseimage{hawkintitle}                                         \\[3mm]
+\docinstitute                                                     \\[4mm]
+\pgfuseimage{mtintitle}                                           \\[3mm]
+\href{mailto:\docmail}{\texttt{\docmail}}                         \\[30mm]
+\docdate
+
+\end{center}
+\end{titlepage}
+
+
+
+%################## Je Lecture: Lecture ist eine Section und
+
+\slideonly{
+   % Title
+   \title{<Lecture Title>}
+   \TitleTextBox[Ziel:]{...}
+
+   % Insert a title slide
+   \frame{\clockinit\titlepage}
+}
+
+\slideonly{
+   \begin{frame}[c]
+   \frametitle{Nutzungsrichtlinie}
+
+   \begin{beamercolorbox}[rounded=true,shadow=true,sep={0.5ex}]
+         {block body alerted}\slup{1}
+   
+   \parbox[t]{0.980\hsize}{\footnotesize\docnutzung\normalsize}
+   
+   \slup{0}
+   \end{beamercolorbox}
+
+   \end{frame}
+}
+
+
+
+%#################################### Slides ##################################%
+
+%################## lecture_slides.tex
+
+\include{format/settings_slides}
+
+%-----------------------------------------------------------------------------%
+
+\begin{document}
+\setlistings
+
+
+
+%################## prel_slides.tex
+
+   % Insert a title slide
+   \frame{\clockinit\titlepage}
+
+   % Insert the table of contents if you compile all lectures in one file
+   % \frame{
+   %   \frametitle{Inhaltsverzeichnis}
+   %   \tableofcontents[hidesubsections]
+   % }
+
+...
+
+\textbf{Sprechstunde}:
+\smallskip
+   \docconsult
+\bigskip
+\textbf{Kontakt:}
+\smallskip
+\begin{itemize}
+    \item[] Tel.: \docphone \\
+    \item[] Email: \href{mailto:\docmail}{\texttt{\docmail}}
+    \item[] Skype: \texttt{\docskype}
+\end{itemize}  
+
+...
+
+    \iarr Schicken Sie Fragen und Beiträge an 
+          \href{mailto:\docmail}{\texttt{\docmail}}
+
+...
+
+%-----------------------------------------------------------------------------%
+
+\input{lectures/konventionen.tex}
+
+
+%################## Boxen ersetzen!
+
+
+
+%-----------------------------------------------------------------------------%
+%                                <Lecture Title>                              %
+%-----------------------------------------------------------------------------%
+
+\section[<Lecture ShortTitle>]{<Lecture Title>}
+\label{sec:lecturetitle}
+
+
+
+
+
+
+
