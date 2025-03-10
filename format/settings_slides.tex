@@ -1,0 +1,796 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%                             settings_slides.tex                             %
+%                                                                             %
+%                               Achim Ibenthal                                %
+%                                                                             %
+%                                                                             %
+% CONTENT:             Slide layout definition under beamer.                  %
+%                                                                             %
+%                      USE THIS FILE TO CHANGE THE LAYOUT OF YOUR ARTICLE     %
+%                      AND YOUR PRESENTATION VERSION! SEE THE BEAMER CLASS    %
+%                      DOCUMENTATION FOR HOW TO ADAPT THE SLIDE LAYOUT IN     %
+%                      ADAPTATION IN SECTION 7                                %
+%                                                                             %
+%                      1. Document Class                                      %
+%                      2. Beamerarticle Specific Packages                     %
+%                      3. Common Packages and Definitions                     %
+%                      4. Slide Thgeme Colors                                 %
+%                      5. System Clock                                        %
+%                      6. Slide Layout                                        %
+%                      7. Font                                                %
+%                                                                             %
+% REVISION HISTORY     01-AUG-06: Original Version                            %
+%                      18-AUG-08: Enhance flexibility, new block environments %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+
+%-----------------------------------------------------------------------------%
+%                             1. Document Class                               %
+%-----------------------------------------------------------------------------%
+
+\documentclass[hyperref= {plainpages    = false,
+                          pdfpagelabels = false, 
+                          hypertexnames = false},
+               xcolor  = {x11names,
+                          table},
+               c,
+               10pt]
+              {beamer}
+%\documentclass[xcolor=x11names,t,10pt]{beamer}
+%\documentclass[xcolor=x11names,t,10pt,ignorenonframetext]{beamer}
+
+
+%-----------------------------------------------------------------------------%
+%                    2. Common Packages and Definitions                       %
+%-----------------------------------------------------------------------------%
+
+\input{format/settings_common}                     % common settigs & defs
+
+
+%-----------------------------------------------------------------------------%
+%                     3. Beamer Slide Specific Packages                       %
+%-----------------------------------------------------------------------------%
+
+% none
+
+
+%-----------------------------------------------------------------------------%
+%                            4. Slide Theme Colors                            %
+%                                                                             %
+% Choice:          Uncomment one color theme                                  %
+% LeftLogoStyle:   <dark|bright> (default: bright)                            %
+% CenterLogoStyle: <dark|bright> (default: right)                             %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+% Define Theme Color Switches
+\def\isLightSlateGray{LightSlateGray}                      % GRAY
+\def\isDarkIvory{DarkIvory}
+\def\isHoneyDew{HoneyDew}
+\def\isSnow{Snow}
+\def\isDarkSnow{DarkSnow}
+\def\isNavajoWhite{NavajoWhite}                            % BROWN
+\def\isBurlyWood{BurlyWood}
+\def\isDarkWheat{DarkWheat}
+\def\isWheat{Wheat}
+\def\isBordeaux{Bordeaux}                                  % RED
+\def\isBordeauxGray{BordeauxGray}
+\def\isFireBrick{FireBrick}
+\def\isSienna{Sienna}
+\def\isOrange{Orange}                                      % ORANGE/YELLOW
+\def\isGoldenrod{Goldenrod}
+\def\isLightGoldenRod{LightGoldenRod}
+\def\isKhaki{Khaki}                                        % Green
+\def\isLightKhaki{LightKhaki}                              
+\def\isDarkKhaki{DarkKhaki}
+\def\isOliveGreen{OliveGreen}
+\def\isOliveGreenGray{OliveGreenGray}
+\def\isOliveDrab{OliveDrab}
+\def\isOliveDrabGray{OliveDrabGray}
+\def\isCamouflageGreen{CamouflageGreen}
+\def\isSeaGreen{SeaGreen}
+\def\isLintGreen{LintGreen}
+\def\isCornSilk{CornSilk}
+\def\isMarine{Marine}                                      % Blue / Purple
+\def\isDarkSteelBlue{DarkSteelBlue}     
+\def\isLightSteelBlue{LightSteelBlue}
+\def\isAzure{Azure}
+\def\isMediumPurple{MediumPurple}
+\def\isThistle{Thistle}
+\def\isEthiopia{Ethiopia} % Default                        % Other
+\def\isJamaica{Jamaica}
+
+
+% Default Color
+\definecolor{Theme1}         {rgb} {0.800 0.000 0.000}        
+\definecolor{Theme2}         {rgb} {0.900 0.900 0.000}
+\definecolor{Theme3}         {rgb} {0.000 0.600 0.000}
+\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+\def\LeftLogoStyle{bright}
+\def\CenterLogoStyle{dark}
+
+\ifx\slidethemecolor\isLightSlateGray                      % GRAY
+	\definecolor{Theme1}         {rgb} {0.467 0.533 0.600}        
+	\definecolor{Theme2}         {rgb} {0.373 0.427 0.480}
+	\definecolor{Theme3}         {rgb} {0.299 0.341 0.384}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isDarkIvory
+	\definecolor{Theme1}         {rgb} {0.412 0.412 0.388}       
+	\definecolor{Theme2}         {rgb} {0.515 0.515 0.484}
+	\definecolor{Theme3}         {rgb} {0.643 0.643 0.605} 
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isHoneyDew
+	\definecolor{Theme1}         {rgb} {0.388 0.412 0.388}        
+	\definecolor{Theme2}         {rgb} {0.484 0.515 0.484}
+	\definecolor{Theme3}         {rgb} {0.605 0.643 0.605}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isSnow
+	\definecolor{Theme1}         {rgb} {0.800 0.784 0.784}        
+	\definecolor{Theme2}         {rgb} {1.000 0.980 0.980} 
+	\definecolor{Theme3}         {rgb} {0.900 0.882 0.882}
+	\definecolor{Theme1Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{TitleText}      {rgb} {0.200 0.200 0.200}
+	\definecolor{FrameTitleText} {rgb} {0.000 0.000 0.000}
+	\setbeamerfont{title}{series=\bfseries}
+	\def\LeftLogoStyle{dark}
+	\def\CenterLogoStyle{dark}
+\fi
+
+\ifx\slidethemecolor\isDarkSnow
+	\definecolor{Theme1}         {rgb} {0.412 0.404 0.404}        
+	\definecolor{Theme2}         {rgb} {0.515 0.504 0.504}
+	\definecolor{Theme3}         {rgb} {0.643 0.631 0.631}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isNavajoWhite                         % BROWN
+	\definecolor{Theme1}         {rgb} {0.720 0.627 0.488}        
+	\definecolor{Theme2}         {rgb} {0.512 0.446 0.347}
+	\definecolor{Theme3}         {rgb} {0.640 0.557 0.434}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isBurlyWood
+	\definecolor{Theme1}         {rgb} {0.412 0.341 0.251}        
+	\definecolor{Theme2}         {rgb} {0.643 0.533 0.392}
+	\definecolor{Theme3}         {rgb} {0.515 0.427 0.314}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isDarkWheat
+	\definecolor{Theme1}         {rgb} {0.515 0.467 0.376}        
+	\definecolor{Theme2}         {rgb} {0.643 0.584 0.471}
+	\definecolor{Theme3}         {rgb} {0.804 0.729 0.588}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {0.200 0.200 0.200}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isWheat
+	\definecolor{Theme1}         {rgb} {0.900 0.815 0.656}        
+	\definecolor{Theme2}         {rgb} {1.000 0.906 0.729}
+	\definecolor{Theme3}         {rgb} {0.810 0.734 0.591}
+	\definecolor{Theme1Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{TitleText}      {rgb} {0.200 0.200 0.200}
+	\definecolor{FrameTitleText} {rgb} {0.000 0.000 0.000}
+	\setbeamerfont{title}{series=\bfseries}
+	\def\LeftLogoStyle{dark}
+	\def\CenterLogoStyle{dark}
+\fi
+	
+\ifx\slidethemecolor\isBordeaux                            % RED
+	\definecolor{Theme1}         {rgb} {0.400 0.000 0.000}
+	\definecolor{Theme2}         {rgb} {0.525 0.000 0.000}
+	\definecolor{Theme3}         {rgb} {0.650 0.000 0.000}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isBordeauxGray
+	\definecolor{Theme1}         {rgb} {0.400 0.000 0.000}
+	\definecolor{Theme2}         {rgb} {0.400 0.200 0.200}
+	\definecolor{Theme3}         {rgb} {0.400 0.400 0.400}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isFireBrick
+	\definecolor{Theme1}         {rgb} {0.512 0.096 0.096}        
+	\definecolor{Theme2}         {rgb} {0.640 0.120 0.120}
+	\definecolor{Theme3}         {rgb} {0.800 0.151 0.151}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isSienna
+	\definecolor{Theme1}         {rgb} {0.512 0.261 0.143}        
+	\definecolor{Theme2}         {rgb} {0.800 0.408 0.223}
+	\definecolor{Theme3}         {rgb} {0.640 0.326 0.178}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isOrange                              % ORANGE / YELLOW
+	\definecolor{Theme1}         {rgb} {0.512 0.331 0.000}        
+	\definecolor{Theme2}         {rgb} {0.800 0.518 0.000}
+	\definecolor{Theme3}         {rgb} {0.640 0.414 0.000}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isGoldenrod
+	\definecolor{Theme1}         {rgb} {0.512 0.388 0.074}        
+	\definecolor{Theme2}         {rgb} {0.800 0.605 0.116}
+	\definecolor{Theme3}         {rgb} {0.640 0.484 0.093}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isLightGoldenRod
+	\definecolor{Theme1}         {rgb} {0.900 0.833 0.491}        
+	\definecolor{Theme2}         {rgb} {1.000 0.925 0.545}
+	\definecolor{Theme3}         {rgb} {0.810 0.750 0.442}
+	\definecolor{Theme1Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{TitleText}      {rgb} {0.200 0.200 0.200}
+	\definecolor{FrameTitleText} {rgb} {0.000 0.000 0.000}
+	\setbeamerfont{title}{series=\bfseries}
+	\def\LeftLogoStyle{dark}
+	\def\CenterLogoStyle{dark}
+\fi
+	
+\ifx\slidethemecolor\isKhaki                               % GREEN
+	\definecolor{Theme1}         {rgb} {0.683 0.660 0.383}        
+	\definecolor{Theme2}         {rgb} {0.547 0.528 0.307}
+	\definecolor{Theme3}         {rgb} {0.437 0.422 0.245}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isLightKhaki
+	\definecolor{Theme1}         {rgb} {0.753 0.722 0.439}        
+	\definecolor{Theme2}         {rgb} {0.602 0.577 0.439}
+	\definecolor{Theme3}         {rgb} {0.482 0.462 0.281}
+	\definecolor{Theme1Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {0.000 0.000 0.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{dark}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isDarkKhaki 
+	\definecolor{Theme1}         {rgb} {0.593 0.574 0.336}
+	\definecolor{Theme2}         {rgb} {0.474 0.459 0.269}
+	\definecolor{Theme3}         {rgb} {0.379 0.367 0.215}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isOliveGreen
+	\definecolor{Theme1}         {rgb} {0.321 0.321 0.000}        
+	\definecolor{Theme2}         {rgb} {0.502 0.502 0.000}
+	\definecolor{Theme3}         {rgb} {0.402 0.402 0.000}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isOliveGreenGray
+	\definecolor{Theme1}         {rgb} {0.321 0.321 0.000}        
+	\definecolor{Theme2}         {rgb} {0.502 0.502 0.000}
+	\definecolor{Theme3}         {rgb} {0.402 0.402 0.402}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isOliveDrab
+	\definecolor{Theme1}         {rgb} {0.336 0.445 0.424}        
+	\definecolor{Theme2}         {rgb} {0.420 0.557 0.529}
+	\definecolor{Theme3}         {rgb} {0.269 0.356 0.339}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isOliveDrabGray
+	\definecolor{Theme1}         {rgb} {0.336 0.445 0.424}        
+	\definecolor{Theme2}         {rgb} {0.420 0.557 0.529}
+	\definecolor{Theme3}         {rgb} {0.300 0.330 0.300}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isCamouflageGreen
+	\definecolor{Theme1}         {rgb} {0.471 0.525 0.420}        
+	\definecolor{Theme2}         {rgb} {0.376 0.420 0.336}
+	\definecolor{Theme3}         {rgb} {0.301 0.336 0.269}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isSeaGreen
+	\definecolor{Theme1}         {rgb} {0.135 0.412 0.257}        
+	\definecolor{Theme2}         {rgb} {0.210 0.643 0.402}
+	\definecolor{Theme3}         {rgb} {0.168 0.515 0.321}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isLintGreen
+	\definecolor{Theme1}         {rgb} {0.552 0.615 0.383}        
+	\definecolor{Theme2}         {rgb} {0.442 0.492 0.306}
+	\definecolor{Theme3}         {rgb} {0.690 0.769 0.478}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isCornSilk
+	\definecolor{Theme1}         {rgb} {0.769 0.778 0.696}        
+	\definecolor{Theme2}         {rgb} {0.615 0.622 0.557}
+	\definecolor{Theme3}         {rgb} {0.961 0.973 0.871}
+	\definecolor{Theme1Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{TitleText}      {rgb} {0.300 0.300 0.000}
+	\definecolor{FrameTitleText} {rgb} {0.000 0.000 0.000}
+	\setbeamerfont{title}{series=\bfseries}
+	\def\LeftLogoStyle{dark}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isMarine                              % BLUE / PURPLE
+	\definecolor{Theme1}         {rgb} {0.000 0.000 0.643}        
+	\definecolor{Theme2}         {rgb} {0.000 0.000 0.515}
+	\definecolor{Theme3}         {rgb} {0.000 0.000 0.412}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isDarkSteelBlue
+	\definecolor{Theme1}         {rgb} {0.442 0.492 0.557}        
+	\definecolor{Theme2}         {rgb} {0.621 0.692 0.784}
+	\definecolor{Theme3}         {rgb} {0.552 0.615 0.696}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+	
+\fi
+	
+\ifx\slidethemecolor\isLightSteelBlue
+	\definecolor{Theme1}         {rgb} {0.713 0.794 0.900}        
+	\definecolor{Theme2}         {rgb} {0.792 0.882 1.000}
+	\definecolor{Theme3}         {rgb} {0.577 0.643 0.729}
+	\definecolor{Theme1Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme2Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {0.200 0.200 0.200}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\setbeamerfont{title}{series=\bfseries}
+	\def\LeftLogoStyle{dark}
+	\def\CenterLogoStyle{dark}
+\fi
+	
+\ifx\slidethemecolor\isAzure
+	\definecolor{Theme1}         {rgb} {0.762 0.810 0.810}        
+	\definecolor{Theme2}         {rgb} {0.847 0.900 0.900}
+	\definecolor{Theme3}         {rgb} {0.941 1.000 1.000}
+	\definecolor{Theme1Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme2Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme3Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{TitleText}      {rgb} {0.200 0.200 0.200}
+	\definecolor{FrameTitleText} {rgb} {0.000 0.000 0.000}
+	\setbeamerfont{title}{series=\bfseries}
+	\def\LeftLogoStyle{dark}
+	\def\CenterLogoStyle{dark}
+\fi
+	
+\ifx\slidethemecolor\isMediumPurple
+	\definecolor{Theme1}         {rgb} {0.369 0.281 0.550}        
+	\definecolor{Theme2}         {rgb} {0.461 0.351 0.687}
+	\definecolor{Theme3}         {rgb} {0.295 0.225 0.440}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{bright}
+\fi
+	
+\ifx\slidethemecolor\isThistle % [n]
+	\definecolor{Theme1}         {rgb} {0.900 0.794 0.900}        
+	\definecolor{Theme2}         {rgb} {1.000 0.882 1.000}
+	\definecolor{Theme3}         {rgb} {0.810 0.715 0.810}
+	\definecolor{Theme1Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {0.000 0.000 0.000}
+	\definecolor{TitleText}      {rgb} {0.200 0.200 0.200}
+	\definecolor{FrameTitleText} {rgb} {0.000 0.000 0.000}
+	\setbeamerfont{title}{series=\bfseries}
+	\def\LeftLogoStyle{dark}
+	\def\CenterLogoStyle{dark}
+\fi
+
+\ifx\slidethemecolor\isEthiopia                            % OTHER
+	\definecolor{Theme1}         {rgb} {0.800 0.000 0.000}        
+	\definecolor{Theme2}         {rgb} {0.900 0.900 0.000}
+	\definecolor{Theme3}         {rgb} {0.000 0.600 0.000}
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{dark}	
+\fi
+
+
+\ifx\slidethemecolor\isJamaica                        
+	\definecolor{Theme1}         {rgb} {0.000 0.000 0.000}      
+	\definecolor{Theme2}         {rgb} {0.950 0.850 0.000}
+	\definecolor{Theme3}         {rgb} {0.000 0.500 0.000}  
+	\definecolor{Theme1Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme2Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{Theme3Text}     {rgb} {1.000 1.000 1.000}
+	\definecolor{TitleText}      {rgb} {1.000 1.000 1.000}
+	\definecolor{FrameTitleText} {rgb} {1.000 1.000 1.000}
+	\def\LeftLogoStyle{bright}
+	\def\CenterLogoStyle{dark}	
+\fi
+
+
+%-----------------------------------------------------------------------------%
+%                             5. System Clock                                 %
+%-----------------------------------------------------------------------------%
+
+% Show Clock (place \clockinit at beginning of first slide!)
+\def\clockenable{showclock}
+\ifx\slideclock\clockenable
+   \newcommand{\clockinit}{\initclock}
+   \usepackage[timeinterval=1]{tdclock} 
+\else   
+   \newcommand{\clockinit}{}
+\fi
+
+
+%-----------------------------------------------------------------------------%
+%                             6. Slide Layout                                 %
+%-----------------------------------------------------------------------------%
+
+% Contrast Switch
+\def\usedark{dark}
+
+
+% Title page Information
+\author[\docshortauthor]{\doclongauthor}
+\institute[HAWK FH HHG]{\docinstitute}
+\date{\docdate}
+
+
+% General Layout
+\usetheme{Warsaw}
+% \usetheme{NavBarLeft}
+% \usetheme{ProgressBullets}
+% \usetheme{NoOverhead}
+% \usetheme{TopLineActualSecSubsec}
+% \usetheme{NavBarTopSecActualSubsec}
+
+
+% Outer Theme Colors (Normal Text, Title, Frametitle Headline, Footline)
+\setbeamercolor{normal text}{fg=TextColor}
+\setbeamercolor{title}{fg=TitleText,bg=Theme1}              % Presentation Title 
+\setbeamercolor{frametitle}{fg=FrameTitleText}              % Frame Title Text
+\setbeamercolor*{section in head/foot}{fg=Theme1Text,bg=Theme1}      % Top Left
+\setbeamercolor*{subsection in head/foot}{fg=Theme3Text,bg=Theme3}   % Top Right 
+\setbeamercolor*{author in head/foot}{fg=Theme1Text,bg=Theme1}       % Bot Left
+\setbeamercolor*{title in head/foot}{fg=Theme2Text,bg=Theme2}        % Bot Mid
+\setbeamercolor*{date in head/foot}{fg=Theme3Text,bg=Theme3}         % Bot Right
+
+
+% Frame Text Bullet, Block Body Bullet and Bibliography Color
+%\colorlet{DarkTheme1}{Theme1!40!black}
+\ifx\LeftLogoStyle\usedark
+	\colorlet{ThemeBaseColor}{Theme1!40!black}
+\else % Default: bright
+	\colorlet{ThemeBaseColor}{Theme1}
+\fi
+\usecolortheme[named=ThemeBaseColor]{structure}
+\setbeamercolor{blockbullet}{fg=ThemeBaseColor} 
+
+
+% Example Block Colors (see Beamer Manual, pp. 174+)
+\setbeamercolor{block title example}{bg=ExampleColor}                % Heading BG
+\setbeamercolor{example text}{fg=ExampleColor}                       % Bullet Color
+\setbeamercolor{block body example}{fg=TextColor}                    % Text Color 
+
+
+% Normal Block Colors 
+\setbeamercolor{block title normal}{fg=white,bg=NormalColor}         % Heading FG/BG
+\setbeamercolor{normalbullet}{fg=NormalColor}     				     % Bullet Color
+\setbeamercolor{block body normal}{fg=black,bg=NormalColor!10!white} % Normal FG/BG 
+
+
+% Alerted Block Colors 
+\setbeamercolor{block title alerted}{bg=AlertColor}                  % Heading BG
+\setbeamercolor{alerted text}{fg=AlertColor}                         % Bullet Color
+\setbeamercolor{block body alerted}{fg=TextColor}                    % Text Color 
+
+
+% Default Beamer Block (should have theme colors, anyway)
+\ifx\LeftLogoStyle\usedark
+    \setbeamercolor{block title}{fg=white,bg=Theme1!30!black}        % Block heading BG
+    \setbeamercolor{block body}{fg=TextColor,bg=Theme1!50!white}     % Block text Color 
+\else % Default: bright
+    \setbeamercolor{block title}{fg=white,bg=Theme1}                 % Block heading BG
+    \setbeamercolor{block body} {fg=TextColor,bg=Theme1!15!white}    % Block text Color 
+\fi
+
+
+% Theme Block Colors  (Canvas desaturation derived from öntgenLogoStyle)
+%\ifx\LeftLogoStyle\usedark
+%   \setbeamercolor{block theme}{fg=black,bg=Theme1!50!white}
+%\else % Default: bright
+%   \setbeamercolor{block theme}{fg=black,bg=Theme1!15!white}
+%\fi
+
+
+% Other Colors
+\setbeamercolor{hyperlink}{fg=ColHyper}                  % Hyperlinks           
+%\setbeamercovered{transparent}                       % doesn't opaque pics
+%\setbeamercolor{bibliography entry note}{fg=blue,bg=white} 
+
+
+% Itemize Bullets
+%\setbeamertemplate{bibliography item}[text]           % Bibitem Style
+%\setbeamertemplate{items}[bullet]                     % itemize Bullets%
+%\setbeamertemplate{itemize item}[bullet]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% CHANGE LOGO FILES HERE! %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\LeftLogoStyle\usedark
+   \def\leftlogo{\includegraphics[height=2.59mm]{format/HAWK_DarkGray}}
+\else % Default: brigh595
+   \def\leftlogo{\includegraphics[height=2.6mm]{format/HAWK_LightGray}}
+\fi
+\ifx\CenterLogoStyle\usedark
+	\def\centerlogo{\includegraphics[height=3.2mm]{format/SP_DarkGray}}
+\else % Default: bright
+   \def\centerlogo{\includegraphics[height=3.2mm]{format/SP_LightGrayDarkTip}}
+\fi
+
+
+% Outer Theme Layout: Top Left + Right (Headline)
+\setbeamertemplate{headline} % Top Left + Right
+{
+ \leavevmode%
+ \hbox{%
+ \begin{beamercolorbox}[wd=.501\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+   \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+ \end{beamercolorbox}%
+ \begin{beamercolorbox}[wd=.501\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+   \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+ \end{beamercolorbox}}%
+ \vskip2pt%
+}
+
+
+% Outer Theme Layout: Top Left + Mid + Right (Footline)
+\setbeamertemplate{footline} % 
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.335\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+    \usebeamerfont{author in head/foot}{\raisebox{-0.82mm}
+                  {\leftlogo}} 
+    % \insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.335\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\hspace{1ex}\raisebox{-0.82mm}
+                  {\centerlogo} 
+    %\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.335\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    % \usebeamerfont{date in head/foot}\insertshorttitle\hspace*{2em} 
+    % \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+    % \insertshortdate{}
+    \ifx\slideclock\clockenable
+	     {\textcolor{Theme3Text}\tdhours\hspace{0.5ex}:\hspace{0.9ex}\textcolor{Theme3Text}\tdminutes 
+         %{\textcolor{Theme3!50!black}\tdhours\hspace{0.5ex}:\hspace{0.9ex}\textcolor{Theme3!50!black}\tdminutes 
+         %\faceclock{1}{} \analogclock
+         \hspace{3ex}} \hspace{0.180\paperwidth \hfill \hfill}
+    \fi
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+% ToC at Begin of Sections
+\setcounter{tocdepth}{2} % no subsubsections
+\AtBeginSection[]        % do  nothing  for  \section*
+{
+	\begin{frame}<beamer>
+	\frametitle{Übersicht}
+	\tableofcontents[currentsection,hideothersubsections]
+	\end{frame}
+}
+%\AtBeginSubsection[]     % ToC at each Subsection   
+%{
+%	\begin{frame}<beamer>
+%	\frametitle{Übersicht}
+%	\tableofcontents[ subsectionstyle=show/shaded/hide]
+%	\end{frame}
+%}
+
+% TitletextBox Command
+\newcommand{\TitleTextBox[2]}
+            {\titlegraphic{
+            \slspace{1}
+				\begin{beamercolorbox}[rounded=true,shadow=true]
+				      {block body}\slup{1}
+				      
+	                      \small
+	                      \underline{#1}~#2
+
+				\end{beamercolorbox}}}
+
+
+%-----------------------------------------------------------------------------%
+%                                  7. Font                                    %
+%-----------------------------------------------------------------------------%
+
+% Fonts (to be included after beamer templates!)
+\usepackage{lmodern} \renewcommand{\scdefault}{n}
+%\usepackage{bera} \renewcommand{\scdefault}{n}
+%\usepackage[scaled=.90]{helvet}   % Helvetica (Arial)
+%\usepackage{cmbright}             % irgendwo zwischen helvet und lmodern
+%\usepackage{tpslifonts}           % seeeeehr breit
+%\usepackage{avant}
+%\usefonttheme{serif}              % don't do that!
+%\usefonttheme{professionalfonts} 
+
+
+
+%------------------------------------EOF--------------------------------------%

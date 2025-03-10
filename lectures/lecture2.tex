@@ -1,0 +1,104 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%                                lecture2.tex                                 %
+%                                                                             %
+%                               Achim Ibenthal                                %
+%                                                                             %
+%                                                                             %
+% CONTENT:             Vorlesung Lecture 2                                    %
+%                                                                             %
+% REVISION HISTORY     04-AUG-06: Initial Version                             %
+%                      26-AUG-06: Update new Beamer layout + MiKTeX 2.7       %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+%                             Lesson Title + ToC                              %
+%-----------------------------------------------------------------------------%
+
+\mode<presentation>{
+
+   % Change Title Page Content HERE
+   \title{Lecture 2}
+   \TitleTextBox[Ziel:]{Verständnis Lecture 2}
+
+   % Insert a title slide
+   \frame{\clockinit\titlepage}
+}
+
+
+%-----------------------------------------------------------------------------%
+%                              Nutzungsrichtlinie                             %
+%-----------------------------------------------------------------------------%
+
+\slideonly{
+   \begin{frame}[c]
+   \frametitle{Nutzungsrichtlinie}
+
+   \begin{beamercolorbox}[rounded=true,shadow=true,sep={0.5ex}]
+         {block body alerted}\slup{1}
+   
+   \parbox[t]{0.980\hsize}{\footnotesize\docnutzung\normalsize}
+   
+   \slup{0}
+   \end{beamercolorbox}
+
+   \end{frame}
+}
+
+\scrnp % Script: new page for each new section
+
+
+%-----------------------------------------------------------------------------%
+%                                  Section 2                                  %
+%-----------------------------------------------------------------------------%
+
+\section{Section 2}
+\label{sec:sec2}
+
+
+%-----------------------------------------------------------------------------%
+%                          Subsection 1 of Section 1                          %
+%-----------------------------------------------------------------------------%
+
+\subsection[Subsection 1]{Subsection 1 of Section 1}
+\label{ssec:sec2a}
+
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}%[allowframebreaks,fragile]
+\frametitle{Frame 1 of Subsection 1 of Section 2}
+
+...
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+%                              Exercises Section 2                            %
+%-----------------------------------------------------------------------------%
+
+\subsection[Übungen]{Übungen \scriptonly{zu Abschnitt \ref{sec:sec2}}}
+\label{ssec:exercisesec2}
+
+\begin{frame}[c]
+\slideonly{\frametitle{Übungen}}
+
+\Uebung{ue:<uelabel2>}{...}
+       {
+        ...
+        \begin{itemize}
+        \item[a)] ...
+        \item[b)] ...
+        \item[c)] ...
+        \end{itemize}          
+       }
+
+\end{frame}
+
+
+
+%------------------------------------EOF--------------------------------------%
+

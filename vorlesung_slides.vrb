@@ -1,0 +1,62 @@
+\slideonly{\frametitle{Sourcecode Listings}}
+
+Source code listings are inserted by using the \te{\texttt{listings}}
+package.
+\slspace{2}
+This template is configured for \texttt{Matlab} M-file language.
+Use Section 11 of \texttt{settings\symbol{95}common.tex} if you wish to
+change the default.
+
+
+\framebreak %-----------------------------------------------------------------%
+
+Example:
+\slideonly{\footnotesize}
+\begin{verbatim}
+\begin{lstlisting}[title=\cblueb{averagingdemo.m},
+                   label=list:average,
+                   firstnumber=1,
+                   backgroundcolor=\color{ultralightgray}]
+% Demo Planarer Tiefpass
+
+%% Bild lesen
+b  = imread('zoneplate.tif');
+
+%% Filterung
+b5  = imfilter(b, fspecial('average', 5),  'replicate');
+b9  = imfilter(b, fspecial('average', 9),  'replicate');
+b13 = imfilter(b, fspecial('average', 13), 'replicate');
+
+%% Display
+subplot(2,2,1); imshow(b,  []);  title('Original');
+subplot(2,2,2); imshow(b5, []);  title('5 x 5 Filter');
+subplot(2,2,3); imshow(b9, []);  title('9 x 9 Filter');
+subplot(2,2,4); imshow(b13, []); title('13 x 13 Filter');
+\end{lstlisting}
+\end{verbatim}
+\slideonly{\normalsize}
+
+
+\framebreak %-----------------------------------------------------------------%
+
+\begin{lstlisting}[title=\cblueb{averagingdemo.m},
+                   label=list:average,
+                   firstnumber=1,
+                   backgroundcolor=\color{ultralightgray}]
+% Demo Planarer Tiefpass
+
+%% Bild lesen
+b  = imread('zoneplate.tif');
+
+%% Filterung
+b5  = imfilter(b, fspecial('average', 5),  'replicate');
+b9  = imfilter(b, fspecial('average', 9),  'replicate');
+b13 = imfilter(b, fspecial('average', 13), 'replicate');
+
+%% Display
+subplot(2,2,1); imshow(b,  []);  title('Original');
+subplot(2,2,2); imshow(b5, []);  title('5 x 5 Filter');
+subplot(2,2,3); imshow(b9, []);  title('9 x 9 Filter');
+subplot(2,2,4); imshow(b13, []); title('13 x 13 Filter');
+\end{lstlisting}
+

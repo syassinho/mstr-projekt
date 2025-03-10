@@ -1,0 +1,139 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%                              konventionen.tex                               %
+%                                                                             %
+%                               Achim Ibenthal                                %
+%                                                                             %
+% History                                                                     %
+% -------                                                                     %
+%                                                                             %
+% 18-AUG-06: 1st version                                                      %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+%                                Konventionen                                 %
+%-----------------------------------------------------------------------------%
+
+\section*{Konventionen}
+\label{sec:konv}
+\scriptonly{\addcontentsline{toc}{section}{Konventionen}}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\slideonly{\frametitle{Texthervorhebungen}}
+\scriptonly{\textbf{Texthervorhebungen:}}
+
+ \begin{tabular}{p{0.25\hsize}p{0.7\hsize}}
+   \hline
+   \vspace{-0.7ex}\textbf{Stil} 
+   & \vspace{-0.7ex}\textbf{Erläuterung} \\[0.2ex] \hline
+
+   \vspace{-0.7ex}\te{wichtig!} 
+   & \vspace{-0.7ex}Hervorhebung wichtiger Begriffe \\[0.5ex]
+
+   \me{Datei $\to$ Öffnen} 
+   & Anwendungsmenüs \\[0.5ex]
+
+   \credb{CWinApp}
+   & Hervorhebung wichtiger Klassenbezeichner\\[0.5ex]
+
+   \cred{int}, \cred{public} 
+   & Hervorhebung wichtiger Typenbezeichner  und Attribute\\[0.5ex]
+   
+   \cblueb{OnDraw()}, \cblueb{MainFrm.cpp} 
+   & Hervorhebung wichtiger Funktionen, Methoden, Dateinamen, 
+     bzw. Verzeichnisse \\[0.5ex]
+
+   \cbluei{Var}, \cbluei{pVar} 
+   & Hervorhebung wichtiger Variablen \\[0.5ex]
+
+   \cgreenb{\bslash \bslash  \hspace{1ex}Kommentar} 
+   & Kommentar \\[0.3ex]
+
+   \noalign{\hrule} \\
+\end{tabular}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\slideonly{\frametitle{Beispiel}}
+\scriptonly{Beispiel:}
+
+\begin{codeframe}[label=\textit{OnDraw() Methode}]
+°red²void³ °redb²CHwView³::°blueb²OnDraw(³°redb²CDC³* °bluei²pDC³°blueb²)³
+{
+   °redb²CHwDoc³* °bluei²pDoc³ = °blueb²GetDocument()³;
+   ASSERT_VALID(°bluei²pDoc³);
+   °green²// Insert drawing code HERE³
+}
+\end{codeframe}
+
+\bigskip
+Dies ist kein Syntaxhighlighting. 
+Einfärbungen werden nur benutzt, um die im jeweiligen Kontext diskutierten
+wichtigen Elemente hervorzuheben.
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\scriptonly{\textbf{Namenskonventionen:}}
+\pslide{Namenskonventionen}{
+
+Für \cpp Programme werden folgende Konventionen vereinbart:  
+\sldown{0.5}
+\begin{itemize}
+    \item Klassennamen beginnen mit einem Großbuchstaben, z. B. 
+          \credb{CObject}.
+    \sldown{0.5}
+    \item Membervariablen (Attribute) verwenden den Präfix 
+          \cbluei{m\_} (z.B. \cbluei{m\_lpszName}).
+    \sldown{0.5}
+    \item Funktions- und Methodennamen beginnen mit einem Großbuchstaben.
+    \sldown{0.5}
+    \item Jedes Teilwort beginnt selbst wieder mit einem Großbuchstaben.
+    \sldown{0.5}
+    \item Das erste Wort einer Funktion, bzw. einer Methode ist in der Regel
+          ein Verb (z.B. \cblueb{GetWindowHandle}).
+\end{itemize}
+}
+
+
+%-----------------------------------------------------------------------------%
+
+\slideonly{\slide{Textboxen}{
+
+\begin{alertblock}{Rot}
+\begin{itemize}
+    \item Wichtige Sätze und Ergebnisse
+    \item Zusammenfassungen
+\end{itemize}
+\end{alertblock}
+
+
+\begin{block}{Blau}
+\begin{itemize}
+   \item Definitionen
+   \item Mathematische Sätze
+   \item Beweise und Rechungen
+\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Grün}
+\begin{itemize}
+    \item Beispiele
+    \item Übungsaufgaben
+\end{itemize}
+\end{exampleblock}
+
+}}
+
+%---------------------------------------EOF-----------------------------------%
+

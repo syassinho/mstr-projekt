@@ -1,0 +1,19 @@
+\babel@toc {ngerman}{}\relax 
+\beamer@sectionintoc {1}{Section 1}{6}{0}{1}
+\beamer@subsectionintoc {1}{1}{Zero-shot learning}{7}{0}{1}
+\beamer@sectionintoc {2}{Section 2}{13}{0}{2}
+\beamer@subsectionintoc {2}{1}{One-Shot learning }{14}{0}{2}
+\beamer@sectionintoc {3}{Section 3}{19}{0}{3}
+\beamer@subsectionintoc {3}{1}{Few-Shot learning }{20}{0}{3}
+\beamer@subsectionintoc {3}{2}{\"Ubungen }{26}{0}{3}
+\beamer@sectionintoc {4}{Section 2}{54}{0}{4}
+\beamer@subsectionintoc {4}{1}{Subsection 1 of Section 1}{55}{0}{4}
+\beamer@subsectionintoc {4}{2}{\"Ubungen }{56}{0}{4}
+\beamer@sectionintoc {5}{Section 3}{59}{0}{5}
+\beamer@subsectionintoc {5}{1}{Subsection 1 of Section 3}{60}{0}{5}
+\beamer@subsectionintoc {5}{2}{\"Ubungen }{61}{0}{5}
+\beamer@sectionintoc {6}{Layout Options}{63}{0}{6}
+\beamer@subsectionintoc {6}{1}{General Hints}{64}{0}{6}
+\beamer@subsectionintoc {6}{2}{Blocks and Boxes}{68}{0}{6}
+\beamer@subsectionintoc {6}{3}{New Environments}{74}{0}{6}
+\beamer@subsectionintoc {6}{4}{Sourcecode Listings}{79}{0}{6}

@@ -1,0 +1,672 @@
+%-----------------------------------------------------------------------------%
+%                                                                             %
+%                                readme.tex                                   %
+%                                                                             %
+%                               Achim Ibenthal                                %
+%                                                                             %
+% CONTENT:             Blocks and Boxes in beamer using aettings_common.tex   %
+%                      and settings_slides.tex                                %
+%                                                                             %
+% REVISION HISTORY     13-AUG-09: Initial Version                             %
+%                                                                             %
+%-----------------------------------------------------------------------------%
+
+%\title{Blocks and Boxes using \texttt{settings\symbol{95}common.tex} and 
+%       \texttt{settings\symbol{95}slides.tex}}
+%\TitleTextBox[Motivation:]{Farbig logisches Boxen Layout.}
+%\frame{\titlepage}
+
+\mode<presentation>{
+
+   % Change Title Page Content HERE
+   \title[Layout options]{Using 
+         \texttt{settings\symbol{95}common.tex}, 
+         \texttt{settings\symbol{95}slides.tex},
+         \texttt{settings\symbol{95}slides.tex} and
+         \texttt{mybeamer.sty}}
+   \TitleTextBox[Goal:]{Facilitate the application of the \texttt{beamer} class,
+                        harmonize the colors of block environments
+                        and amend box environments providing boxes
+                        with harmonized colors but without titles.}
+
+   % Insert a title slide
+   \frame{\clockinit\titlepage}
+
+}
+
+%-----------------------------------------------------------------------------%
+%                            Blocks and Boxes Demo                            %
+%-----------------------------------------------------------------------------%
+
+\scrnp
+
+\section{Layout Options}
+
+
+
+%-----------------------------------------------------------------------------%
+%                                 General Hints                               %
+%-----------------------------------------------------------------------------%
+
+\subsection{General Hints}
+\label{ssec:genhints}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[allowframebreaks,fragile]
+\slideonly{\frametitle{General Hints}}
+
+\begin{itemize}
+    \item The following files have been created to enhance the flexibility
+          of the \texttt{beamer} class in terms of layout and to provide 
+          commands which facilitate its application especially for 
+          \te{lectures}:
+          \begin{itemize} \normalsize
+             \slspace{0.5}
+             \item \te{\texttt{settings\symbol{95}common.tex}}: Things
+                   which are common to both slide and script.
+                   Loads packages, sets layout and theme colours, 
+                   adds commands and environments, switches PDF realtime clock
+                   for slides on/off, sets author and facility information.
+             \slspace{0.5}
+             \item \te{\texttt{settings\symbol{95}slides.tex}}: slide-specific
+                   layout: defines 35 additional color themes, new
+                   logo layout, colour control for theme elements.
+             \slspace{0.5}
+             \item \te{\texttt{settings\symbol{95}slides.tex}}: script-specific 
+                   layout such as page layout and boxes.
+             \slspace{0.5}
+             \item \te{\texttt{mybeamer.sty}}: commands shortcuts for 
+                   standard text colors, beamerclass control, figures,
+                   boxes and math. 
+          \end{itemize}
+    \framebreak
+    \item To adapt the \te{overall layout} use Section 2 of     
+          \texttt{\symbol{92}format\symbol{92}settings\symbol{95}common.tex}.
+    \slspace{1}
+    \item To adapt \te{lecture title}, \te{personal data} and \te{legal notice}
+          use \te{Section 3} of \scriptonly{\hfill \hfill} \scrlf
+          \texttt{\symbol{92}format\symbol{92}settings\symbol{95}common.tex}.
+    \slspace{1}
+    \item Commands for \te{blocks} and \te{boxes} are explained in \te{this 
+          Section}. 
+    \slspace{1}
+    \item \texttt{\symbol{92}te\{\}} provides \te{text emphasis},
+          \texttt{\symbol{92}ce\{\}} \ce{c}haracter \ce{e}mphasis (e.g. for
+          glossary) and \texttt{\symbol{92}me\{\}} the marking of
+          \me{menue commands}.
+          It is recommended to use those because the layout is optimized
+          for slides and script individually.
+          Defaults are defined in Section 10 of
+          \texttt{\symbol{92}format\symbol{92}settings\symbol{95}common.tex}.
+          A \texttt{\symbol{92}key\{\}} command is available to add sidenotes
+          to the script.
+    \slspace{1}
+    \item \texttt{beamer} increments counters in 
+          \texttt{\symbol{92}section*}, \texttt{\symbol{92}subsection*},
+          \texttt{\symbol{92}subsubsection*}. Therefore use new commands
+          \texttt{\symbol{92}nosection}, \texttt{\symbol{92}nosubsection},
+          \texttt{\symbol{92}nosubsubsection} instead (not starred).
+    \framebreak
+    \item \te{\texttt{mybeamer.sty}} defines many additional commands, which are
+          more or less selfexplanatory when reading \texttt{mybeamer.sty}.
+          Examples:
+          \begin{itemize} \normalsize
+             \slspace{0.5}
+             \item Color definitions.
+             \slspace{0.5}
+             \item commands which operate only in one of the two modes
+                   slide and script such as 
+                   \texttt{\symbol{92}slideonly\{any text\}} and
+                   \texttt{\symbol{92}scriptonly\{any text\}}.
+             \slspace{0.5}
+             \item e.g. \texttt{\symbol{92}slup\{\#\}} and
+                   \texttt{\symbol{92}scrdown\{\#\}} are used for v- 
+                   and hspaces.
+                   Arguments \texttt{\#} are passed without unit and 
+                   interpreted as '\texttt{ex}'.
+             \slspace{0.5}
+             \item \texttt{\symbol{92}switch\{\#1\}\{\#2\}} separates
+                   arguments used in slide mode (\texttt{\#1}) and
+                   script mode (\texttt{\#2}).
+                   This comes in quite handy e.g. for figure resizing.
+             \slspace{0.5}
+             \item Often a \texttt{\symbol{92}vspace} is overruled
+                   by the \TeX~auto layout and more or less ignored.
+                   Here the commands \texttt{\symbol{92}slidebar\{\#\}} and
+                   \texttt{\symbol{92}scriptbar\{\#\}} are providing
+                   the brute force method to enforce spacing.
+             \framebreak
+             \item \texttt{\symbol{92}fig} facilitates the insertion
+                   of figures:
+\begin{verbatim}
+		\fig{captiontext}
+		    {fig:<label>}
+		    {\switch{0.9}{0.7}} % sizes for slide/script
+		    {figurename}        % some pdf, jpg or png 
+		    \scriptbar{2}       % enforce space in script
+\end{verbatim}
+             \slspace{0.5}
+             \item There are many more, check it out!
+         \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------%
+%                              Blocks and Boxes                               %
+%-----------------------------------------------------------------------------%
+
+\subsection{Blocks and Boxes}
+\label{ssec:bb}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{\texttt{normalblock} and \texttt{normalbox} Environment}
+
+\begin{normalblock}{normalblock Title}
+\begin{verbatim}
+\begin{normalblock}{normalblock Title}
+   ...
+\end{normalblock}
+\end{verbatim}
+
+\vspace{-3ex}
+\begin{itemize}
+    \item normalblock item
+\end{itemize}
+
+\vspace{-2ex}
+\begin{enumerate}
+	\item normalblock enumerate
+\end{enumerate}
+\end{normalblock}
+
+\vspace{5ex}
+
+\begin{normalbox}
+\begin{verbatim}
+\begin{normalbox}
+   ...
+\end{normalbox}
+\end{verbatim}
+
+\vspace{-3ex}
+\begin{itemize}
+   \item normalbox item
+\end{itemize}
+
+\vspace{-2ex}
+\begin{enumerate}
+	\item normalbox enumerate
+\end{enumerate}
+\end{normalbox}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{\texttt{exampleblock} and \texttt{examplebox} Environment}
+
+\begin{exampleblock}{exampleblock Title}
+\begin{verbatim}
+\begin{exampleblock}{exampleblock Title}
+   ...
+\end{normalblock}
+\end{verbatim}
+
+\vspace{-3ex}
+\begin{itemize}
+    \item examplelblock item
+\end{itemize}
+
+\vspace{-2ex}
+\begin{enumerate}
+	\item exampleblock enumerate
+\end{enumerate}
+\end{exampleblock}
+
+\vspace{5ex}
+
+\begin{examplebox}
+\begin{verbatim}
+\begin{examplebox}
+   ...
+\end{examplebox}
+\end{verbatim}
+
+\vspace{-3ex}
+\begin{itemize}
+   \item examplebox item
+\end{itemize}
+
+\vspace{-2ex}
+\begin{enumerate}
+	\item examplebox enumerate
+\end{enumerate}
+\end{examplebox}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{\texttt{alertblock} and \texttt{alertbox} Environment}
+
+\begin{alertblock}{alertblock Title}
+\begin{verbatim}
+\begin{alertblock}{alertblock Title}
+   ...
+\end{alertblock}
+\end{verbatim}
+
+\vspace{-3ex}
+\begin{itemize}
+    \item alertblock item
+\end{itemize}
+
+\vspace{-2ex}
+\begin{enumerate}
+	\item alertblock enumerate
+\end{enumerate}
+\end{alertblock}
+
+
+\vspace{5ex}
+
+\begin{alertbox}
+\begin{verbatim}
+\begin{alertbox}
+   ...
+\end{alertbox}
+\end{verbatim}
+
+\vspace{-3ex}
+\begin{itemize}
+   \item alertbox item
+\end{itemize}
+
+\vspace{-2ex}
+\begin{enumerate}
+	\item alertbox enumerate
+\end{enumerate}
+\end{alertbox}
+
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{\texttt{block} and \texttt{bodybox} Environment}
+
+
+The standard \texttt{block} environment defined by \texttt{beamer}
+uses theme colors for title, title text, canvas, body text 
+and bullets:
+
+\begin{block}{Theme}
+\begin{verbatim}
+\begin{block}{block Title}
+   ...
+\end{block}
+\end{verbatim}
+
+\vspace{-2ex}
+\begin{itemize}
+   \item block item
+\end{itemize}
+
+\vspace{-2ex}
+\begin{enumerate}
+	\item block enumerate
+\end{enumerate}
+
+\end{block}
+
+We have added a \texttt{bodybox} environment.
+It's effect is similar to a \texttt{beamercolorbox} with 
+\texttt{block body} color (but vertically more 'tight'):
+\begin{bodybox}
+\begin{verbatim}
+\begin{bodybox}
+   ...
+\end{bodybox}
+\end{verbatim}
+
+\vspace{-3ex}
+\begin{itemize}
+   \item bodybox item
+\end{itemize}
+
+\vspace{-2ex}
+\begin{enumerate}
+	\item body enumerate
+\end{enumerate}
+\end{bodybox}
+
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{Shortcuts}
+
+\begin{columns}[c] %[T,t,b totalwidth=<width>]
+\begin{column}{0.5\textwidth} %----------- COL 1 -----------%
+It turns out that in practice typing and error rate can
+be reduced by using \te{shortcuts} for the block and box
+environments\switch{:}{. In \texttt{article} mode the 
+\blue{\texttt{\symbol{92}nblock}}, \blue{\texttt{\symbol{92}nbox}},
+\red{\texttt{\symbol{92}ablock}} and \red{\texttt{\symbol{92}nbox}}
+commands can be colored too, using the 
+\texttt{\symbol{92}def\symbol{92}scriptboxlayout\{boxed\}} option
+in \texttt{settings\symbol{95}common.tex}, Section 2.}
+\begin{verbatim}
+\nblock{Title}{Body} 
+\nbox{Body}
+\eblock{Title}{Body}  
+\ebox{Body}
+\ablock{Title}{Body}
+\abox{Body}                              
+\tblock{Title}{Body}   
+\tbox{Body}
+\end{verbatim}
+\end{column}                  %-----------------------------%
+\begin{column}{0.5\textwidth} %----------- COL 2 -----------%
+\textit{Examples:}
+\begin{verbatim}
+\nblock
+   {Problem}
+   {Does dark matter smell?}
+\end{verbatim}
+
+\slup{2}
+\nblock{Problem}{Does dark matter smell?}
+\begin{verbatim}
+\abox{\centering%
+      This is important!}
+\end{verbatim}
+
+\slup{3}
+\abox{\centering%
+      This is important!}
+\end{column}                  %-----------------------------%
+\end{columns}
+
+\end{frame}
+
+
+  
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{\texttt{beamercolorbox} Environment}
+
+The \texttt{beamercolorbox} environment provides boxes which' canvas is derived
+from some beamer color.
+\te{Text and bullet colors} are derived from the beamer theme colors (\te{!}),
+however.
+Better use
+
+\nbox{
+    \begin{itemize}
+	    \item \texttt{\symbol{92}nbox} for blue boxes (n = \ce{n}ormal)
+    \end{itemize}
+}
+
+\ebox{
+    \begin{itemize}
+	    \item \texttt{\symbol{92}ebox} for green boxes, also
+	          used for \ce{e}xamples
+    \end{itemize}
+}
+
+
+\abox{
+    \begin{itemize}
+	    \item \texttt{\symbol{92}abox} for \ce{a}lert boxes
+    \end{itemize}
+}
+
+\tbox{
+    \begin{itemize}
+	    \item \texttt{\symbol{92}tbox} for \ce{t}heme color box,
+    \end{itemize}
+}
+giving you matching bullet colors in presentetion (= beamer) mode
+and black bullets in article mode anyway.
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+%                     Definition and Exercise Environments                    %
+%-----------------------------------------------------------------------------%
+
+\subsection{New Environments}
+\label{ssec:definitioen}
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[fragile,allowframebreaks]
+\frametitle{Definitions \texttt{\symbol{92}ndef}}
+
+The beamer \texttt{definition} and \texttt{Definition} environments
+are using template colors for boxes, too. 
+In \texttt{settings\symbol{95}common.tex} a \te{new environment for definitions}
+is created which uses \blue{blue} boxes.
+This is recommended, since otherwise the audience has to adapt to different
+box colors in case you are just changing the Theme color.
+
+\begin{verbatim}
+	\ndef{def:<label>}{Analogkäse}{
+	    Das willst Du nicht wirklich wissen!
+	\filledend}
+\end{verbatim}
+
+\ndef{def:<label>}{Analogkäse}{
+    Das willst Du nicht wirklich wissen!
+\filledend}
+
+
+\framebreak %-----------------------------------------------------------------%
+
+\begin{itemize} \normalsize
+    \slspace{1}
+    \item We don't provide numbers in presentation (= beamer) mode because
+          \begin{itemize} \normalsize
+             \slspace{0.5}
+             \item they don't mean much to the audience 
+             \slspace{0.5}
+             \item and because they are causing problems when using the beamer 
+                   overlay specifications such as \texttt{\symbol{92}uncover<>}.
+          \end{itemize}
+    \slspace{1}
+    \item Numbering in script is local to Sections. 
+    \slspace{1}
+    \item Note that we had to come up with something else than 
+          \texttt{\symbol{92}definition} or \texttt{\symbol{92}Definition} 
+          since those were already taken.
+          Thus: \texttt{\symbol{92}ndef}
+    \slspace{1}
+    \item The '\texttt{n}' indicates that normal block color is being used.
+ 
+\end{itemize}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Satz \texttt{\symbol{92}nsatz} and
+            Theorem \texttt{\symbol{92}ntheorem}}
+
+\te{\texttt{\symbol{92}nsatz}} (Satz) and \te{\texttt{\symbol{92}ntheorem}}
+(Theorem) essentially are working in the same way as \texttt{\symbol{92}ndef}, 
+except they are producing blue boxes in the script if script boxes are 
+enabled in Section 2 of \texttt{settings\symbol{95}common.tex}.
+
+\sldown{0.5}
+\ntheo{theo:theo}
+      {\textsc{Berti}'s Sicht}
+      {Die Realität sieht anders aus als die Wirklichkeit.}
+
+\nsatz{satz:ft}{\textsc{Fourier}-Transform}{
+
+\slup{2}
+\be
+    \label{eq:ft1} 
+    S(\omega) & = & \int\limits_{-\infty}^{\infty} s(t) e^{-j \omega t} dt, \\
+              &  \multimapdotbothBvert & \nonumber \\
+    \slup{3}
+    \label{eq:ft2} 
+    s(t)      & = & \frac{1}{2 \pi} 
+                    \int\limits_{-\infty}^{\infty} S(\omega) e^{j \omega t}
+                    d\omega.
+\ee
+\slup{2}}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Korollar \texttt{\symbol{92}ncor} and
+            Lemma \texttt{\symbol{92}ntheorem}}
+
+\te{\texttt{\symbol{92}ncor}} (Korollar)/\te{\texttt{\symbol{92}ncor}} (Corollary)
+and \te{\texttt{\symbol{92}nlem}} (Lemma) do not produce boxes in script mode.
+
+\nkor{cor:rabbit}
+      {Osterhasenpädagogik}
+      {Der Lehrer versteckt das Wissen - die Schüler sollen's suchen.\openend}
+
+\scrdown{2}
+\ncor{cor:maturity}
+      {Maturity}
+      {Growing old is mandatory, growing up is optional.\openend}
+
+\scrdown{2}
+\nlem{lem:lem}
+     {\textsc{Jordan}'s Lemma}
+     {In der Elektrotechnik gibt es Probleme, bei denen komplexe Zahlen so
+      nützlich sind, wie negative Zahlen für Probleme mit Geld.\openend}
+
+\sldown{1}\scrdown{2}
+The white boxes ''\hspace{-0.7ex}\checkbox'' in script mode are generated using 
+\texttt{\symbol{92}openend}.
+
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}%[allowframebreaks,fragile]
+\frametitle{Exercises: \texttt{\symbol{92}Uebung} -- \texttt{\symbol{92}Antwort}
+            environment pair}
+
+For the application of the \te{\texttt{\symbol{92}Uebung} -- \texttt{\symbol{92}Antwort} environment pair} for exercises and answers
+see the \LaTeX~source code of this template.
+\slspace{3}
+You can change the environment title and language of headings in the 
+environment definitions in Section 7 of \texttt{settings\symbol{95}common.tex}.
+\slspace{3}
+Numbering in script is local to Sections.
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------%
+%                            Sourcecode Listings                              %
+%-----------------------------------------------------------------------------%
+
+\subsection{Sourcecode Listings}
+\label{ssec:sourcecode}
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}[allowframebreaks,fragile]
+\slideonly{\frametitle{Sourcecode Listings}}
+
+Source code listings are inserted by using the \te{\texttt{listings}} 
+package.
+\slspace{2}
+This template is configured for \texttt{Matlab} M-file language.
+Use Section 11 of \texttt{settings\symbol{95}common.tex} if you wish to 
+change the default.
+
+
+\framebreak %-----------------------------------------------------------------%
+
+Example:
+\slideonly{\footnotesize}
+\begin{verbatim}
+\begin{lstlisting}[title=\cblueb{averagingdemo.m},
+                   label=list:average,
+                   firstnumber=1,
+                   backgroundcolor=\color{ultralightgray}]
+% Demo Planarer Tiefpass
+
+%% Bild lesen
+b  = imread('zoneplate.tif'); 
+
+%% Filterung
+b5  = imfilter(b, fspecial('average', 5),  'replicate');
+b9  = imfilter(b, fspecial('average', 9),  'replicate');
+b13 = imfilter(b, fspecial('average', 13), 'replicate');
+
+%% Display
+subplot(2,2,1); imshow(b,  []);  title('Original');
+subplot(2,2,2); imshow(b5, []);  title('5 x 5 Filter');
+subplot(2,2,3); imshow(b9, []);  title('9 x 9 Filter');
+subplot(2,2,4); imshow(b13, []); title('13 x 13 Filter');
+\end{lstlisting}
+\end{verbatim}
+\slideonly{\normalsize}
+
+
+\framebreak %-----------------------------------------------------------------%
+
+\begin{lstlisting}[title=\cblueb{averagingdemo.m},
+                   label=list:average,
+                   firstnumber=1,
+                   backgroundcolor=\color{ultralightgray}]
+% Demo Planarer Tiefpass
+
+%% Bild lesen
+b  = imread('zoneplate.tif'); 
+
+%% Filterung
+b5  = imfilter(b, fspecial('average', 5),  'replicate');
+b9  = imfilter(b, fspecial('average', 9),  'replicate');
+b13 = imfilter(b, fspecial('average', 13), 'replicate');
+
+%% Display
+subplot(2,2,1); imshow(b,  []);  title('Original');
+subplot(2,2,2); imshow(b5, []);  title('5 x 5 Filter');
+subplot(2,2,3); imshow(b9, []);  title('9 x 9 Filter');
+subplot(2,2,4); imshow(b13, []); title('13 x 13 Filter');
+\end{lstlisting}
+
+\end{frame}
+
+
+
+
+%---------------------------------------EOF-----------------------------------%
